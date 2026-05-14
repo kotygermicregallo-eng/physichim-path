@@ -16,6 +16,24 @@ function FormulaCard({ formula }) {
   );
 }
 
+function ExtraBlock({ extra }) {
+  const isCode = extra.content.includes('import ') || extra.content.includes('for i in') || extra.content.includes('plt.');
+  return (
+    <div className="rounded-xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+      <div className="px-4 py-2.5 flex items-center gap-2" style={{ background: 'rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+        <span className="text-xs font-semibold" style={{ color: '#a78bfa' }}>⊕ {extra.title}</span>
+      </div>
+      <div className="p-4">
+        {isCode ? (
+          <pre className="schema-box text-xs leading-relaxed" style={{ whiteSpace: 'pre-wrap' }}>{extra.content}</pre>
+        ) : (
+          <p className="text-sm leading-relaxed whitespace-pre-line" style={{ color: '#cbd5e1', fontFamily: extra.content.includes('\n') ? 'JetBrains Mono, monospace' : 'Inter, sans-serif', fontSize: extra.content.includes('\n') ? '0.78rem' : '0.875rem' }}>{extra.content}</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function ChapterContent({ chapter }) {
   return (
     <div className="space-y-8 animate-fade-in">
@@ -101,6 +119,18 @@ export default function ChapterContent({ chapter }) {
           </ul>
         </div>
       </section>
+
+      {/* Extras (méthodes, exemples, compléments) */}
+      {chapter.extras && chapter.extras.length > 0 && (
+        <section>
+          <h3 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: chapter.color }}>
+            <span>📌</span> Compléments & Méthodes
+          </h3>
+          <div className="space-y-3">
+            {chapter.extras.map((extra, i) => <ExtraBlock key={i} extra={extra} />)}
+          </div>
+        </section>
+      )}
     </div>
   );
 }
