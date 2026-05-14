@@ -48,7 +48,7 @@ export default function Home() {
               ☰
             </button>
             <div>
-              <h1 className="text-lg md:text-2xl font-bold gradient-text">⚗️ PhysicChim Bac Spé</h1>
+              <h1 className="text-lg md:text-2xl font-bold gradient-text">⚗️ Physic-Chimie Bac Spé</h1>
               <p className="text-xs hidden md:block" style={{ color: '#64748b' }}>Révision Baccalauréat — Physique-Chimie Spécialité</p>
             </div>
           </div>
