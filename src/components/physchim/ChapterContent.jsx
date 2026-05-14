@@ -1,5 +1,6 @@
 import React from 'react';
 import Math from './Math';
+import SchemaBlock from './SchemaBlock';
 
 // Renders text with inline LaTeX: wrap expressions between $ signs
 function InlineMath({ text }) {
@@ -99,9 +100,9 @@ export default function ChapterContent({ chapter }) {
           <h3 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: chapter.color }}>
             <span>📊</span> Schémas / Représentations
           </h3>
-          <div className="space-y-3">
+          <div className="space-y-4">
             {chapter.schemas.map((s, i) => (
-              <div key={i} className="schema-box">{s}</div>
+              <SchemaBlock key={i} schema={s} />
             ))}
           </div>
         </section>

@@ -17,28 +17,46 @@ export const chapters = [
     ],
     demonstrations: [
       "Établissement de $n = m/M$ : $M$ est la masse d'une mole, donc $n = m/M$.",
-      "Calcul du nombre d'entités : $N = (m/M) \\times N_A$. Ex : 36 g de glucose ($M=180$) $\\Rightarrow n = 0{,}2$ mol $\\Rightarrow N = 1{,}2 \\times 10^{23}$.",
+      "Calcul du nombre d'entités : $N = (m/M) \\times N_A$. Ex : 36 g de glucose ($M=180$) $\\Rightarrow n = 0{,}2$ mol.",
       "Loi de dilution : $n_1 = n_2 \\Rightarrow C_1 V_1 = C_2 V_2$.",
-      "Calcul de $C$ depuis $w\\%$ et $d$ : $m_{\\text{sol}}/1\\text{L} = d \\times 1000$ g $\\Rightarrow m_{\\text{soluté}} = w\\%/100 \\times m_{\\text{sol}} \\Rightarrow C = m_{\\text{soluté}}/M$.",
+      "Calcul de $C$ depuis $w\\%$ et $d$ : $m_{\\text{sol}}/1\\text{L} = d \\times 1000$ g $\\Rightarrow C = (w\\% \\times d \\times 1000)/(M \\times 100)$.",
     ],
     schemas: [
-      `Tableau d'avancement :\n\nÉquation :  aA + bB → cC + dD\nÉtat init. : n(A)₀   n(B)₀     0    0\nÉtat x    : n(A)₀-ax  n(B)₀-bx   cx   dx\nÉtat final : n(A)f    n(B)f    n(C)f  n(D)f\n\nRéactif limitant : celui pour qui n(X)/coeff est le plus petit\nxmax = min(nₐ/a ; n_B/b)`,
+      {
+        type: 'table',
+        caption: 'Grandeurs et unités',
+        headers: ['Symbole', 'Grandeur', 'Unité', 'Remarque'],
+        rows: [
+          ['n', 'Quantité de matière', 'mol', ''],
+          ['m', 'Masse', 'g', ''],
+          ['M', 'Masse molaire', 'g/mol', 'Somme des masses atomiques'],
+          ['C', 'Concentration molaire', 'mol/L', 'V en LITRES'],
+          ['Cm', 'Concentration massique', 'g/L', 'Cm = C × M'],
+          ['NA', 'Constante d\'Avogadro', '6,022×10²³ mol⁻¹', ''],
+        ],
+      },
+      {
+        type: 'mermaid',
+        caption: 'Tableau d\'avancement — réaction aA + bB → cC + dD',
+        chart: `graph LR
+    A["État initial<br/>n(A)₀ · n(B)₀<br/>0 · 0"] -->|"avancement x"| B["État en cours<br/>n(A)₀−ax · n(B)₀−bx<br/>cx · dx"]
+    B -->|"x = xmax"| C["État final<br/>n(A)f · n(B)f<br/>n(C)f · n(D)f"]
+    style A fill:#1e293b,stroke:#38bdf8,color:#e2e8f0
+    style B fill:#1e293b,stroke:#a78bfa,color:#e2e8f0
+    style C fill:#1e293b,stroke:#34d399,color:#e2e8f0`,
+      },
     ],
     tips: [
       "PIÈGE N°1 : toujours convertir mL en L avant tout calcul (250 mL → 0,250 L).",
-      "Pour $w\\%$ avec densité : partir de 1 litre de solution $\\Rightarrow m_{\\text{tot}} = d \\times 1000$ g. Ex : HCl 37%, $d=1{,}19$, $M=36{,}5$ $\\Rightarrow C = 12$ mol/L.",
-      "Ne pas confondre $C_m$ (g/L) et $C$ (mol/L) : les relier via $M \\Rightarrow C_m = C \\times M$.",
+      "Pour $w\\%$ avec densité : Ex : HCl 37%, $d=1{,}19$, $M=36{,}5$ $\\Rightarrow C = 12$ mol/L.",
+      "Ne pas confondre $C_m$ (g/L) et $C$ (mol/L) : $C_m = C \\times M$.",
     ],
     remember: [
-      "Les 3 formules de base : $n = m/M$ ; $n = C \\times V$ ; $N = n \\times N_A$ ($N_A = 6{,}022 \\times 10^{23}$).",
+      "Les 3 formules de base : $n = m/M$ ; $n = C \\times V$ ; $N = n \\times N_A$.",
       "Dilution : $C_1 V_1 = C_2 V_2$. Les moles de soluté se conservent.",
       "Réactif limitant : celui pour qui $n/\\text{coeff stœchio}$ est minimal.",
     ],
     extras: [
-      {
-        title: "Méthode : Réactif limitant",
-        content: "Pour aA + bB → produits, calculer xmax(A) = n(A)/a et xmax(B) = n(B)/b. Le réactif limitant est celui qui donne le PLUS PETIT xmax.",
-      },
       {
         title: "Exemple numérique (concours)",
         content: "CH₄ + 2O₂ → CO₂ + 2H₂O avec 3 mol CH₄ et 4 mol O₂ :\nxmax(CH₄) = 3/1 = 3 mol | xmax(O₂) = 4/2 = 2 mol → xmax = 2 mol, O₂ limitant\nÉtat final : CH₄ = 1 mol (excès), O₂ = 0, CO₂ = 2 mol, H₂O = 4 mol",
@@ -60,16 +78,35 @@ export const chapters = [
     ],
     demonstrations: [
       "Vitesse instantanée : pente de la tangente à la courbe $[P](t)$ ou $[R](t)$.",
-      "Lecture de $t_{1/2}$ : sur le graphe $[R](t)$, lire la date $t$ pour laquelle $[R] = [R]_0/2$.",
+      "$t_{1/2}$ : sur le graphe $[R](t)$, lire $t$ pour laquelle $[R] = [R]_0/2$.",
       "Arrhénius : $\\ln(k) = -E_a/(RT) + \\ln(A)$ — si $\\ln(k) = f(1/T)$ est une droite, sa pente vaut $-E_a/R$.",
     ],
     schemas: [
-      `Courbe cinétique :\n\n[Réactif]\n   |\n[A]₀ |\\  \n     | \\ \n[A]₀/2|--+------\n     |    \\    \n     |     \\___\n     +--+-------→ t\n           t₁/₂\n\nVitesse instantanée = pente de la tangente`,
+      {
+        type: 'mermaid',
+        caption: 'Facteurs influençant la cinétique chimique',
+        chart: `graph TD
+    A["Vitesse de réaction"] --> B["Température T"]
+    A --> C["Concentration"]
+    A --> D["Catalyseur"]
+    A --> E["Surface de contact"]
+    B -->|"T ↑"| F["k ↑ (Arrhénius)"]
+    C -->|"[R] ↑"| G["v ↑"]
+    D -->|"abaisse Eₐ"| H["k ↑ sans changer K"]
+    style A fill:#1e293b,stroke:#a78bfa,color:#e2e8f0
+    style B fill:#0f172a,stroke:#38bdf8,color:#94a3b8
+    style C fill:#0f172a,stroke:#38bdf8,color:#94a3b8
+    style D fill:#0f172a,stroke:#38bdf8,color:#94a3b8
+    style E fill:#0f172a,stroke:#38bdf8,color:#94a3b8
+    style F fill:#0f172a,stroke:#34d399,color:#34d399
+    style G fill:#0f172a,stroke:#34d399,color:#34d399
+    style H fill:#0f172a,stroke:#34d399,color:#34d399`,
+      },
     ],
     tips: [
       "La tangente en $t=0$ donne la vitesse initiale (maximale).",
       "Pour identifier l'ordre : si $t_{1/2}$ est constant $\\Rightarrow$ ordre 1. Si $t_{1/2} \\propto 1/[A]_0 \\Rightarrow$ ordre 2.",
-      "Loi d'Arrhénius : augmenter $T$ de 10°C double souvent $k$ (règle approximative).",
+      "Loi d'Arrhénius : augmenter $T$ de 10°C double souvent $k$.",
     ],
     remember: [
       "La vitesse de réaction est toujours positive et diminue au cours du temps.",
@@ -91,25 +128,54 @@ export const chapters = [
       { name: "pKa", expr: "$pK_a = -\\log(K_a)$", desc: "$K_a = 10^{-pK_a}$" },
       { name: "Acide fort $C_a$", expr: "$\\text{pH} = -\\log(C_a)$", desc: "Dissociation totale" },
       { name: "Base forte $C_b$", expr: "$\\text{pH} = 14 + \\log(C_b)$", desc: "Dissociation totale" },
-      { name: "Acide faible $C_a$, $pK_a$", expr: "$\\text{pH} = \\dfrac{1}{2}(pK_a - \\log C_a)$", desc: "Valable si $\\alpha \\ll 1$" },
-      { name: "Base faible $C_b$, $pK_a$", expr: "$\\text{pH} = 7 + \\dfrac{1}{2}(pK_a + \\log C_b)$", desc: "" },
-      { name: "Solution tampon (Henderson)", expr: "$\\text{pH} = pK_a + \\log\\dfrac{[A^-]}{[HA]}$", desc: "" },
+      { name: "Acide faible", expr: "$\\text{pH} = \\dfrac{1}{2}(pK_a - \\log C_a)$", desc: "Valable si $\\alpha \\ll 1$" },
+      { name: "Base faible", expr: "$\\text{pH} = 7 + \\dfrac{1}{2}(pK_a + \\log C_b)$", desc: "" },
+      { name: "Solution tampon", expr: "$\\text{pH} = pK_a + \\log\\dfrac{[A^-]}{[HA]}$", desc: "" },
       { name: "Mi-titrage acide faible", expr: "$\\text{pH} = pK_a$", desc: "Quand $V_{\\text{ajouté}} = V_{\\text{éq}}/2$" },
     ],
     demonstrations: [
       "Acide fort : dissociation totale $\\Rightarrow [\\text{H}_3\\text{O}^+] = C_a \\Rightarrow \\text{pH} = -\\log(C_a)$.",
-      "Acide faible : tableau d'avancement $\\Rightarrow K_a = x^2/(C_a - x) \\approx x^2/C_a \\Rightarrow x = \\sqrt{K_a C_a} \\Rightarrow \\text{pH} = \\frac{1}{2}(pK_a - \\log C_a)$.",
-      "Titrage : à l'équivalence $C_a V_a = C_b V_{\\text{éq}}$. Point équivalent par méthode des tangentes parallèles.",
-      "Mi-titrage : $n(A^-) = n(HA) \\Rightarrow [A^-]/[HA] = 1 \\Rightarrow \\log(1) = 0 \\Rightarrow \\text{pH} = pK_a$.",
+      "Acide faible : $K_a = x^2/(C_a - x) \\approx x^2/C_a \\Rightarrow x = \\sqrt{K_a C_a} \\Rightarrow \\text{pH} = \\frac{1}{2}(pK_a - \\log C_a)$.",
+      "Titrage : à l'équivalence $C_a V_a = C_b V_{\\text{éq}}$.",
+      "Mi-titrage : $n(A^-) = n(HA) \\Rightarrow \\log(1) = 0 \\Rightarrow \\text{pH} = pK_a$.",
     ],
     schemas: [
-      `Diagramme de prédominance :\n\n  HA prédominante   |   A⁻ prédominante\n                    |\n  ←── pH < pKa ────pKa──── pH > pKa ──→\n                    |\n              [HA] = [A⁻]`,
-      `Les 4 formules de pH :\n\n  Acide fort  : pH = −log(Ca)\n  Base forte  : pH = 14 + log(Cb)\n  Acide faible: pH = ½(pKa − log Ca)\n  Base faible : pH = 7 + ½(pKa + log Cb)\n  Tampon      : pH = pKa + log([A⁻]/[HA])`,
+      {
+        type: 'table',
+        caption: 'Les 4 formules de pH selon le type de solution',
+        headers: ['Type de solution', 'Formule du pH', 'Condition'],
+        rows: [
+          ['Acide fort Ca', 'pH = −log(Ca)', 'Dissociation totale'],
+          ['Base forte Cb', 'pH = 14 + log(Cb)', 'Dissociation totale'],
+          ['Acide faible Ca, pKa', 'pH = ½(pKa − log Ca)', 'α << 1'],
+          ['Base faible Cb, pKa', 'pH = 7 + ½(pKa + log Cb)', ''],
+          ['Tampon (Henderson)', 'pH = pKa + log([A⁻]/[HA])', ''],
+          ['Mi-titrage acide faible', 'pH = pKa', 'V ajouté = Véq/2'],
+        ],
+      },
+      {
+        type: 'table',
+        caption: 'pH à l\'équivalence selon le type de titrage',
+        headers: ['Type de titrage', 'pH à l\'équivalence', 'Explication'],
+        rows: [
+          ['Acide fort + Base forte', 'pH = 7', 'Sel neutre'],
+          ['Acide faible + Base forte', 'pH > 7', 'A⁻ est une base'],
+          ['Base faible + Acide fort', 'pH < 7', 'BH⁺ est un acide'],
+        ],
+      },
+      {
+        type: 'mermaid',
+        caption: 'Diagramme de prédominance acide/base',
+        chart: `graph LR
+    A["pH < pKa<br/>HA prédominant"] -- "pH = pKa<br/>[HA] = [A⁻]" --> B["pH > pKa<br/>A⁻ prédominant"]
+    style A fill:#1e3a5f,stroke:#38bdf8,color:#e2e8f0
+    style B fill:#1a3a2a,stroke:#34d399,color:#e2e8f0`,
+      },
     ],
     tips: [
       "PIÈGE : pH d'un acide FAIBLE $\\neq -\\log(C_a)$. Utiliser : $\\text{pH} = \\frac{1}{2}(pK_a - \\log C_a)$.",
-      "PIÈGE : pH à l'équivalence acide faible + base forte est $> 7$ (milieu basique car $A^-$ est une base).",
-      "Sommer les volumes : $V_{\\text{total}} = V_a + V_{\\text{ajouté}}$ pour calculer les concentrations après ajout.",
+      "PIÈGE : pH à l'équivalence acide faible + base forte est $> 7$.",
+      "Sommer les volumes : $V_{\\text{total}} = V_a + V_{\\text{ajouté}}$.",
     ],
     remember: [
       "Acide = donneur $H^+$ / Base = accepteur $H^+$ (Brønsted).",
@@ -119,7 +185,7 @@ export const chapters = [
     extras: [
       {
         title: "Titrage conductimétrique (complément)",
-        content: "Principe : mesure de la conductance G en fonction du volume ajouté. Courbe = droites qui se croisent au point équivalent (pas une courbe en S).\n\nAcide fort + base forte : σ diminue avant Véq (H₃O⁺ très mobile disparaît), puis augmente (excès HO⁻).\n\nConductivités molaires ioniques :\nH₃O⁺ (35,0) >> HO⁻ (19,8) >> K⁺ (7,4) > Cl⁻ (7,6) > Na⁺ (5,0) > CH₃COO⁻ (4,1) [mS·m²/mol]",
+        content: "Principe : mesure de la conductance G en fonction du volume ajouté. Courbe = droites qui se croisent au point équivalent (pas une courbe en S).\n\nConductivités molaires ioniques :\nH₃O⁺ (35,0) >> HO⁻ (19,8) >> K⁺ (7,4) > Cl⁻ (7,6) > Na⁺ (5,0) > CH₃COO⁻ (4,1) [mS·m²/mol]",
       },
     ],
   },
@@ -128,7 +194,7 @@ export const chapters = [
     title: "Stratégies en synthèse organique",
     icon: "🧪",
     color: "#f472b6",
-    definition: "La synthèse organique construit des molécules par transformations chimiques contrôlées. Elle requiert de choisir réactions (substitution, addition, élimination, oxydation/réduction), conditions opératoires, et méthodes de purification/identification.",
+    definition: "La synthèse organique construit des molécules par transformations chimiques contrôlées. Elle requiert de choisir réactions (substitution, addition, élimination), conditions opératoires, et méthodes de purification/identification.",
     formulas: [
       { name: "Rendement", expr: "$\\eta = \\dfrac{n_{\\text{obtenu}}}{n_{\\text{théorique}}} \\times 100\\%$", desc: "$n$ en moles" },
       { name: "Substitution nucléophile", expr: "$R{-}X + Nu^- \\rightarrow R{-}Nu + X^-$", desc: "$Nu$ : nucléophile, $X$ : groupe partant" },
@@ -136,17 +202,40 @@ export const chapters = [
       { name: "Rf (CCM)", expr: "$R_f = \\dfrac{d_{\\text{composé}}}{d_{\\text{front solvant}}}$", desc: "$0 < R_f < 1$" },
     ],
     demonstrations: [
-      "Règle de Markovnikov : en addition $HX$ sur un alcène asymétrique, $H$ se fixe sur le C le plus H-substitué (carbocation le plus stable).",
+      "Règle de Markovnikov : en addition $HX$ sur alcène asymétrique, $H$ sur le C le plus H-substitué.",
       "Calcul du rendement : $\\eta = m_{\\text{obtenu}} / (n_{\\text{théo}} \\times M_{\\text{produit}}) \\times 100\\%$.",
     ],
     schemas: [
-      `Étapes d'une synthèse :\n\n  Matières premières\n         ↓\n   [Réaction] → Solvant, T°, catalyseur\n         ↓\n   Produit brut (mélange)\n         ↓\n   [Purification] → CCM, distillation, recristallisation\n         ↓\n   Produit pur → [Identification] → IR, RMN`,
-      `Mécanismes réactionnels :\n\nNucléophile (Nu:) : donneur de doublet (riche en e⁻)\n  → H₂O, NH₃, HO⁻, Cl⁻, CN⁻\nÉlectrophile (E⁺) : accepteur de doublet (pauvre en e⁻)\n  → H⁺, C portant δ+, BF₃\n\nRègle d'or : Nu: attaque E⁺\nFlèche courbe : part du doublet, arrive sur l'atome pauvre`,
+      {
+        type: 'mermaid',
+        caption: 'Étapes d\'une synthèse organique',
+        chart: `graph TD
+    A["🧪 Matières premières"] --> B["⚗️ Réaction\n(Solvant · T° · Catalyseur)"]
+    B --> C["🫧 Produit brut\n(mélange)"]
+    C --> D["🔬 Purification\n(CCM · Distillation · Recristallisation)"]
+    D --> E["✅ Produit pur"]
+    E --> F["📊 Identification\n(IR · RMN · CCM)"]
+    style A fill:#1e293b,stroke:#f472b6,color:#e2e8f0
+    style B fill:#1e293b,stroke:#38bdf8,color:#e2e8f0
+    style C fill:#1e293b,stroke:#fbbf24,color:#e2e8f0
+    style D fill:#1e293b,stroke:#a78bfa,color:#e2e8f0
+    style E fill:#1e293b,stroke:#34d399,color:#e2e8f0
+    style F fill:#1e293b,stroke:#34d399,color:#e2e8f0`,
+      },
+      {
+        type: 'table',
+        caption: 'Nucléophiles vs Électrophiles',
+        headers: ['Type', 'Définition', 'Exemples'],
+        rows: [
+          ['Nucléophile (Nu:)', 'Donneur de doublet, riche en e⁻', 'H₂O, NH₃, HO⁻, Cl⁻, CN⁻'],
+          ['Électrophile (E⁺)', 'Accepteur de doublet, pauvre en e⁻', 'H⁺, C portant δ+, BF₃, AlCl₃'],
+        ],
+      },
     ],
     tips: [
-      "$R_f$ identique à un témoin = même composé. Révélation UV ou réactif chimique.",
-      "Flèche courbe : représente le déplacement d'un doublet (2 électrons). Part de là où il Y A des électrons, arrive là où ils VONT.",
-      "Rendement $< 100\\%$ toujours en pratique : pertes à la purification, réactions secondaires.",
+      "$R_f$ identique à un témoin = même composé.",
+      "Flèche courbe : part du doublet (riche), arrive sur l'atome pauvre.",
+      "Rendement $< 100\\%$ toujours en pratique.",
     ],
     remember: [
       "Identifier la transformation : addition, substitution, élimination, oxydation ou réduction.",
@@ -162,30 +251,39 @@ export const chapters = [
     color: "#fbbf24",
     definition: "La cinématique décrit le mouvement sans s'intéresser à ses causes. Elle définit la position, la vitesse et l'accélération d'un objet dans un référentiel donné.",
     formulas: [
-      { name: "Vecteur position", expr: "$\\vec{OM} = x(t)\\,\\vec{i} + y(t)\\,\\vec{j}$", desc: "En 2D dans un repère cartésien" },
+      { name: "Vecteur position", expr: "$\\vec{OM} = x(t)\\,\\vec{i} + y(t)\\,\\vec{j}$", desc: "En 2D" },
       { name: "Vecteur vitesse", expr: "$\\vec{v} = \\dfrac{d\\vec{OM}}{dt}$", desc: "$v_x = \\dot{x}$, $v_y = \\dot{y}$" },
-      { name: "Norme de la vitesse", expr: "$|\\vec{v}| = \\sqrt{v_x^2 + v_y^2}$", desc: "En m/s" },
-      { name: "Vecteur accélération", expr: "$\\vec{a} = \\dfrac{d\\vec{v}}{dt}$", desc: "$a_x = \\dot{v}_x$, $a_y = \\dot{v}_y$" },
+      { name: "Norme de la vitesse", expr: "$|\\vec{v}| = \\sqrt{v_x^2 + v_y^2}$", desc: "m/s" },
+      { name: "Vecteur accélération", expr: "$\\vec{a} = \\dfrac{d\\vec{v}}{dt}$", desc: "" },
       { name: "MRU", expr: "$x(t) = x_0 + v_0 t$", desc: "$v = \\text{cste}$, $a = 0$" },
       { name: "MRUA", expr: "$x(t) = x_0 + v_0 t + \\tfrac{1}{2}at^2$", desc: "$v(t) = v_0 + at$" },
-      { name: "Accélération centripète (MCU)", expr: "$a_n = \\dfrac{v^2}{R}$", desc: "Dirigée vers le centre" },
+      { name: "Accélération centripète", expr: "$a_n = \\dfrac{v^2}{R}$", desc: "MCU — dirigée vers le centre" },
     ],
     demonstrations: [
-      "Passage de $x(t)$ à $v(t)$ par dérivation : $v_x = dx/dt$ = pente de la tangente à $x(t)$.",
-      "Trajectoire : écrire $x(t)$ et $y(t)$, exprimer $t$ depuis $x(t)$, substituer dans $y(t)$ pour obtenir $y = f(x)$.",
+      "Passage de $x(t)$ à $v(t)$ : $v_x = dx/dt$ = pente de la tangente.",
+      "Trajectoire : exprimer $t$ depuis $x(t)$, substituer dans $y(t)$ pour obtenir $y = f(x)$.",
     ],
     schemas: [
-      `Types de mouvements :\n\nMRU  : a = 0, v = cste  → trajectoire rectiligne\nMRUA : a = cste ≠ 0    → v(t) droite, x(t) parabole\nMCU  : |v| = cste, a⊥v → trajectoire circulaire\n\nAccélération (décomposition) :\n  aₜ (tangentielle) : variation de |v|\n  aₙ (normale)     : variation de direction → vers centre`,
+      {
+        type: 'table',
+        caption: 'Types de mouvements et leurs caractéristiques',
+        headers: ['Type', 'Condition', 'v(t)', 'x(t)', 'Trajectoire'],
+        rows: [
+          ['MRU', 'a = 0', 'v = cste', 'droite', 'rectiligne'],
+          ['MRUA', 'a = cste ≠ 0', 'droite', 'parabole', 'parabolique (2D)'],
+          ['MCU', '|v| = cste, a⊥v', '|v| = cste', 'sinusoïde', 'circulaire'],
+        ],
+      },
     ],
     tips: [
-      "La pente de $v(t)$ donne l'accélération $a$. La pente de $x(t)$ (MRU) donne la vitesse.",
+      "La pente de $v(t)$ donne l'accélération $a$.",
       "Trajectoire parabolique : $t = x/(v_0 \\cos\\theta)$, substituer dans $y(t)$.",
       "Toujours préciser le référentiel et le repère.",
     ],
     remember: [
-      "$\\vec{v} = d\\vec{OM}/dt$ et $\\vec{a} = d\\vec{v}/dt$ : dérivation par rapport au temps.",
-      "MRU : $v = \\text{cste}$, $a = 0$. MRUA : $a = \\text{cste}$.",
-      "Trajectoire $y = f(x)$ obtenue en éliminant le paramètre $t$.",
+      "$\\vec{v} = d\\vec{OM}/dt$ et $\\vec{a} = d\\vec{v}/dt$.",
+      "MRU : $v = \\text{cste}$. MRUA : $a = \\text{cste}$.",
+      "Trajectoire $y = f(x)$ obtenue en éliminant $t$.",
     ],
     extras: [],
   },
@@ -194,29 +292,41 @@ export const chapters = [
     title: "Deuxième loi de Newton",
     icon: "🍎",
     color: "#38bdf8",
-    definition: "La deuxième loi de Newton (Principe Fondamental de la Dynamique, PFD) relie la somme des forces extérieures à l'accélération du centre de masse, dans un référentiel galiléen.",
+    definition: "La deuxième loi de Newton (PFD) relie la somme des forces extérieures à l'accélération du centre de masse, dans un référentiel galiléen.",
     formulas: [
-      { name: "PFD (2ème loi de Newton)", expr: "$\\sum \\vec{F}_{\\text{ext}} = m\\,\\vec{a}$", desc: "$m$ (kg), $\\vec{a}$ (m/s²), référentiel galiléen" },
+      { name: "PFD", expr: "$\\sum \\vec{F}_{\\text{ext}} = m\\,\\vec{a}$", desc: "Référentiel galiléen" },
       { name: "Poids", expr: "$\\vec{P} = m\\,\\vec{g}$", desc: "$g \\approx 9{,}81$ m/s² vers le bas" },
-      { name: "Force de frottement", expr: "$f \\leq \\mu N$", desc: "$\\mu$ : coefficient de frottement" },
-      { name: "Projection sur axe $x$", expr: "$m\\,a_x = \\sum F_x$", desc: "Une équation par axe" },
+      { name: "Force de frottement", expr: "$f \\leq \\mu N$", desc: "$\\mu$ : coeff. de frottement" },
+      { name: "Projection axe $x$", expr: "$m\\,a_x = \\sum F_x$", desc: "Une équation par axe" },
     ],
     demonstrations: [
-      "Plan incliné (angle $\\alpha$) : axe $x$ (∥ plan) $\\Rightarrow ma = mg\\sin\\alpha - f$ ; axe $y$ (⊥ plan) $\\Rightarrow N = mg\\cos\\alpha$.",
-      "Système Atwood : PFD pour chaque solide, additionner pour trouver $a$, isoler les tensions $T$.",
+      "Plan incliné (angle $\\alpha$) : axe $x$ $\\Rightarrow ma = mg\\sin\\alpha - f$ ; axe $y$ $\\Rightarrow N = mg\\cos\\alpha$.",
+      "Système Atwood : PFD pour chaque solide, additionner pour trouver $a$, isoler $T$.",
     ],
     schemas: [
-      `Plan incliné :\n\n     N↑\n      |\n  f ←─●\n      |↘\n      |  P⃗ (poids)\n  ────────────\n      α\n\nAxe x (∥ plan) : ma = mg sinα − f\nAxe y (⊥ plan) : 0  = N − mg cosα`,
+      {
+        type: 'mermaid',
+        caption: 'Démarche d\'application du PFD',
+        chart: `graph TD
+    A["1. Identifier le système"] --> B["2. Lister toutes les forces\n(Poids, N, T, f...)"]
+    B --> C["3. Choisir un repère\n(axe ∥ mouvement)"]
+    C --> D["4. Projeter ΣF = ma\nsur chaque axe"]
+    D --> E["5. Résoudre le système\nd'équations"]
+    E --> F["6. Vérifier les unités\net le signe de a"]
+    style A fill:#1e293b,stroke:#38bdf8,color:#e2e8f0
+    style D fill:#1e3a5f,stroke:#38bdf8,color:#38bdf8
+    style F fill:#1a3a2a,stroke:#34d399,color:#34d399`,
+      },
     ],
     tips: [
       "Toujours faire un schéma des forces (diagramme corps libre) AVANT d'écrire le PFD.",
-      "Choisir les axes intelligemment : un axe dans la direction du mouvement simplifie les calculs.",
-      "En équilibre : $\\sum \\vec{F} = \\vec{0}$ (1ère loi de Newton).",
+      "Choisir les axes intelligemment : un axe dans la direction du mouvement.",
+      "En équilibre : $\\sum \\vec{F} = \\vec{0}$.",
     ],
     remember: [
       "$\\sum \\vec{F}_{\\text{ext}} = m\\vec{a}$ dans un référentiel galiléen.",
-      "Projeter sur les axes : autant d'équations scalaires que d'axes.",
-      "Si $a = 0$ : immobile ou MRU (1ère loi de Newton).",
+      "Projeter sur les axes : autant d'équations que d'axes.",
+      "Si $a = 0$ : immobile ou MRU.",
     ],
     extras: [],
   },
@@ -225,32 +335,39 @@ export const chapters = [
     title: "Mouvement dans un champ de pesanteur",
     icon: "🪂",
     color: "#a78bfa",
-    definition: "Dans un champ de pesanteur uniforme, la seule force est le poids (frottements négligés). Le mouvement est la superposition d'un MRU horizontal et d'un MRUA vertical. La trajectoire est une parabole.",
+    definition: "Dans un champ de pesanteur uniforme, la seule force est le poids (frottements négligés). Le mouvement est la superposition d'un MRU horizontal et d'un MRUA vertical. Trajectoire parabolique.",
     formulas: [
-      { name: "Équations horaires (lancer oblique)", expr: "$x(t) = v_0\\cos\\theta \\cdot t$\n$y(t) = v_0\\sin\\theta \\cdot t - \\tfrac{1}{2}gt^2$", desc: "Lancé en (0,0) à $v_0$ et angle $\\theta$" },
+      { name: "Équations horaires", expr: "$x(t) = v_0\\cos\\theta \\cdot t$\n$y(t) = v_0\\sin\\theta \\cdot t - \\tfrac{1}{2}gt^2$", desc: "" },
       { name: "Composantes de vitesse", expr: "$v_x = v_0\\cos\\theta$ (cste)\n$v_y(t) = v_0\\sin\\theta - gt$", desc: "" },
       { name: "Équation de trajectoire", expr: "$y = x\\tan\\theta - \\dfrac{gx^2}{2v_0^2\\cos^2\\theta}$", desc: "Parabole" },
       { name: "Hauteur maximale", expr: "$h_{\\max} = \\dfrac{v_0^2\\sin^2\\theta}{2g}$", desc: "Quand $v_y = 0$" },
-      { name: "Portée maximale", expr: "$x_{\\max} = \\dfrac{v_0^2\\sin(2\\theta)}{g}$", desc: "Maximale pour $\\theta = 45°$" },
-      { name: "Chute libre verticale", expr: "$t_{\\text{chute}} = \\sqrt{\\dfrac{2h}{g}}$", desc: "Chute depuis hauteur $h$" },
+      { name: "Portée", expr: "$x_{\\max} = \\dfrac{v_0^2\\sin(2\\theta)}{g}$", desc: "Maximale pour $\\theta = 45°$" },
+      { name: "Temps de chute libre", expr: "$t_{\\text{chute}} = \\sqrt{\\dfrac{2h}{g}}$", desc: "" },
     ],
     demonstrations: [
-      "Preuve que la trajectoire est une parabole : $t = x/(v_0\\cos\\theta) \\Rightarrow y = x\\tan\\theta - gx^2/(2v_0^2\\cos^2\\theta)$.",
-      "Portée : $y(t_{\\text{chute}}) = 0 \\Rightarrow t_{\\text{chute}} = 2v_0\\sin\\theta/g \\Rightarrow x_{\\text{portée}} = v_0^2\\sin(2\\theta)/g$.",
+      "Trajectoire parabolique : $t = x/(v_0\\cos\\theta) \\Rightarrow y = x\\tan\\theta - gx^2/(2v_0^2\\cos^2\\theta)$.",
       "Portée maximale pour $\\theta = 45°$ : $d(x_{\\max})/d\\theta = 0 \\Rightarrow \\cos(2\\theta) = 0 \\Rightarrow \\theta = 45°$.",
     ],
     schemas: [
-      `Lancer oblique :\n\n  y\n  ↑         ●  ← sommet (vy=0)\n  |        / \\\n  |  θ    /   \\\n  +---●-----------●-→ x\n    v₀              portée\n\n  Horizontalement : MRU (vx = cste)\n  Verticalement   : MRUA (ay = −g)`,
+      {
+        type: 'table',
+        caption: 'Cas particuliers importants',
+        headers: ['Cas', 'θ', 'Équations simplifiées', 'Trajectory'],
+        rows: [
+          ['Lancer oblique', 'θ quelconque', 'x = v₀cosθ·t ; y = v₀sinθ·t − ½gt²', 'Parabole'],
+          ['Lancer horizontal', 'θ = 0°', 'x = v₀t ; y = −½gt²', 'Parabole y = −gx²/(2v₀²)'],
+          ['Chute libre', 'θ = 90°, v₀=0', 'y = −½gt² ; t = √(2h/g)', 'Verticale'],
+        ],
+      },
     ],
     tips: [
-      "Lancer horizontal ($\\theta=0°$) : $x = v_0 t$ et $y = -\\frac{1}{2}gt^2$. Trajectoire : $y = -gx^2/(2v_0^2)$.",
-      "Chute libre ($v_0=0$, depuis $h$) : $t = \\sqrt{2h/g}$.",
-      "Symétrie : les angles $\\theta$ et $(90°-\\theta)$ donnent la même portée sur sol horizontal.",
+      "Lancer horizontal ($\\theta=0°$) : $x = v_0 t$, $y = -\\frac{1}{2}gt^2$.",
+      "Symétrie : angles $\\theta$ et $(90°-\\theta)$ donnent la même portée.",
     ],
     remember: [
-      "Horizontalement : MRU ($v_x = \\text{cste}$). Verticalement : MRUA ($a_y = -g$).",
-      "Trajectoire = parabole (sauf lancer purement vertical).",
-      "Portée maximale pour $\\theta = 45°$ sur sol horizontal.",
+      "Horizontalement : MRU. Verticalement : MRUA ($a_y = -g$).",
+      "Trajectoire = parabole.",
+      "Portée maximale pour $\\theta = 45°$.",
     ],
     extras: [],
   },
@@ -259,31 +376,40 @@ export const chapters = [
     title: "Mouvement dans un champ électrostatique uniforme",
     icon: "⚡",
     color: "#f472b6",
-    definition: "Dans un champ électrique uniforme (condensateur plan), une particule chargée subit F = qE. Le mouvement est rigoureusement analogue au projectile dans la pesanteur.",
+    definition: "Dans un condensateur plan, une particule chargée subit F = qE. Le mouvement est rigoureusement analogue au projectile dans la pesanteur.",
     formulas: [
-      { name: "Force électrique", expr: "$\\vec{F} = q\\,\\vec{E}$", desc: "$q$ (C), $E$ (V/m = N/C)" },
-      { name: "Champ entre les plaques", expr: "$E = \\dfrac{U_{AB}}{d}$", desc: "$U$ (V), $d$ : distance inter-plaques (m)" },
-      { name: "Accélération de la particule", expr: "$a = \\dfrac{qE}{m}$", desc: "Selon l'axe du champ" },
-      { name: "Équations horaires (entrée horiz.)", expr: "$x(t) = v_0 t$\n$y(t) = \\tfrac{1}{2}\\dfrac{qE}{m}t^2$", desc: "Champ selon $Oy$" },
-      { name: "Déviation transversale", expr: "$y = \\dfrac{qE}{2mv_0^2}\\,x^2$", desc: "Équation de la parabole" },
-      { name: "Énergie cinétique gagnée", expr: "$\\Delta E_c = q\\,U_{\\text{acc}}$", desc: "Théorème énergie-travail" },
-      { name: "Déviation en sortie", expr: "$y_{\\text{sortie}} = \\dfrac{qEL^2}{2mv_0^2}$", desc: "$L$ : longueur des plaques" },
+      { name: "Force électrique", expr: "$\\vec{F} = q\\,\\vec{E}$", desc: "$q$ (C), $E$ (V/m)" },
+      { name: "Champ entre les plaques", expr: "$E = \\dfrac{U_{AB}}{d}$", desc: "$d$ : distance inter-plaques (m)" },
+      { name: "Accélération", expr: "$a = \\dfrac{qE}{m}$", desc: "Selon l'axe du champ" },
+      { name: "Équations horaires", expr: "$x(t) = v_0 t$\n$y(t) = \\tfrac{1}{2}\\dfrac{qE}{m}t^2$", desc: "" },
+      { name: "Déviation", expr: "$y = \\dfrac{qE}{2mv_0^2}\\,x^2$", desc: "Parabole" },
+      { name: "Énergie cinétique gagnée", expr: "$\\Delta E_c = q\\,U_{\\text{acc}}$", desc: "" },
     ],
     demonstrations: [
-      "Trajectoire parabolique : PFD $\\Rightarrow a_y = qE/m$, $a_x = 0$ $\\Rightarrow x = v_0 t$, $y = \\frac{1}{2}(qE/m)t^2$ $\\Rightarrow$ éliminer $t$.",
-      "Théorème énergie-travail entre plaques accélératrices : $W = qU_{\\text{acc}} \\Rightarrow \\Delta E_c = qU_{\\text{acc}}$.",
+      "Trajectoire : PFD $\\Rightarrow a_y = qE/m$, $a_x = 0$ $\\Rightarrow$ éliminer $t$ $\\Rightarrow y = qEx^2/(2mv_0^2)$.",
+      "Théorème énergie-travail : $W = qU_{\\text{acc}} \\Rightarrow \\Delta E_c = qU_{\\text{acc}}$.",
     ],
     schemas: [
-      `Condensateur plan :\n\n  + + + + + + + + +\n  ─────────────────\n  → → → ●→→→→→→→\n  v₀     ↓ F=qE (q>0)\n  ─────────────────\n  − − − − − − − − −\n  |←──── L ──────→|\n\nÉlectron (q<0) : dévié vers la plaque +\nAnalogue au lancer horizontal dans g`,
+      {
+        type: 'table',
+        caption: 'Analogie Pesanteur ↔ Champ électrique',
+        headers: ['Pesanteur', 'Champ électrique'],
+        rows: [
+          ['Force : P = mg', 'Force : F = qE'],
+          ['Accélération : g', 'Accélération : qE/m'],
+          ['Lancer horizontal dans g', 'Entrée horizontale dans E'],
+          ['Trajectoire parabolique', 'Trajectoire parabolique'],
+          ['MRU horizontal + MRUA vertical', 'MRU ⊥ champ + MRUA ∥ champ'],
+        ],
+      },
     ],
     tips: [
-      "Analogie TOTALE avec le projectile : $g \\leftrightarrow qE/m$, poids $\\leftrightarrow$ force électrique.",
+      "Analogie TOTALE avec le projectile : $g \\leftrightarrow qE/m$.",
       "Si $q < 0$ (électron) : la force est OPPOSÉE au champ $\\vec{E}$.",
     ],
     remember: [
-      "$\\vec{F} = q\\vec{E}$ : parallèle au champ pour $q>0$, antiparallèle pour $q<0$.",
-      "$E = U/d$ pour un condensateur plan.",
-      "MRU $\\perp$ champ, MRUA $\\parallel$ champ. Trajectoire parabolique.",
+      "$\\vec{F} = q\\vec{E}$. $E = U/d$.",
+      "MRU $\\perp$ champ, MRUA $\\parallel$ champ.",
     ],
     extras: [],
   },
@@ -292,32 +418,48 @@ export const chapters = [
     title: "Mouvement des satellites - Lois de Kepler",
     icon: "🛸",
     color: "#34d399",
-    definition: "Les lois de Kepler décrivent le mouvement des planètes et satellites. Newton les unifie avec la gravitation universelle, permettant de calculer vitesses, périodes et altitudes orbitales.",
+    definition: "Les lois de Kepler décrivent le mouvement des planètes et satellites. Newton les unifie avec la gravitation universelle.",
     formulas: [
       { name: "Gravitation universelle", expr: "$F = G\\dfrac{m_1 m_2}{r^2}$", desc: "$G = 6{,}674 \\times 10^{-11}$ N·m²/kg²" },
-      { name: "3ème loi de Kepler", expr: "$\\dfrac{T^2}{a^3} = \\dfrac{4\\pi^2}{GM}$", desc: "$M$ = masse du corps central, $a$ = demi-grand axe" },
+      { name: "3ème loi de Kepler", expr: "$\\dfrac{T^2}{a^3} = \\dfrac{4\\pi^2}{GM}$", desc: "$M$ = masse corps central" },
       { name: "Vitesse orbitale circulaire", expr: "$v = \\sqrt{\\dfrac{GM}{r}}$", desc: "$r$ = rayon de l'orbite" },
-      { name: "Période orbitale circulaire", expr: "$T = 2\\pi\\sqrt{\\dfrac{r^3}{GM}}$", desc: "" },
-      { name: "Condition d'orbite circulaire", expr: "$\\dfrac{mv^2}{r} = \\dfrac{GMm}{r^2}$", desc: "$F_{\\text{grav}} = F_{\\text{centripète}}$" },
-      { name: "Vitesse de libération", expr: "$v_{\\text{lib}} = \\sqrt{\\dfrac{2GM}{R}}$", desc: "$R$ = rayon de la planète" },
+      { name: "Période orbitale", expr: "$T = 2\\pi\\sqrt{\\dfrac{r^3}{GM}}$", desc: "" },
+      { name: "Vitesse de libération", expr: "$v_{\\text{lib}} = \\sqrt{\\dfrac{2GM}{R}}$", desc: "" },
     ],
     demonstrations: [
-      "3ème loi de Kepler : PFD $\\Rightarrow GMm/r^2 = m(2\\pi r/T)^2/r \\Rightarrow T^2 = 4\\pi^2 r^3/(GM)$.",
-      "Vitesse orbitale : $GMm/r^2 = mv^2/r \\Rightarrow v = \\sqrt{GM/r}$.",
-      "Satellite géostationnaire : $T = 86\\,400$ s $\\Rightarrow r^3 = GMT^2/(4\\pi^2) \\Rightarrow$ altitude $h = r - R_{\\text{Terre}} \\approx 35\\,786$ km.",
+      "3ème loi : $GMm/r^2 = m(2\\pi r/T)^2/r \\Rightarrow T^2 = 4\\pi^2 r^3/(GM)$.",
+      "Vitesse orbitale : $v = \\sqrt{GM/r}$.",
     ],
     schemas: [
-      `3 lois de Kepler :\n\n1ère : orbites elliptiques, Soleil au foyer\n\n2ème : loi des aires (aires égales en temps égaux)\n       → vitesse plus grande au périhélie\n\n3ème : T²/a³ = constante pour tous les corps\n       orbitant autour du même astre`,
+      {
+        type: 'table',
+        caption: '3 lois de Kepler',
+        headers: ['Loi', 'Énoncé', 'Formule clé'],
+        rows: [
+          ['1ère — Orbites', 'Les orbites sont des ellipses dont l\'astre central occupe un foyer', 'e = 0 → cercle'],
+          ['2ème — Aires', 'Aires balayées en temps égaux sont égales', 'Vitesse ↑ au périhélie'],
+          ['3ème — Périodes', 'T²/a³ = constante pour tous les corps du même système', 'T²/a³ = 4π²/(GM)'],
+        ],
+      },
+      {
+        type: 'mermaid',
+        caption: 'Satellite géostationnaire — calcul de l\'altitude',
+        chart: `graph LR
+    A["T = 24h = 86 400 s"] --> B["3ème loi de Kepler\nT²/r³ = 4π²/(GM)"]
+    B --> C["r³ = GMT²/(4π²)"]
+    C --> D["r ≈ 42 164 km\n(depuis centre Terre)"]
+    D --> E["Altitude h = r − R_Terre\nh ≈ 35 786 km"]
+    style A fill:#1e293b,stroke:#34d399,color:#e2e8f0
+    style E fill:#1a3a2a,stroke:#34d399,color:#34d399`,
+      },
     ],
     tips: [
-      "Satellite géostationnaire : $T = 24\\text{h} = 86\\,400$ s. Orbite circulaire équatoriale.",
-      "La 3ème loi permet de comparer deux orbites : $T_1^2/a_1^3 = T_2^2/a_2^3$.",
-      "$r$ dans les formules = $R_{\\text{planète}} + \\text{altitude}$. Ne pas confondre avec le rayon de la planète !",
+      "$r$ = $R_{\\text{planète}}$ + altitude. Ne pas confondre avec le rayon de la planète.",
+      "La 3ème loi permet de comparer : $T_1^2/a_1^3 = T_2^2/a_2^3$.",
     ],
     remember: [
-      "3 lois : orbites elliptiques / loi des aires / $T^2/a^3 = \\text{cste}$.",
+      "3 lois : ellipses / aires égales / $T^2/a^3 = \\text{cste}$.",
       "Orbite circulaire : $v = \\sqrt{GM/r}$ et $T^2 = 4\\pi^2 r^3/(GM)$.",
-      "Satellite géostationnaire : $T = 24$h, orbite équatoriale, $r \\approx 42\\,000$ km.",
     ],
     extras: [],
   },
@@ -326,31 +468,37 @@ export const chapters = [
     title: "Description d'un système thermodynamique - Gaz parfait",
     icon: "🌡️",
     color: "#fbbf24",
-    definition: "Le modèle du gaz parfait suppose des molécules ponctuelles sans interactions mutuelles. Il décrit bien les gaz réels à basse pression et haute température.",
+    definition: "Le modèle du gaz parfait suppose des molécules ponctuelles sans interactions. Il décrit bien les gaz réels à basse pression et haute température.",
     formulas: [
-      { name: "Équation d'état des gaz parfaits", expr: "$PV = nRT$", desc: "$R = 8{,}314$ J/(mol·K), $T$ en Kelvin OBLIGATOIRE" },
+      { name: "Équation d'état", expr: "$PV = nRT$", desc: "$R = 8{,}314$ J/(mol·K), $T$ en Kelvin !" },
       { name: "Conversion température", expr: "$T(\\text{K}) = \\theta(°C) + 273{,}15$", desc: "" },
-      { name: "Loi de Boyle-Mariotte (isotherme)", expr: "$P_1 V_1 = P_2 V_2$", desc: "$T$ et $n$ constants" },
-      { name: "Loi de Gay-Lussac (isochore)", expr: "$\\dfrac{P_1}{T_1} = \\dfrac{P_2}{T_2}$", desc: "$V$ et $n$ constants" },
-      { name: "Loi de Charles (isobare)", expr: "$\\dfrac{V_1}{T_1} = \\dfrac{V_2}{T_2}$", desc: "$P$ et $n$ constants" },
-      { name: "Loi générale", expr: "$\\dfrac{P_1 V_1}{T_1} = \\dfrac{P_2 V_2}{T_2} = nR$", desc: "$n$ constant" },
-      { name: "Volume molaire (CNTP)", expr: "$V_m = \\dfrac{RT}{P} = 22{,}4$ L/mol", desc: "À 0°C, 1 atm" },
+      { name: "Boyle-Mariotte (isotherme)", expr: "$P_1 V_1 = P_2 V_2$", desc: "$T$ et $n$ constants" },
+      { name: "Gay-Lussac (isochore)", expr: "$\\dfrac{P_1}{T_1} = \\dfrac{P_2}{T_2}$", desc: "$V$ et $n$ constants" },
+      { name: "Charles (isobare)", expr: "$\\dfrac{V_1}{T_1} = \\dfrac{V_2}{T_2}$", desc: "$P$ et $n$ constants" },
+      { name: "Loi générale", expr: "$\\dfrac{P_1 V_1}{T_1} = \\dfrac{P_2 V_2}{T_2}$", desc: "$n$ constant" },
     ],
     demonstrations: [
-      "Les lois de Boyle, Gay-Lussac et Charles se déduisent toutes de $PV = nRT$ en fixant une variable.",
-      "Volume molaire à CNTP : $V_m = RT/P = 8{,}314 \\times 273/101325 = 0{,}0224$ m³ = 22,4 L/mol.",
+      "Les lois de Boyle, Gay-Lussac et Charles se déduisent de $PV = nRT$ en fixant une variable.",
     ],
     schemas: [
-      `Diagramme PV (isothermes) :\n\n  P\n  ↑  T₃ > T₂ > T₁\n  |    (PV = nRT = cste sur chaque courbe)\n  |  ─\\T₃\n  |    ─\\T₂\n  |      ─\\T₁\n  +──────────→ V\n\nP↑ quand T↑ (V constant) → Gay-Lussac\nV↑ quand T↑ (P constant) → Charles`,
+      {
+        type: 'table',
+        caption: 'Les 3 lois dérivées de PV = nRT',
+        headers: ['Loi', 'Variable fixe', 'Relation', 'Type de transformation'],
+        rows: [
+          ['Boyle-Mariotte', 'T et n', 'P₁V₁ = P₂V₂', 'Isotherme'],
+          ['Gay-Lussac', 'V et n', 'P₁/T₁ = P₂/T₂', 'Isochore'],
+          ['Charles', 'P et n', 'V₁/T₁ = V₂/T₂', 'Isobare'],
+        ],
+      },
     ],
     tips: [
-      "OBLIGATOIRE : convertir en Kelvin avant tout calcul ! $T = 25°C \\Rightarrow T = 298$ K.",
-      "Si deux variables changent : utiliser $P_1 V_1 / T_1 = P_2 V_2 / T_2$.",
+      "OBLIGATOIRE : convertir en Kelvin ! $T = 25°C \\Rightarrow T = 298$ K.",
+      "Si deux variables changent : $P_1 V_1 / T_1 = P_2 V_2 / T_2$.",
     ],
     remember: [
-      "$PV = nRT$ : loi fondamentale. $R = 8{,}314$ J/(mol·K). $T$ TOUJOURS en Kelvin.",
+      "$PV = nRT$. $R = 8{,}314$ J/(mol·K). $T$ TOUJOURS en Kelvin.",
       "Gaz parfait : $U$ dépend uniquement de $T$.",
-      "3 lois dérivées : Boyle ($T=\\text{cste}$), Gay-Lussac ($V=\\text{cste}$), Charles ($P=\\text{cste}$).",
     ],
     extras: [],
   },
@@ -359,31 +507,40 @@ export const chapters = [
     title: "Bilans d'énergie - Premier principe",
     icon: "🔥",
     color: "#38bdf8",
-    definition: "Le premier principe de la thermodynamique est la loi de conservation de l'énergie : la variation d'énergie interne d'un système est égale à la somme du travail et de la chaleur reçus.",
+    definition: "Le premier principe est la loi de conservation de l'énergie : $\\Delta U = W + Q$. W et Q algébriques (positifs si reçus par le système).",
     formulas: [
-      { name: "Premier principe", expr: "$\\Delta U = W + Q$", desc: "$W$ et $Q > 0$ si REÇUS par le système" },
-      { name: "Travail forces de pression (isobare)", expr: "$W = -P_{\\text{ext}} \\Delta V$", desc: "$\\Delta V = V_f - V_i$" },
+      { name: "Premier principe", expr: "$\\Delta U = W + Q$", desc: "$W, Q > 0$ si REÇUS" },
+      { name: "Travail isobare", expr: "$W = -P_{\\text{ext}} \\Delta V$", desc: "" },
       { name: "Capacité thermique massique", expr: "$Q = m\\,c\\,\\Delta T$", desc: "$c$ (J/kg/K)" },
-      { name: "Capacité molaire ($P$ constant)", expr: "$Q = n\\,C_P\\,\\Delta T$", desc: "" },
-      { name: "Gaz parfait", expr: "$\\Delta U = n\\,C_V\\,\\Delta T$", desc: "Pour toute transformation, $C_P - C_V = R$" },
-      { name: "Enthalpie", expr: "$\\Delta H = Q_P$", desc: "Chaleur à pression constante" },
+      { name: "Capacité molaire", expr: "$Q = n\\,C_P\\,\\Delta T$", desc: "À $P$ constant" },
+      { name: "Gaz parfait", expr: "$\\Delta U = n\\,C_V\\,\\Delta T$", desc: "$C_P - C_V = R$" },
+      { name: "Enthalpie", expr: "$\\Delta H = Q_P$", desc: "Chaleur à $P$ constant" },
     ],
     demonstrations: [
-      "Adiabatique ($Q=0$) : $\\Delta U = W$. Compression $\\Rightarrow W > 0 \\Rightarrow T$ augmente.",
-      "Isochore ($\\Delta V = 0$) : $W = 0 \\Rightarrow \\Delta U = Q$.",
-      "Gaz parfait en toute transformation : $\\Delta U = nC_V\\Delta T$ car $U$ ne dépend que de $T$.",
+      "Adiabatique ($Q=0$) : $\\Delta U = W$.",
+      "Isochore ($\\Delta V=0$) : $W=0 \\Rightarrow \\Delta U = Q$.",
+      "Gaz parfait : $\\Delta U = nC_V\\Delta T$ pour toute transformation.",
     ],
     schemas: [
-      `Résumé des 4 transformations :\n\n  Isotherme (GP) : T = cste → ΔU = 0, W = −Q\n  Isobare        : P = cste → W = −PΔV, Q = nCpΔT\n  Isochore       : V = cste → W = 0, ΔU = Q\n  Adiabatique    : Q = 0   → ΔU = W\n\nConvention : W>0 et Q>0 si REÇUS par le système`,
+      {
+        type: 'table',
+        caption: 'Résumé des 4 transformations thermodynamiques',
+        headers: ['Transformation', 'Condition', 'W', 'Q', 'ΔU'],
+        rows: [
+          ['Isotherme (GP)', 'T = cste', 'W = −Q', 'Q = −W', 'ΔU = 0'],
+          ['Isobare', 'P = cste', '−PΔV', 'nCpΔT', 'nCvΔT'],
+          ['Isochore', 'V = cste', '0', 'ΔU = Q', 'nCvΔT'],
+          ['Adiabatique', 'Q = 0', 'ΔU = W', '0', 'W'],
+        ],
+      },
     ],
     tips: [
-      "Convention de signe CRUCIALE : $W$ et $Q$ positifs si le système les REÇOIT.",
+      "Convention : $W$ et $Q$ positifs si le système les REÇOIT.",
       "Gaz parfait : $\\Delta U = nC_V \\Delta T$ pour TOUTE transformation.",
-      "$\\Delta H = Q_P$ : l'enthalpie est la chaleur échangée à pression constante (chimie).",
     ],
     remember: [
-      "$\\Delta U = W + Q$ : 1er principe, conservation de l'énergie.",
-      "Gaz parfait : $\\Delta U = nC_V\\Delta T$ et $C_P - C_V = R$.",
+      "$\\Delta U = W + Q$.",
+      "Gaz parfait : $C_P - C_V = R$.",
       "Isotherme (GP) : $\\Delta U=0$. Isochore : $W=0$. Adiabatique : $Q=0$.",
     ],
     extras: [],
@@ -393,31 +550,39 @@ export const chapters = [
     title: "Ondes mécaniques",
     icon: "🌊",
     color: "#a78bfa",
-    definition: "Une onde mécanique est une perturbation qui se propage dans un milieu matériel sans transport de matière, mais avec transport d'énergie. Elle peut être transversale ou longitudinale.",
+    definition: "Une onde mécanique est une perturbation qui se propage dans un milieu sans transport de matière, mais avec transport d'énergie.",
     formulas: [
-      { name: "Relation fondamentale", expr: "$v = \\lambda f = \\dfrac{\\lambda}{T}$", desc: "$v$ (m/s), $\\lambda$ (m), $f$ (Hz), $T$ (s)" },
+      { name: "Relation fondamentale", expr: "$v = \\lambda f = \\dfrac{\\lambda}{T}$", desc: "$v$ (m/s), $\\lambda$ (m), $f$ (Hz)" },
       { name: "Période et fréquence", expr: "$T = \\dfrac{1}{f}$", desc: "" },
       { name: "Retard temporel", expr: "$\\tau = \\dfrac{d}{v}$", desc: "$d$ : distance de propagation" },
       { name: "Déphasage", expr: "$\\varphi = \\dfrac{2\\pi d}{\\lambda} = \\dfrac{2\\pi\\tau}{T}$", desc: "$\\varphi$ en radians" },
-      { name: "En phase", expr: "$\\varphi = 2k\\pi \\quad (k \\in \\mathbb{Z})$", desc: "" },
+      { name: "En phase", expr: "$\\varphi = 2k\\pi$", desc: "$k \\in \\mathbb{Z}$" },
       { name: "En opposition de phase", expr: "$\\varphi = (2k+1)\\pi$", desc: "" },
     ],
     demonstrations: [
-      "Mesure de la célérité : deux capteurs à distance $d$ connue, retard $\\tau$ mesuré $\\Rightarrow v = d/\\tau$.",
-      "Déphasage entre deux points : $\\varphi = 2\\pi d/\\lambda$. En phase si $d = k\\lambda$.",
+      "Mesure de $v$ : deux capteurs à distance $d$ connue, retard $\\tau$ mesuré $\\Rightarrow v = d/\\tau$.",
+      "En phase si $d = k\\lambda$. En opposition si $d = (k+\\frac{1}{2})\\lambda$.",
     ],
     schemas: [
-      `Onde progressive sinusoïdale :\n\n  y\n  ↑ A        λ\n  | /\\      /\\\n  |/  \\    /  \\\n  +----\\--/----\\------→ x\n  |     \\/      \\/\n  |-A\n\nDans le TEMPS : T = 1/f (période)\nDans l'ESPACE : λ = longueur d'onde\nCélérité : v = λf\n\nCélérités typiques :\n  Son dans l'air : ≈ 340 m/s\n  Son dans l'eau : ≈ 1500 m/s\n  Lumière (vide) : c = 3×10⁸ m/s`,
+      {
+        type: 'table',
+        caption: 'Célérités typiques des ondes',
+        headers: ['Milieu', 'Célérité (m/s)', 'Remarque'],
+        rows: [
+          ['Air (son)', '≈ 340', 'Dépend de T'],
+          ['Eau (son)', '≈ 1500', ''],
+          ['Acier (son)', '> 5000', ''],
+          ['Vide (lumière)', '3×10⁸', 'c = constante universelle'],
+        ],
+      },
     ],
     tips: [
-      "$v = \\lambda f$ est la relation fondamentale. Bien connaître les unités.",
-      "Pour mesurer $v$ : $v = d/\\tau$ avec deux capteurs.",
+      "$v = \\lambda f$ : relation fondamentale.",
       "L'onde transporte de l'ÉNERGIE, pas de la matière.",
     ],
     remember: [
-      "$v = \\lambda f$ : relation fondamentale. $T = 1/f$.",
+      "$v = \\lambda f$. $T = 1/f$.",
       "Retard $\\tau = d/v$. Déphasage $\\varphi = 2\\pi d/\\lambda$.",
-      "Transversale : vibration $\\perp$ propagation. Longitudinale : vibration $\\parallel$ propagation (son).",
     ],
     extras: [],
   },
@@ -426,32 +591,53 @@ export const chapters = [
     title: "Interférences et diffraction",
     icon: "🔬",
     color: "#34d399",
-    definition: "La diffraction est l'étalement d'une onde au passage d'une ouverture. Les interférences résultent de la superposition de deux ondes cohérentes pouvant se renforcer ou s'annuler.",
+    definition: "La diffraction est l'étalement d'une onde au passage d'une ouverture. Les interférences résultent de la superposition de deux ondes cohérentes.",
     formulas: [
-      { name: "Angle de diffraction (fente unique)", expr: "$\\theta \\approx \\dfrac{\\lambda}{a}$", desc: "$a$ : largeur de la fente" },
+      { name: "Angle de diffraction", expr: "$\\theta \\approx \\dfrac{\\lambda}{a}$", desc: "$a$ : largeur de la fente" },
       { name: "Largeur tache centrale", expr: "$L = \\dfrac{2D\\lambda}{a}$", desc: "$D$ : distance fente-écran" },
-      { name: "Interfranges (Young)", expr: "$i = \\dfrac{\\lambda D}{d}$", desc: "$d$ : distance entre fentes, $D$ : distance fentes-écran" },
-      { name: "Interférences constructives", expr: "$\\delta = k\\lambda \\quad (k \\in \\mathbb{Z})$", desc: "$\\delta$ : différence de marche" },
+      { name: "Interfranges (Young)", expr: "$i = \\dfrac{\\lambda D}{d}$", desc: "$d$ : distance inter-fentes" },
+      { name: "Interférences constructives", expr: "$\\delta = k\\lambda$", desc: "$k \\in \\mathbb{Z}$" },
       { name: "Interférences destructives", expr: "$\\delta = \\left(k + \\tfrac{1}{2}\\right)\\lambda$", desc: "" },
-      { name: "Différence de marche", expr: "$\\delta \\approx \\dfrac{d\\,y}{D}$", desc: "Pour petits angles" },
-      { name: "Position des franges brillantes", expr: "$y_k = \\dfrac{k\\lambda D}{d}$", desc: "$k = 0$ : frange centrale" },
+      { name: "Différence de marche", expr: "$\\delta \\approx \\dfrac{d\\,y}{D}$", desc: "Petits angles" },
     ],
     demonstrations: [
-      "Interfrange de Young : frange brillante si $\\delta = k\\lambda \\Rightarrow y_k = k\\lambda D/d \\Rightarrow i = \\lambda D/d$.",
-      "Diffraction : $\\theta = \\lambda/a$ — tache plus large si $a$ plus petite.",
+      "Interfrange : $\\delta = k\\lambda \\Rightarrow y_k = k\\lambda D/d \\Rightarrow i = \\lambda D/d$.",
     ],
     schemas: [
-      `Fentes de Young :\n\n  S₁ ●\n  d ↕            Écran (franges)\n  S₂ ●\n  |←───── D ─────→|\n\nBrillant : δ = kλ → y_k = kλD/d\nSombre   : δ = (k+½)λ\nInterfrange : i = λD/d\n\nDiffraction (fente simple) :\n  θ = λ/a  (plus a est petit, plus θ est grand)`,
+      {
+        type: 'mermaid',
+        caption: 'Fentes de Young — principe',
+        chart: `graph LR
+    S["Source\nmonochromatique"] --> F1["Fente S₁"]
+    S --> F2["Fente S₂"]
+    F1 -->|"δ = d·y/D"| E["Écran\nfranges d'interférence"]
+    F2 --> E
+    note1["Brillant : δ = kλ\ni = λD/d"] -.-> E
+    note2["Sombre : δ = (k+½)λ"] -.-> E
+    style S fill:#1e293b,stroke:#34d399,color:#e2e8f0
+    style E fill:#1e293b,stroke:#fbbf24,color:#e2e8f0
+    style F1 fill:#0f172a,stroke:#38bdf8,color:#94a3b8
+    style F2 fill:#0f172a,stroke:#38bdf8,color:#94a3b8
+    style note1 fill:#1a3a2a,stroke:#34d399,color:#34d399
+    style note2 fill:#3a1a2a,stroke:#f472b6,color:#f472b6`,
+      },
+      {
+        type: 'table',
+        caption: 'Comparaison diffraction / interférences',
+        headers: ['Phénomène', 'Cause', 'Formule clé', 'Effet si λ ou a varient'],
+        rows: [
+          ['Diffraction', '1 fente de largeur a', 'θ = λ/a', 'a ↓ → θ ↑ (plus étalé)'],
+          ['Interférences', '2 fentes séparées de d', 'i = λD/d', 'd ↓ → i ↑ (plus espacé)'],
+        ],
+      },
     ],
     tips: [
-      "Plus $D$ est grand ou $d$ est petit $\\Rightarrow$ franges plus espacées ($i = \\lambda D/d$).",
-      "Lumière blanche : frange centrale BLANCHE, autres franges colorées (irisées).",
-      "Diffraction visible si $\\lambda \\approx a$. Si $a \\gg \\lambda$ : optique géométrique.",
+      "Lumière blanche : frange centrale BLANCHE, autres franges irisées.",
+      "Diffraction visible si $\\lambda \\approx a$.",
     ],
     remember: [
       "Constructives : $\\delta = k\\lambda$. Destructives : $\\delta = (k+\\frac{1}{2})\\lambda$.",
-      "Interfrange de Young : $i = \\lambda D/d$.",
-      "Diffraction : $\\theta = \\lambda/a$. Fente plus étroite $\\Rightarrow$ étalement plus grand.",
+      "Interfrange : $i = \\lambda D/d$.",
     ],
     extras: [],
   },
@@ -460,30 +646,39 @@ export const chapters = [
     title: "Lunette astronomique",
     icon: "🔭",
     color: "#fbbf24",
-    definition: "La lunette astronomique est formée d'un objectif (grande focale) et d'un oculaire (petite focale). En réglage afocal, un objet à l'infini donne une image à l'infini.",
+    definition: "La lunette astronomique est formée d'un objectif (grande focale) et d'un oculaire (petite focale). En réglage afocal : objet à l'infini → image à l'infini.",
     formulas: [
-      { name: "Grossissement (réglage afocal)", expr: "$G = \\dfrac{f'_{\\text{obj}}}{f'_{\\text{oc}}} = \\dfrac{\\alpha'}{\\alpha}$", desc: "" },
-      { name: "Longueur de la lunette", expr: "$L = f'_{\\text{obj}} + f'_{\\text{oc}}$", desc: "$F'_{\\text{obj}}$ coïncide avec $F_{\\text{oc}}$" },
+      { name: "Grossissement (afocal)", expr: "$G = \\dfrac{f'_{\\text{obj}}}{f'_{\\text{oc}}}$", desc: "" },
+      { name: "Longueur de la lunette", expr: "$L = f'_{\\text{obj}} + f'_{\\text{oc}}$", desc: "" },
       { name: "Vergence", expr: "$V = \\dfrac{1}{f'}$ (dioptries)", desc: "$f'$ en MÈTRES" },
-      { name: "Relation de conjugaison", expr: "$\\dfrac{1}{\\overline{OA'}} - \\dfrac{1}{\\overline{OA}} = \\dfrac{1}{f'}$", desc: "Distances algébriques" },
-      { name: "Grandissement", expr: "$\\gamma = \\dfrac{\\overline{OA'}}{\\overline{OA}} = \\dfrac{A'B'}{AB}$", desc: "" },
+      { name: "Conjugaison", expr: "$\\dfrac{1}{\\overline{OA'}} - \\dfrac{1}{\\overline{OA}} = \\dfrac{1}{f'}$", desc: "" },
     ],
     demonstrations: [
-      "Réglage afocal : rayon $\\parallel$ à l'axe $\\Rightarrow$ passe par $F'_{\\text{obj}}$ (image intermédiaire en $F_{\\text{oc}}$) $\\Rightarrow$ sort $\\parallel$ à l'axe.",
-      "Grossissement : $G = f'_{\\text{obj}}/f'_{\\text{oc}}$ via les propriétés des rayons focaux.",
+      "Réglage afocal : $F'_{\\text{obj}}$ coïncide avec $F_{\\text{oc}}$ $\\Rightarrow G = f'_{\\text{obj}}/f'_{\\text{oc}}$.",
     ],
     schemas: [
-      `Lunette astronomique — réglage afocal :\n\n Objectif(f'_obj)   F'=F_oc  Oculaire(f'_oc)\n  ─────│────────────────●───────────│────\n        ←─── f'_obj ───→←── f'_oc ──→\n        ←────────── L ──────────────→\n\nObjet à ∞ → Image intermédiaire en F'_obj = F_oc\nImage finale à ∞ (observateur emmétrope)\nG = f'_obj / f'_oc`,
+      {
+        type: 'mermaid',
+        caption: 'Trajet des rayons en réglage afocal',
+        chart: `graph LR
+    O["Objet à l'infini\n(rayons parallèles)"] --> Obj["Objectif\n(grande focale f'obj)"]
+    Obj -->|"image intermédiaire\nen F'obj = Foc"| Inter["F'obj ≡ Foc"]
+    Inter --> Oc["Oculaire\n(petite focale f'oc)"]
+    Oc --> I["Image finale\nà l'infini"]
+    G["G = f'obj / f'oc"] -.-> Oc
+    L["L = f'obj + f'oc"] -.-> Inter
+    style O fill:#1e293b,stroke:#fbbf24,color:#e2e8f0
+    style Inter fill:#3a2a00,stroke:#fbbf24,color:#fbbf24
+    style I fill:#1e293b,stroke:#34d399,color:#e2e8f0`,
+      },
     ],
     tips: [
-      "Réglage afocal = pour un observateur emmétrope (vision normale, non accomodé).",
-      "Objectif : grande focale. Oculaire : petite focale (grossit l'image).",
-      "Pour augmenter $G$ : prendre un oculaire de focale plus petite.",
+      "Objectif : grande focale (collecte lumière). Oculaire : petite focale (grossit).",
+      "Pour augmenter $G$ : oculaire de focale plus petite.",
     ],
     remember: [
-      "$G = f'_{\\text{obj}} / f'_{\\text{oc}}$ (réglage afocal).",
-      "Condition afocale : $F'_{\\text{objectif}} = F_{\\text{oculaire}}$.",
-      "$L = f'_{\\text{obj}} + f'_{\\text{oc}}$ = longueur de la lunette.",
+      "$G = f'_{\\text{obj}} / f'_{\\text{oc}}$ (afocal).",
+      "Condition afocale : $F'_{\\text{obj}} = F_{\\text{oc}}$.",
     ],
     extras: [],
   },
@@ -492,33 +687,41 @@ export const chapters = [
     title: "Modèle du photon - Effet photoélectrique",
     icon: "💡",
     color: "#38bdf8",
-    definition: "Le modèle corpusculaire décrit la lumière comme un flux de photons d'énergie E = hf. L'effet photoélectrique ne s'explique que par ce modèle (Einstein, 1905, Nobel 1921).",
+    definition: "Le modèle corpusculaire décrit la lumière comme des photons d'énergie E = hf. L'effet photoélectrique ne s'explique que par ce modèle (Einstein, 1905).",
     formulas: [
-      { name: "Énergie d'un photon", expr: "$E = hf = \\dfrac{hc}{\\lambda}$", desc: "$h = 6{,}626 \\times 10^{-34}$ J·s, $c = 3 \\times 10^8$ m/s" },
-      { name: "Effet photoélectrique", expr: "$E_{c,\\max} = hf - W_s$", desc: "$W_s$ : travail de sortie du métal" },
-      { name: "Condition d'émission", expr: "$hf \\geq W_s \\Leftrightarrow f \\geq f_s \\Leftrightarrow \\lambda \\leq \\lambda_s$", desc: "" },
-      { name: "Fréquence seuil", expr: "$f_s = \\dfrac{W_s}{h}$", desc: "Propriété du matériau" },
-      { name: "Longueur d'onde seuil", expr: "$\\lambda_s = \\dfrac{hc}{W_s}$", desc: "" },
-      { name: "Tension d'arrêt", expr: "$eU_a = E_{c,\\max} = hf - W_s$", desc: "$e = 1{,}6 \\times 10^{-19}$ C" },
-      { name: "Conversion eV ↔ J", expr: "$1\\,\\text{eV} = 1{,}6 \\times 10^{-19}$ J", desc: "" },
+      { name: "Énergie d'un photon", expr: "$E = hf = \\dfrac{hc}{\\lambda}$", desc: "$h = 6{,}626 \\times 10^{-34}$ J·s" },
+      { name: "Effet photoélectrique", expr: "$E_{c,\\max} = hf - W_s$", desc: "$W_s$ : travail de sortie" },
+      { name: "Condition d'émission", expr: "$hf \\geq W_s \\Leftrightarrow f \\geq f_s$", desc: "" },
+      { name: "Fréquence seuil", expr: "$f_s = \\dfrac{W_s}{h}$", desc: "" },
+      { name: "Tension d'arrêt", expr: "$eU_a = E_{c,\\max}$", desc: "$e = 1{,}6 \\times 10^{-19}$ C" },
+      { name: "Conversion", expr: "$1\\,\\text{eV} = 1{,}6 \\times 10^{-19}$ J", desc: "" },
     ],
     demonstrations: [
-      "1 photon donne son énergie $hf$ à 1 électron. Si $hf \\geq W_s \\Rightarrow$ électron émis avec $E_{c,\\max} = hf - W_s$.",
-      "Le modèle ondulatoire échoue : si $f < f_s$, AUCUN électron même avec forte intensité.",
-      "Mesure de $h$ : graphe $E_{c,\\max} = f(f)$ → droite de pente $h$, ordonnée à l'origine $= -W_s$.",
+      "1 photon donne $hf$ à 1 électron. Si $hf \\geq W_s \\Rightarrow E_{c,\\max} = hf - W_s$.",
+      "Graphe $E_{c,\\max} = f(f)$ → droite de pente $h$, ordonnée $= -W_s$.",
     ],
     schemas: [
-      `Effet photoélectrique :\n\n    Photon hf (f ≥ fs)\n           ↓\n  ─────────────────────  ← métal (Ws)\n       ●─→→→→→→→       électron émis\n           Ec,max = hf − Ws\n\nSi f < fs : aucun électron (même forte intensité)\n\nCourbe Ec,max = f(fréquence f) :\n     Ec\n      │          /  pente = h\n      │        /\n    0 │──────/──────→ f\n      │  ← fs\n  −Ws │/`,
+      {
+        type: 'mermaid',
+        caption: 'Mécanisme de l\'effet photoélectrique',
+        chart: `graph TD
+    P["Photon hf"] --> C{"hf ≥ Ws ?"}
+    C -->|"Oui"| E["Électron émis\nEc,max = hf − Ws"]
+    C -->|"Non (f < fs)"| N["Aucun électron\nmême avec forte intensité"]
+    E --> UA["Tension d'arrêt\neUa = Ec,max"]
+    style P fill:#1e293b,stroke:#38bdf8,color:#e2e8f0
+    style C fill:#3a2a00,stroke:#fbbf24,color:#fbbf24
+    style E fill:#1a3a2a,stroke:#34d399,color:#34d399
+    style N fill:#3a1a1a,stroke:#f87171,color:#f87171`,
+      },
     ],
     tips: [
-      "Convertir $W_s$ : si $W_s = 4$ eV $\\Rightarrow W_s = 4 \\times 1{,}6 \\times 10^{-19} = 6{,}4 \\times 10^{-19}$ J.",
-      "$f_s$ est une propriété intrinsèque du matériau.",
-      "Graphe $E_{c,\\max} = f(f)$ : pente $= h$ (méthode expérimentale pour mesurer $h$).",
+      "Convertir $W_s$ en J : $W_s(\\text{J}) = W_s(\\text{eV}) \\times 1{,}6 \\times 10^{-19}$.",
+      "Graphe $E_{c,\\max} = f(f)$ : pente $= h$.",
     ],
     remember: [
-      "$E_{\\text{photon}} = hf = hc/\\lambda$. $h = 6{,}626 \\times 10^{-34}$ J·s.",
-      "Effet photoélectrique : $hf \\geq W_s$. $E_{c,\\max} = hf - W_s$.",
-      "1 photon $\\rightarrow$ 1 électron. L'intensité change le nombre de photons, pas leur énergie.",
+      "$E_{\\text{photon}} = hf = hc/\\lambda$.",
+      "1 photon $\\rightarrow$ 1 électron. Intensité = nombre de photons/s.",
     ],
     extras: [],
   },
@@ -527,33 +730,38 @@ export const chapters = [
     title: "Circuit RC - Dynamique d'un système électrique",
     icon: "🔌",
     color: "#a78bfa",
-    definition: "Un circuit RC (résistance R + condensateur C) est un système du premier ordre. La charge/décharge suit une loi exponentielle caractérisée par la constante de temps τ = RC.",
+    definition: "Un circuit RC est un système du premier ordre. La charge/décharge suit une loi exponentielle caractérisée par la constante de temps τ = RC.",
     formulas: [
       { name: "Constante de temps", expr: "$\\tau = R \\times C$", desc: "$R$ (Ω), $C$ (F) $\\Rightarrow \\tau$ (s)" },
-      { name: "Charge du condensateur", expr: "$u_C(t) = E\\left(1 - e^{-t/\\tau}\\right)$", desc: "$E$ : tension d'alimentation" },
-      { name: "Décharge du condensateur", expr: "$u_C(t) = U_0\\,e^{-t/\\tau}$", desc: "$U_0$ : tension initiale" },
+      { name: "Charge", expr: "$u_C(t) = E\\left(1 - e^{-t/\\tau}\\right)$", desc: "" },
+      { name: "Décharge", expr: "$u_C(t) = U_0\\,e^{-t/\\tau}$", desc: "" },
       { name: "Courant (charge)", expr: "$i(t) = \\dfrac{E}{R}\\,e^{-t/\\tau}$", desc: "" },
-      { name: "Équation différentielle", expr: "$RC\\,\\dfrac{du_C}{dt} + u_C = E$", desc: "Loi des mailles" },
-      { name: "Énergie stockée dans C", expr: "$E_C = \\dfrac{1}{2}\\,C\\,u_C^2$", desc: "En joules" },
-      { name: "Valeurs clés", expr: "$t=\\tau : u_C \\approx 0{,}63E \\quad t=5\\tau : u_C \\approx E$", desc: "" },
+      { name: "Équation différentielle", expr: "$RC\\,\\dfrac{du_C}{dt} + u_C = E$", desc: "" },
+      { name: "Énergie stockée", expr: "$E_C = \\dfrac{1}{2}\\,C\\,u_C^2$", desc: "" },
     ],
     demonstrations: [
-      "Équation différentielle par la loi des mailles : $E = Ri + u_C = RC\\,du_C/dt + u_C$.",
-      "Résolution : $u_C(t) = E + A e^{-t/\\tau}$. CI : $u_C(0) = 0 \\Rightarrow A = -E \\Rightarrow u_C(t) = E(1-e^{-t/\\tau})$.",
-      "À $t = \\tau$ : $u_C = E(1-1/e) = 0{,}632\\,E$. À $t = 5\\tau$ : $e^{-5} \\approx 0{,}007 \\Rightarrow u_C \\approx E$.",
+      "Loi des mailles : $E = RC\\,du_C/dt + u_C$.",
+      "Solution : $u_C(t) = E(1-e^{-t/\\tau})$ avec CI $u_C(0) = 0$.",
     ],
     schemas: [
-      `Circuit RC :\n\n   E ─────┬───R───┬\n          │       C\n          │       │  u_C(t)\n   GND ───┴───────┘\n\nu_C(t) pendant la charge :\n  E ────────────────── (asymptote)\n  |         __------\n0,63E|─ ─ ─/\n  |       /  ← tangente en t=0 intersecte E en t = τ\n  +──────+──────────→ t\n         τ    5τ`,
+      {
+        type: 'table',
+        caption: 'Comportement du condensateur selon le régime',
+        headers: ['Instant / Régime', 'uC', 'i (courant)', 'Comportement équivalent'],
+        rows: [
+          ['t = 0 (déchargé)', '0', 'E/R (max)', 'Court-circuit'],
+          ['t = τ', '0,63 E', '0,37 E/R', '—'],
+          ['t = 5τ (permanent)', '≈ E', '≈ 0', 'Interrupteur ouvert'],
+        ],
+      },
     ],
     tips: [
-      "Méthode graphique pour $\\tau$ : la tangente à l'origine intersecte l'asymptote en $t = \\tau$.",
-      "Condensateur en régime permanent ($t \\gg 5\\tau$) : interrupteur OUVERT ($i = 0$).",
-      "Condensateur déchargé en $t = 0$ : court-circuit ($u_C = 0$).",
+      "Tangente à l'origine intersecte l'asymptote en $t = \\tau$ : méthode graphique.",
+      "En régime permanent : condensateur = interrupteur ouvert.",
     ],
     remember: [
       "$\\tau = RC$ en secondes.",
       "À $t = \\tau$ : 63% de la valeur finale. À $t = 5\\tau$ : régime permanent.",
-      "Équation différentielle : $RC\\,du/dt + u = E$.",
     ],
     extras: [],
   },
@@ -562,30 +770,38 @@ export const chapters = [
     title: "Transferts quantiques d'énergie",
     icon: "⚛️",
     color: "#f472b6",
-    definition: "Dans le modèle de Bohr, les électrons occupent des niveaux d'énergie discrets. Les transitions entre niveaux s'accompagnent d'émission ou d'absorption de photons d'énergie hf = |ΔE|.",
+    definition: "Dans le modèle de Bohr, les électrons occupent des niveaux d'énergie discrets. Les transitions entre niveaux s'accompagnent d'émission ou d'absorption de photons.",
     formulas: [
-      { name: "Énergie du photon émis/absorbé", expr: "$hf = |E_f - E_i| = \\dfrac{hc}{\\lambda}$", desc: "" },
-      { name: "Niveaux d'énergie de l'hydrogène", expr: "$E_n = \\dfrac{-13{,}6}{n^2}$ eV", desc: "$n = 1, 2, 3, \\ldots$" },
-      { name: "Niveau fondamental", expr: "$E_1 = -13{,}6$ eV ($n=1$)", desc: "État le plus stable" },
-      { name: "Énergie d'ionisation", expr: "$E_{\\text{ion}} = -E_1 = 13{,}6$ eV", desc: "Pour arracher l'électron" },
-      { name: "Conversion eV ↔ J", expr: "$1\\,\\text{eV} = 1{,}6 \\times 10^{-19}$ J", desc: "OBLIGATOIRE en SI" },
+      { name: "Énergie du photon", expr: "$hf = |E_f - E_i|$", desc: "$\\lambda = hc/|\\Delta E|$" },
+      { name: "Niveaux de l'hydrogène", expr: "$E_n = \\dfrac{-13{,}6}{n^2}$ eV", desc: "$n = 1, 2, 3, \\ldots$" },
+      { name: "Énergie d'ionisation", expr: "$E_{\\text{ion}} = 13{,}6$ eV", desc: "Pour l'hydrogène" },
+      { name: "Conversion", expr: "$1\\,\\text{eV} = 1{,}6 \\times 10^{-19}$ J", desc: "" },
     ],
     demonstrations: [
-      "Émission : atome passe de $n_i \\to n_f$ avec $n_i > n_f \\Rightarrow$ photon émis, $hf = E_{n_i} - E_{n_f}$.",
-      "Absorption : atome absorbe un photon $hf \\Rightarrow$ passe de $n_f \\to n_i$.",
-      "Séries spectrales H : Lyman ($n_f=1$, UV), Balmer ($n_f=2$, visible), Paschen ($n_f=3$, IR).",
+      "Émission : $n_i \\to n_f$ ($n_i > n_f$) $\\Rightarrow$ photon émis $hf = E_{n_i} - E_{n_f}$.",
+      "Séries : Lyman ($n_f=1$, UV), Balmer ($n_f=2$, visible).",
     ],
     schemas: [
-      `Niveaux d'énergie de l'hydrogène :\n\n  E (eV)\n   0 ──────────────────  n=∞ (ionisé)\n  −0,85 ────────────────  n=4\n  −1,51 ────────────────  n=3  Paschen (IR)\n  −3,40 ────────────────  n=2  Balmer (visible)\n              ↑ photon\n −13,6 ────────────────  n=1 (fondamental) → Lyman (UV)\n\nÉmission  : n_i → n_f (n_i > n_f) → photon émis\nAbsorption: n_f → n_i (n_i > n_f) → photon absorbé`,
+      {
+        type: 'table',
+        caption: 'Niveaux d\'énergie de l\'hydrogène',
+        headers: ['n', 'Énergie (eV)', 'Série émise (transition vers ce niveau)', 'Domaine'],
+        rows: [
+          ['1', '−13,6', 'Lyman (depuis n≥2)', 'UV'],
+          ['2', '−3,40', 'Balmer (depuis n≥3)', 'Visible'],
+          ['3', '−1,51', 'Paschen (depuis n≥4)', 'IR'],
+          ['4', '−0,85', 'Brackett (depuis n≥5)', 'IR'],
+          ['∞', '0', '— (ionisation)', '—'],
+        ],
+      },
     ],
     tips: [
-      "Balmer (visible) : transitions vers $n=2$. Longueurs d'onde dans 400–700 nm.",
-      "Toujours convertir : $\\Delta E(\\text{J}) = \\Delta E(\\text{eV}) \\times 1{,}6 \\times 10^{-19}$.",
+      "Balmer (visible) : transitions vers $n=2$, longueurs d'onde dans 400–700 nm.",
+      "Convertir : $\\Delta E(\\text{J}) = \\Delta E(\\text{eV}) \\times 1{,}6 \\times 10^{-19}$.",
     ],
     remember: [
-      "$hf = |\\Delta E|$ pour tout transfert quantique. $\\lambda = hc/|\\Delta E|$.",
-      "Niveaux H : $E_n = -13{,}6/n^2$ eV. Fondamental : $n=1$.",
-      "$1\\,\\text{eV} = 1{,}6 \\times 10^{-19}$ J : conversion OBLIGATOIRE.",
+      "$hf = |\\Delta E|$. $\\lambda = hc/|\\Delta E|$.",
+      "Niveaux H : $E_n = -13{,}6/n^2$ eV.",
     ],
     extras: [],
   },
@@ -594,29 +810,35 @@ export const chapters = [
     title: "Analyse spectrale",
     icon: "🌈",
     color: "#34d399",
-    definition: "L'analyse spectrale étudie la lumière émise ou absorbée par les substances pour en déduire leur composition. Chaque élément possède un spectre de raies unique. La loi de Beer-Lambert permet le dosage par spectrophotométrie.",
+    definition: "L'analyse spectrale étudie la lumière émise ou absorbée pour déduire la composition d'une substance. La loi de Beer-Lambert permet le dosage par spectrophotométrie.",
     formulas: [
-      { name: "Spectre visible", expr: "400 nm (violet) $\\to$ 700 nm (rouge)", desc: "UV $< 400$ nm ; IR $> 700$ nm" },
-      { name: "Relation $f$ et $\\lambda$", expr: "$c = \\lambda f$", desc: "$c = 3 \\times 10^8$ m/s" },
-      { name: "Loi de Wien (corps noir)", expr: "$\\lambda_{\\max} \\times T = 2{,}898 \\times 10^{-3}$ m·K", desc: "$T$ en Kelvin" },
-      { name: "Loi de Beer-Lambert", expr: "$A = \\varepsilon \\cdot l \\cdot C$", desc: "$A$ : absorbance, $\\varepsilon$ (L/mol/cm), $l$ (cm), $C$ (mol/L)" },
-      { name: "Absorbance", expr: "$A = \\log\\dfrac{I_0}{I}$", desc: "$A \\propto C$ (droite d'étalonnage)" },
+      { name: "Relation f et λ", expr: "$c = \\lambda f$", desc: "$c = 3 \\times 10^8$ m/s" },
+      { name: "Loi de Wien", expr: "$\\lambda_{\\max} \\times T = 2{,}898 \\times 10^{-3}$ m·K", desc: "" },
+      { name: "Beer-Lambert", expr: "$A = \\varepsilon \\cdot l \\cdot C$", desc: "$A$ : absorbance" },
+      { name: "Absorbance", expr: "$A = \\log\\dfrac{I_0}{I}$", desc: "" },
     ],
     demonstrations: [
-      "Beer-Lambert : $A = f(C)$ est une droite (courbe d'étalonnage). Mesurer $A_{\\text{inc}}$ $\\Rightarrow$ lire $C$ sur la droite.",
-      "Loi de Wien : étoile bleue ($\\lambda_{\\max} \\approx 400$ nm) $\\Rightarrow T = 2{,}898 \\times 10^{-3}/(400 \\times 10^{-9}) \\approx 7250$ K.",
+      "Beer-Lambert : $A = f(C)$ est une droite (courbe d'étalonnage).",
     ],
     schemas: [
-      `Types de spectres :\n\n  Continu   : ████████████████████  (tous λ)\n  (corps incandescent)\n\n  Émission  : ────│────│──│─────  (raies brillantes)\n  (atome excité)\n\n  Absorption: ████│████│██│█████  (raies sombres)\n  (lumière blanche + atomes froids)\n\n→ Raies d'absorption ↔ raies d'émission du MÊME élément\n\nSpectrophotométrie : A = ε·l·C\n  A ∝ C → droite passant par l'origine`,
+      {
+        type: 'table',
+        caption: 'Types de spectres',
+        headers: ['Type', 'Source', 'Aspect', 'Utilisation'],
+        rows: [
+          ['Continu', 'Corps incandescent', 'Arc-en-ciel complet', 'Loi de Wien (T de l\'étoile)'],
+          ['Émission', 'Atome excité', 'Raies brillantes sur fond sombre', 'Identification d\'éléments'],
+          ['Absorption', 'Lumière blanche + atomes froids', 'Raies sombres sur fond continu', 'Composition atmosphère stellaire'],
+        ],
+      },
     ],
     tips: [
-      "Courbe d'étalonnage : tracer $A = f(C)$ sur solutions connues $\\Rightarrow$ droite si $A < 1$.",
-      "Choisir $\\lambda_{\\max}$ (maximum d'absorption) pour maximiser la sensibilité.",
+      "Choisir $\\lambda_{\\max}$ (max d'absorption) pour maximiser la sensibilité.",
+      "Courbe d'étalonnage : $A = f(C)$ droite si $A < 1$.",
     ],
     remember: [
-      "Chaque élément a un spectre de raies unique (signature spectrale).",
+      "Chaque élément a un spectre unique (signature spectrale).",
       "Beer-Lambert : $A = \\varepsilon l C$. $A \\propto C$.",
-      "Émission = raies brillantes. Absorption = raies sombres sur fond continu.",
     ],
     extras: [],
   },
@@ -627,28 +849,52 @@ export const chapters = [
     color: "#fbbf24",
     definition: "Les méthodes physiques d'analyse permettent d'identifier et de doser des composés. Au programme : spectroscopie IR, RMN ¹H, chromatographie CCM.",
     formulas: [
-      { name: "Déplacement chimique (RMN)", expr: "$\\delta\\,(\\text{ppm}) = \\dfrac{\\nu_{\\text{obs}} - \\nu_{\\text{ref}}}{\\nu_{\\text{spectro}}} \\times 10^6$", desc: "Référence TMS, $\\delta = 0$ ppm" },
-      { name: "Multiplicité (règle $n+1$)", expr: "$\\text{multiplet} = n+1$ raies", desc: "$n$ = nombre de H voisins équivalents" },
-      { name: "Rf (CCM)", expr: "$R_f = \\dfrac{d_{\\text{composé}}}{d_{\\text{front solvant}}}$", desc: "$0 < R_f < 1$" },
-      { name: "Nombre d'onde (IR)", expr: "$\\tilde{\\nu} = \\dfrac{1}{\\lambda}$ (cm⁻¹)", desc: "$\\tilde{\\nu}(C=O) \\approx 1700$, $\\tilde{\\nu}(O-H) \\approx 3300$ cm⁻¹" },
+      { name: "Déplacement chimique (RMN)", expr: "$\\delta\\,(\\text{ppm}) = \\dfrac{\\nu_{\\text{obs}} - \\nu_{\\text{ref}}}{\\nu_{\\text{spectro}}} \\times 10^6$", desc: "Référence TMS = 0 ppm" },
+      { name: "Multiplicité ($n+1$)", expr: "$\\text{multiplet} = n+1$ raies", desc: "$n$ = H voisins" },
+      { name: "Rf (CCM)", expr: "$R_f = \\dfrac{d_{\\text{composé}}}{d_{\\text{front}}}$", desc: "$0 < R_f < 1$" },
+      { name: "Nombre d'onde (IR)", expr: "$\\tilde{\\nu} = \\dfrac{1}{\\lambda}$ (cm⁻¹)", desc: "" },
     ],
     demonstrations: [
-      "IR : identifier un groupe fonctionnel par les bandes d'absorption caractéristiques.",
-      "RMN : structure depuis $\\delta$ (environnement), multiplicité ($n+1$), intégration (nombre de H).",
-      "CCM : $R_f$ identique à un témoin = même composé.",
+      "IR : identifier un groupe fonctionnel par les bandes d'absorption.",
+      "RMN : structure depuis $\\delta$, multiplicité ($n+1$), intégration.",
     ],
     schemas: [
-      `Spectroscopie IR — Bandes caractéristiques :\n\n  ν̃ (cm⁻¹)  | Liaison  | Groupe\n  ───────────────────────────────────────\n  3200–3600  | O–H      | Alcool (bande large)\n  2500–3300  | O–H      | Acide carboxylique\n  2850–2960  | C–H      | Alcane\n  1700–1750  | C=O      | Cétone, aldéhyde, ester\n  1600–1680  | C=C      | Alcène\n  1000–1200  | C–O      | Alcool, ester\n\nRMN ¹H — δ typiques (ppm) :\n  TMS (0) | CH₃ (0–1) | CH₂ (1–2)\n  C=C-H (4,5–6) | Ar-H (6,5–8) | CHO (9–10) | COOH (10–12)`,
+      {
+        type: 'table',
+        caption: 'Spectroscopie IR — Bandes caractéristiques',
+        headers: ['ν̃ (cm⁻¹)', 'Liaison', 'Groupe fonctionnel'],
+        rows: [
+          ['3200–3600', 'O–H (large)', 'Alcool'],
+          ['2500–3300', 'O–H (très large)', 'Acide carboxylique'],
+          ['2850–2960', 'C–H', 'Alcane'],
+          ['1700–1750', 'C=O (fine)', 'Cétone, aldéhyde, ester, acide'],
+          ['1600–1680', 'C=C', 'Alcène'],
+          ['1000–1200', 'C–O', 'Alcool, ester'],
+        ],
+      },
+      {
+        type: 'table',
+        caption: 'RMN ¹H — Déplacements chimiques typiques',
+        headers: ['Environnement', 'δ (ppm)', 'Exemple'],
+        rows: [
+          ['TMS (référence)', '0', '—'],
+          ['CH₃ (alkyle)', '0,9 – 1,0', 'CH₃-R'],
+          ['CH₂ (alkyle)', '1,2 – 1,4', '-CH₂-'],
+          ['C=C–H (alcène)', '4,5 – 6,5', 'H₂C=CH₂'],
+          ['Ar–H (aromatique)', '6,5 – 8,5', 'Benzène'],
+          ['CHO (aldéhyde)', '9 – 10', 'RCHO'],
+          ['COOH', '10 – 12', 'Acide carboxylique'],
+        ],
+      },
     ],
     tips: [
       "IR : bande LARGE $\\approx 3300$ cm⁻¹ $\\Rightarrow$ O–H (alcool). Fine $\\approx 1700$ cm⁻¹ $\\Rightarrow$ C=O.",
       "RMN : triplet = 2 voisins H. Intégration $\\propto$ nombre de H.",
-      "CCM : toujours comparer avec un TÉMOIN connu.",
     ],
     remember: [
-      "IR : groupes fonctionnels via bandes d'absorption. C=O $\\approx 1700$, O–H $\\approx 3300$ cm⁻¹.",
-      "RMN $^1H$ : $\\delta$ (ppm), multiplicité ($n+1$), intégration (nb de H).",
-      "$R_f = d_{\\text{composé}}/d_{\\text{solvant}}$ (CCM). $R_f$ identique = même composé.",
+      "IR : C=O $\\approx 1700$ cm⁻¹, O–H $\\approx 3300$ cm⁻¹.",
+      "RMN $^1H$ : $\\delta$, multiplicité ($n+1$), intégration.",
+      "$R_f$ identique = même composé (même éluant).",
     ],
     extras: [],
   },
@@ -657,28 +903,40 @@ export const chapters = [
     title: "Utilisation de Python pour la modélisation",
     icon: "🐍",
     color: "#38bdf8",
-    definition: "Python (numpy, matplotlib, scipy) est utilisé pour modéliser des phénomènes physiques, résoudre numériquement des équations différentielles, et analyser des données expérimentales.",
+    definition: "Python (numpy, matplotlib, scipy) est utilisé pour modéliser des phénomènes physiques, résoudre numériquement des EDO, et analyser des données expérimentales.",
     formulas: [
-      { name: "Méthode d'Euler", expr: "$y(t+h) = y(t) + h \\cdot f(t,\\,y(t))$", desc: "$h$ : pas de temps, $f$ : dérivée" },
-      { name: "Régression linéaire (numpy)", expr: "coeffs = np.polyfit(x, y, 1)", desc: "coeffs[0] = pente, coeffs[1] = ordonnée" },
-      { name: "Tableau de valeurs", expr: "np.linspace(a, b, n)", desc: "$n$ points entre $a$ et $b$" },
+      { name: "Méthode d'Euler", expr: "$y(t+h) = y(t) + h \\cdot f(t,\\,y(t))$", desc: "$h$ : pas de temps" },
+      { name: "Régression linéaire", expr: "np.polyfit(x, y, 1)", desc: "Retourne [pente, ordonnée]" },
     ],
     demonstrations: [
-      "Euler : $v(t+h) = v(t) + h \\cdot a(t)$ puis $x(t+h) = x(t) + h \\cdot v(t)$.",
-      "Régression linéaire : $\\text{np.polyfit}(x,\\, y,\\, 1)$ $\\Rightarrow$ pente et ordonnée à l'origine.",
+      "Euler : $v(t+h) = v(t) + h \\cdot a(t)$, puis $x(t+h) = x(t) + h \\cdot v(t)$.",
     ],
     schemas: [
-      `Algorithme d'Euler (chute libre) :\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ng = 9.81    # m/s²\nh = 0.01    # pas de temps (s)\n\nt_list = [0.0]\ny_list = [0.0]   # position initiale\nv_list = [0.0]   # vitesse initiale\n\nfor i in range(1000):\n    a = -g\n    v_list.append(v_list[-1] + h * a)\n    y_list.append(y_list[-1] + h * v_list[-2])\n    t_list.append(t_list[-1] + h)\n\nplt.plot(t_list, y_list)\nplt.xlabel('t (s)') ; plt.ylabel('y (m)')\nplt.show()`,
+      {
+        type: 'mermaid',
+        caption: 'Workflow de modélisation numérique en Python',
+        chart: `graph TD
+    A["Définir le problème\n(EDO, conditions initiales)"] --> B["Choisir le pas h\n(compromis précision/vitesse)"]
+    B --> C["Boucle d'Euler\ny(t+h) = y(t) + h·f(t,y)"]
+    C --> D["Stocker les résultats\nt_list, y_list, v_list"]
+    D --> E["Tracer avec matplotlib\nplt.plot(t, y)"]
+    E --> F["Valider\n(comparer solution analytique)"]
+    style A fill:#1e293b,stroke:#38bdf8,color:#e2e8f0
+    style C fill:#1e3a5f,stroke:#38bdf8,color:#38bdf8
+    style F fill:#1a3a2a,stroke:#34d399,color:#34d399`,
+      },
+      {
+        type: 'text',
+        text: `Algorithme d'Euler (chute libre) :\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ng = 9.81    # m/s²\nh = 0.01    # pas de temps (s)\n\nt_list = [0.0]\ny_list = [0.0]   # position initiale\nv_list = [0.0]   # vitesse initiale\n\nfor i in range(1000):\n    a = -g\n    v_list.append(v_list[-1] + h * a)\n    y_list.append(y_list[-1] + h * v_list[-2])\n    t_list.append(t_list[-1] + h)\n\nplt.plot(t_list, y_list)\nplt.xlabel('t (s)') ; plt.ylabel('y (m)')\nplt.show()`,
+      },
     ],
     tips: [
-      "Plus le pas $h$ est petit $\\Rightarrow$ plus précis mais plus lent. Compromis : $h \\approx 0{,}001 \\times T_{\\text{caract}}$.",
-      "Toujours tracer pour vérifier la cohérence physique du résultat.",
-      "scipy.integrate.odeint est plus précis qu'Euler pour les EDO difficiles.",
+      "Plus $h$ est petit $\\Rightarrow$ plus précis mais plus lent.",
+      "scipy.integrate.odeint est plus précis qu'Euler.",
     ],
     remember: [
-      "Méthode d'Euler : $y(t+h) = y(t) + h \\cdot f(t, y)$. Valable pour $h$ petit.",
-      "numpy : calculs numériques. matplotlib : graphiques. scipy : méthodes avancées.",
-      "Validation : comparer avec la solution analytique quand elle existe.",
+      "$y(t+h) = y(t) + h \\cdot f(t, y)$ : méthode d'Euler.",
+      "numpy : calculs. matplotlib : graphiques. scipy : méthodes avancées.",
     ],
     extras: [],
   },
