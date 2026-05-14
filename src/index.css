@@ -18,13 +18,13 @@
     --secondary-foreground: 210 40% 98%;
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
-    --accent: 352 83% 58%;
+    --accent: 352 98% 44%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62% 50%;
     --destructive-foreground: 210 40% 98%;
     --border: 217 33% 22%;
     --input: 217 33% 17%;
-    --ring: 199 89% 60%;
+    --ring: 125 80% 49%;
     --radius: 1rem;
 
     --glass-bg: rgba(255,255,255,0.06);
