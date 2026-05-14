@@ -1,15 +1,36 @@
 import React from 'react';
+import Math from './Math';
+
+// Renders text with inline LaTeX: wrap expressions between $ signs
+function InlineMath({ text }) {
+  if (!text || !text.includes('$')) return <span>{text}</span>;
+  const parts = text.split(/(\$[^$]+\$)/g);
+  return (
+    <span>
+      {parts.map((part, i) => {
+        if (part.startsWith('$') && part.endsWith('$')) {
+          return <Math key={i} expr={part.slice(1, -1)} />;
+        }
+        return <span key={i}>{part}</span>;
+      })}
+    </span>
+  );
+}
 
 function FormulaCard({ formula }) {
   return (
     <div className="formula-block mb-3">
       <div className="flex items-start justify-between gap-4 flex-wrap">
-        <div>
-          <div className="text-xs mb-1" style={{ color: '#94a3b8' }}>{formula.name}</div>
-          <div className="text-lg font-semibold" style={{ color: '#38bdf8' }}>{formula.expr}</div>
+        <div className="flex-1">
+          <div className="text-xs mb-2" style={{ color: '#94a3b8' }}>{formula.name}</div>
+          <div className="text-base" style={{ color: '#38bdf8' }}>
+            <InlineMath text={formula.expr} />
+          </div>
         </div>
         {formula.desc && (
-          <div className="text-xs mt-1" style={{ color: '#64748b', fontFamily: 'Inter, sans-serif', maxWidth: '200px' }}>{formula.desc}</div>
+          <div className="text-xs mt-1" style={{ color: '#64748b', fontFamily: 'Inter, sans-serif', maxWidth: '220px' }}>
+            <InlineMath text={formula.desc} />
+          </div>
         )}
       </div>
     </div>
@@ -65,7 +86,7 @@ export default function ChapterContent({ chapter }) {
             <div key={i} className="demo-block">
               <div className="flex gap-3">
                 <span className="text-xs font-bold shrink-0 mt-0.5" style={{ color: '#f472b6', fontFamily: 'JetBrains Mono, monospace' }}>D{i + 1}</span>
-                <p className="text-sm" style={{ color: '#cbd5e1' }}>{d}</p>
+                <p className="text-sm" style={{ color: '#cbd5e1' }}><InlineMath text={d} /></p>
               </div>
             </div>
           ))}
@@ -96,7 +117,7 @@ export default function ChapterContent({ chapter }) {
             <div key={i} className="tip-block">
               <div className="flex gap-3">
                 <span className="text-base shrink-0">💡</span>
-                <p className="text-sm" style={{ color: '#e2e8f0' }}>{t}</p>
+                <p className="text-sm" style={{ color: '#e2e8f0' }}><InlineMath text={t} /></p>
               </div>
             </div>
           ))}
@@ -113,14 +134,14 @@ export default function ChapterContent({ chapter }) {
             {chapter.remember.map((r, i) => (
               <li key={i} className="flex gap-3 items-start">
                 <span className="shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold" style={{ background: 'rgba(52,211,153,0.2)', color: '#34d399' }}>{i + 1}</span>
-                <span className="text-sm font-medium" style={{ color: '#e2e8f0' }}>{r}</span>
+                <span className="text-sm font-medium" style={{ color: '#e2e8f0' }}><InlineMath text={r} /></span>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      {/* Extras (méthodes, exemples, compléments) */}
+      {/* Extras */}
       {chapter.extras && chapter.extras.length > 0 && (
         <section>
           <h3 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: chapter.color }}>
