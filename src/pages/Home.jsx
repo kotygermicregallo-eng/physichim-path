@@ -150,7 +150,7 @@ export default function Home() {
         }
 
           {/* Main content */}
-          <main className="flex-1 min-w-0 px-4 md:px-8 py-8">
+          <main className="flex-1 min-w-0 px-4 md:px-8 py-8 opacity-100">
             {/* Chapter header */}
             <div className="glass rounded-2xl p-6 mb-8" style={{ border: `1px solid rgba(255,255,255,0.10)` }}>
               <div className="flex items-start gap-4">
