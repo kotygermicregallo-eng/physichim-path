@@ -4,10 +4,12 @@ import ChapterContent from '../components/physchim/ChapterContent';
 import ExerciseDatabase from '../components/physchim/ExerciseDatabase';
 import CompleteSubjects from '../components/physchim/CompleteSubjects';
 import BacEntrainement from '../components/physchim/BacEntrainement';
+import QuizSection from '../components/quiz/QuizSection';
 
 const TABS = [
 { id: 'cours', label: '📚 Cours', desc: 'Fiches complètes' },
 { id: 'exercices', label: '✏️ Exercices', desc: 'Base d\'exercices' },
+{ id: 'quiz', label: '🧠 Quiz', desc: 'Entraînement 21 types' },
 { id: 'bac', label: '🎯 Bac', desc: 'Entraînement Bac' },
 { id: 'sujets', label: '📄 Sujets', desc: 'Annales complètes' }];
 
@@ -84,6 +86,11 @@ export default function Home() {
         </div>
       }
 
+      {/* Quiz tab (full width) */}
+      {activeTab === 'quiz' &&
+      <QuizSection />
+      }
+
       {/* Bac entrainement tab (full width) */}
       {activeTab === 'bac' &&
       <div className="max-w-4xl mx-auto px-4 py-8">
@@ -92,7 +99,7 @@ export default function Home() {
       }
 
       {/* Chapters tabs (cours + exercices) */}
-      {activeTab !== 'sujets' && activeTab !== 'bac' &&
+      {activeTab !== 'sujets' && activeTab !== 'bac' && activeTab !== 'quiz' &&
       <div className="max-w-screen-2xl mx-auto flex gap-0">
           {/* Sidebar */}
           <aside
