@@ -5,6 +5,9 @@ import { QUESTION_TYPES } from './quizEngine';
 import { quizCh1 } from './quizData_ch1';
 import { quizCh2 } from './quizData_ch2';
 import { quizCh3, quizCh4, quizCh5 } from './quizData_ch3_5';
+import { quizCh6, quizCh7, quizCh8, quizCh9, quizCh10 } from './quizData_ch6_10';
+import { quizCh11, quizCh12, quizCh13, quizCh14, quizCh15 } from './quizData_ch11_15';
+import { quizCh16, quizCh17, quizCh18, quizCh19, quizCh20 } from './quizData_ch16_20';
 import { chapters } from '../physchim/chaptersData';
 
 // All quiz data merged
@@ -14,6 +17,21 @@ const ALL_QUIZ_DATA = {
   3: quizCh3,
   4: quizCh4,
   5: quizCh5,
+  6: quizCh6,
+  7: quizCh7,
+  8: quizCh8,
+  9: quizCh9,
+  10: quizCh10,
+  11: quizCh11,
+  12: quizCh12,
+  13: quizCh13,
+  14: quizCh14,
+  15: quizCh15,
+  16: quizCh16,
+  17: quizCh17,
+  18: quizCh18,
+  19: quizCh19,
+  20: quizCh20,
 };
 
 const MODES = [
