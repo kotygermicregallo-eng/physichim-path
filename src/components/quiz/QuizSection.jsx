@@ -110,36 +110,31 @@ export default function QuizSection() {
             </div>
           </button>
 
-          {availableChapters.map(ch => (
-            <button
-              key={ch.id}
-              onClick={() => setSelectedChapter(ch.id)}
-              className="px-3 py-3 rounded-xl text-left transition-all"
-              style={{
-                border: selectedChapter === ch.id ? `1px solid ${ch.color}60` : '1px solid rgba(255,255,255,0.08)',
-                background: selectedChapter === ch.id ? `${ch.color}12` : 'rgba(255,255,255,0.02)',
-              }}
-            >
-              <div className="text-lg mb-1">{ch.icon}</div>
-              <div className="text-xs font-semibold truncate" style={{ color: selectedChapter === ch.id ? ch.color : '#78716c', fontFamily: 'JetBrains Mono, monospace' }}>
-                Ch. {ch.id} — {ch.title.split(' ').slice(0, 3).join(' ')}...
-              </div>
-              <div className="text-xs mt-0.5" style={{ color: '#475569' }}>
-                {(ALL_QUIZ_DATA[ch.id] || []).length} questions
-              </div>
-            </button>
-          ))}
-
-          {/* Coming soon chapters */}
-          {chapters.filter(c => !ALL_QUIZ_DATA[c.id]).slice(0, 3).map(ch => (
-            <div key={ch.id} className="px-3 py-3 rounded-xl" style={{ border: '1px solid rgba(255,255,255,0.04)', background: 'rgba(255,255,255,0.01)', opacity: 0.4 }}>
-              <div className="text-lg mb-1">{ch.icon}</div>
-              <div className="text-xs font-semibold truncate" style={{ color: '#334155', fontFamily: 'JetBrains Mono, monospace' }}>
-                Ch. {ch.id} — Bientôt
-              </div>
-              <div className="text-xs mt-0.5" style={{ color: '#1e293b' }}>En cours...</div>
-            </div>
-          ))}
+          {chapters.map(ch => {
+            const hasData = !!ALL_QUIZ_DATA[ch.id];
+            const isSelected = selectedChapter === ch.id;
+            return (
+              <button
+                key={ch.id}
+                onClick={() => hasData && setSelectedChapter(ch.id)}
+                className="px-3 py-3 rounded-xl text-left transition-all relative"
+                style={{
+                  border: isSelected ? `1px solid ${ch.color}60` : hasData ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(255,255,255,0.04)',
+                  background: isSelected ? `${ch.color}12` : hasData ? 'rgba(255,255,255,0.02)' : 'rgba(255,255,255,0.01)',
+                  opacity: hasData ? 1 : 0.45,
+                  cursor: hasData ? 'pointer' : 'default',
+                }}
+              >
+                <div className="text-lg mb-1">{ch.icon}</div>
+                <div className="text-xs font-semibold truncate" style={{ color: isSelected ? ch.color : hasData ? '#94a3b8' : '#334155', fontFamily: 'JetBrains Mono, monospace' }}>
+                  Ch. {ch.id} — {ch.title.split(' ').slice(0, 3).join(' ')}
+                </div>
+                <div className="text-xs mt-0.5" style={{ color: hasData ? '#475569' : '#1e293b' }}>
+                  {hasData ? `${ALL_QUIZ_DATA[ch.id].length} questions` : '🔒 Bientôt disponible'}
+                </div>
+              </button>
+            );
+          })}
         </div>
       </div>
 
