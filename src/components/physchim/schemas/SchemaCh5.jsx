@@ -13,8 +13,9 @@ export default function SchemaCh5() {
         <div className="px-4 py-2.5" style={{ background: 'rgba(56,189,248,0.1)', borderBottom: '1px solid rgba(56,189,248,0.15)' }}>
           <span style={{ color: '#38bdf8', fontSize: '0.8rem', fontWeight: 700, fontFamily: 'JetBrains Mono, monospace' }}>🔬 MONTAGE DE TITRAGE — PRINCIPE</span>
         </div>
-        <div className="p-4">
-          <svg viewBox="0 0 520 260" className="w-full" style={{ maxHeight: 260 }}>
+        <div className="p-4 space-y-4">
+          {/* ─ Montage ─ */}
+          <svg viewBox="0 0 500 230" className="w-full" style={{ maxHeight: 230 }}>
             <defs>
               <marker id="aT5" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
                 <path d="M0,0 L0,6 L7,3 z" fill="#c8902f" />
@@ -22,103 +23,89 @@ export default function SchemaCh5() {
             </defs>
 
             {/* ── Support / tige ── */}
-            <rect x="120" y="20" width="6" height="210" rx="3" fill="#475569" />
-            <rect x="80" y="228" width="86" height="8" rx="3" fill="#334155" />
+            <rect x="148" y="10" width="6" height="190" rx="3" fill="#475569" />
+            <rect x="108" y="198" width="86" height="7" rx="3" fill="#334155" />
 
             {/* ── Burette ── */}
-            <rect x="126" y="20" width="20" height="140" rx="4" fill="rgba(56,189,248,0.15)" stroke="#38bdf8" strokeWidth="1.5" />
-            {/* Graduation burette */}
+            <rect x="154" y="10" width="22" height="130" rx="4" fill="rgba(56,189,248,0.15)" stroke="#38bdf8" strokeWidth="1.5" />
             {[0,1,2,3,4].map(i => (
-              <line key={i} x1="146" y1={30 + i*26} x2="152" y2={30 + i*26} stroke="#38bdf8" strokeWidth="1" />
+              <line key={i} x1="176" y1={22 + i*24} x2="181" y2={22 + i*24} stroke="#38bdf8" strokeWidth="1" />
             ))}
-            {/* Robinet */}
-            <rect x="124" y="155" width="24" height="8" rx="3" fill="#64748b" />
-            {/* Pointe burette */}
-            <path d="M133,163 L136,185 L139,163 Z" fill="rgba(56,189,248,0.4)" stroke="#38bdf8" strokeWidth="1" />
-            {/* Goutte */}
-            <ellipse cx="136" cy="190" rx="3" ry="4" fill="#38bdf8" opacity="0.7" />
+            <rect x="152" y="136" width="26" height="7" rx="3" fill="#64748b" />
+            <path d="M161,143 L165,162 L169,143 Z" fill="rgba(56,189,248,0.4)" stroke="#38bdf8" strokeWidth="1" />
+            <ellipse cx="165" cy="167" rx="3" ry="4" fill="#38bdf8" opacity="0.8" />
 
-            {/* Labels burette */}
-            <text x="155" y="40" fontSize="9" fill="#38bdf8" fontFamily="Inter">Burette graduée</text>
-            <text x="155" y="52" fontSize="8.5" fill="#64748b" fontFamily="Inter">(solution titrante c_B connue)</text>
+            {/* Label burette */}
+            <text x="186" y="26" fontSize="10" fill="#38bdf8" fontFamily="Inter" fontWeight="600">Burette graduée</text>
+            <text x="186" y="39" fontSize="9" fill="#64748b" fontFamily="Inter">Solution titrante (c_B connue)</text>
 
             {/* ── Bécher ── */}
-            <path d="M82,188 L74,240 L200,240 L192,188 Z" fill="rgba(52,211,153,0.1)" stroke="#34d399" strokeWidth="1.8" />
-            {/* Liquide dans bécher */}
-            <path d="M84,210 L76,240 L198,240 L190,210 Z" fill="rgba(52,211,153,0.18)" />
-            {/* Agitateur magnétique (base) */}
-            <rect x="72" y="238" width="132" height="16" rx="5" fill="#1e293b" stroke="#475569" strokeWidth="1.5" />
-            <ellipse cx="138" cy="246" rx="20" ry="5" fill="rgba(200,144,47,0.2)" stroke="#c8902f" strokeWidth="1" />
-
-            {/* Barreau aimanté dans le bécher */}
-            <rect x="120" y="228" width="36" height="8" rx="4" fill="#64748b" stroke="#94a3b8" strokeWidth="1" />
+            <path d="M108,168 L100,218 L232,218 L224,168 Z" fill="rgba(52,211,153,0.1)" stroke="#34d399" strokeWidth="1.8" />
+            <path d="M110,188 L102,218 L230,218 L222,188 Z" fill="rgba(52,211,153,0.18)" />
+            {/* base agitateur */}
+            <rect x="98" y="216" width="138" height="14" rx="5" fill="#1e293b" stroke="#475569" strokeWidth="1.5" />
+            <ellipse cx="167" cy="223" rx="22" ry="5" fill="rgba(200,144,47,0.2)" stroke="#c8902f" strokeWidth="1" />
+            {/* barreau */}
+            <rect x="148" y="208" width="38" height="7" rx="3" fill="#64748b" stroke="#94a3b8" strokeWidth="1" />
 
             {/* Labels bécher */}
-            <text x="56" y="215" fontSize="9" fill="#34d399" fontFamily="Inter" textAnchor="end">Solution</text>
-            <text x="56" y="226" fontSize="9" fill="#34d399" fontFamily="Inter" textAnchor="end">titrée</text>
-            <text x="75" y="252" fontSize="8.5" fill="#94a3b8" fontFamily="Inter">Agitateur</text>
-            <text x="75" y="262" fontSize="8.5" fill="#94a3b8" fontFamily="Inter">magnétique</text>
-            <text x="155" y="252" fontSize="8.5" fill="#94a3b8" fontFamily="Inter">Barreau aimant.</text>
+            <text x="92" y="188" fontSize="10" fill="#34d399" fontFamily="Inter" textAnchor="end" fontWeight="600">Solution</text>
+            <text x="92" y="200" fontSize="10" fill="#34d399" fontFamily="Inter" textAnchor="end" fontWeight="600">titrée</text>
+            <text x="102" y="229" fontSize="8.5" fill="#94a3b8" fontFamily="Inter">Agitateur magn.</text>
+            <text x="192" y="229" fontSize="8.5" fill="#94a3b8" fontFamily="Inter">Barreau aimanté</text>
 
-            {/* ── Sonde pH / conductimètre ── */}
-            {/* Tige sonde */}
-            <rect x="172" y="165" width="6" height="60" rx="3" fill="#a78bfa" />
-            <ellipse cx="175" cy="228" rx="5" ry="3" fill="#a78bfa" opacity="0.8" />
-            <text x="183" y="175" fontSize="9" fill="#a78bfa" fontFamily="Inter">Sonde</text>
+            {/* ── Sonde ── */}
+            <rect x="205" y="150" width="6" height="58" rx="3" fill="#a78bfa" />
+            <ellipse cx="208" cy="210" rx="5" ry="3" fill="#a78bfa" opacity="0.8" />
+            <text x="215" y="162" fontSize="10" fill="#a78bfa" fontFamily="Inter" fontWeight="600">Sonde</text>
+            <path d="M211,178 Q248,162 272,175" fill="none" stroke="#a78bfa" strokeWidth="1.5" strokeDasharray="4,2" />
 
-            {/* Fil sonde → appareil */}
-            <path d="M178,195 Q230,180 260,195" fill="none" stroke="#a78bfa" strokeWidth="1.5" strokeDasharray="4,2" />
+            {/* ── Appareil ── */}
+            <rect x="268" y="162" width="88" height="58" rx="8" fill="rgba(167,139,250,0.12)" stroke="#a78bfa" strokeWidth="1.5" />
+            <rect x="276" y="170" width="72" height="24" rx="4" fill="rgba(0,0,0,0.4)" />
+            <text x="312" y="186" fontSize="11" fill="#34d399" fontFamily="JetBrains Mono" textAnchor="middle" fontWeight="700">σ / pH</text>
+            <circle cx="283" cy="205" r="4" fill="#475569" />
+            <circle cx="297" cy="205" r="4" fill="#475569" />
+            <circle cx="311" cy="205" r="4" fill="#475569" />
+            <text x="312" y="232" fontSize="9.5" fill="#c8902f" fontFamily="Inter" textAnchor="middle" fontWeight="600">Conductimètre / pH-mètre</text>
 
-            {/* ── Appareil (conductimètre / pH-mètre) ── */}
-            <rect x="255" y="188" width="80" height="55" rx="8" fill="rgba(167,139,250,0.12)" stroke="#a78bfa" strokeWidth="1.5" />
-            {/* Écran */}
-            <rect x="263" y="196" width="64" height="22" rx="4" fill="rgba(0,0,0,0.4)" />
-            <text x="295" y="211" fontSize="10" fill="#34d399" fontFamily="JetBrains Mono" textAnchor="middle" fontWeight="700">σ / pH</text>
-            {/* Boutons */}
-            <circle cx="270" cy="228" r="4" fill="#475569" />
-            <circle cx="284" cy="228" r="4" fill="#475569" />
-            <circle cx="298" cy="228" r="4" fill="#475569" />
+            {/* ── Flèches vers courbes ── */}
+            <line x1="358" y1="178" x2="390" y2="165" stroke="#c8902f" strokeWidth="1.8" markerEnd="url(#aT5)" strokeDasharray="4,2" />
+            <line x1="358" y1="198" x2="390" y2="215" stroke="#c8902f" strokeWidth="1.8" markerEnd="url(#aT5)" strokeDasharray="4,2" />
 
-            {/* Label appareil */}
-            <text x="295" y="255" fontSize="9.5" fill="#c8902f" fontFamily="Inter" textAnchor="middle" fontWeight="600">Conductimètre</text>
-            <text x="295" y="267" fontSize="9.5" fill="#c8902f" fontFamily="Inter" textAnchor="middle" fontWeight="600">ou pH-mètre</text>
+            {/* ── Courbe conductimétrique ── */}
+            <rect x="390" y="130" width="105" height="70" rx="6" fill="rgba(56,189,248,0.07)" stroke="rgba(56,189,248,0.3)" strokeWidth="1" />
+            <line x1="398" y1="192" x2="488" y2="192" stroke="#475569" strokeWidth="1" />
+            <line x1="398" y1="192" x2="398" y2="135" stroke="#475569" strokeWidth="1" />
+            <line x1="401" y1="168" x2="438" y2="185" stroke="#38bdf8" strokeWidth="2" />
+            <line x1="438" y1="185" x2="483" y2="158" stroke="#38bdf8" strokeWidth="2" />
+            <line x1="438" y1="133" x2="438" y2="194" stroke="#fbbf24" strokeWidth="1.2" strokeDasharray="3,2" />
+            <text x="438" y="205" fontSize="8" fill="#fbbf24" textAnchor="middle" fontFamily="JetBrains Mono">VE</text>
+            <text x="400" y="134" fontSize="8" fill="#38bdf8" fontFamily="JetBrains Mono">σ(V)</text>
 
-            {/* Flèches vers courbes */}
-            <line x1="340" y1="205" x2="375" y2="185" stroke="#c8902f" strokeWidth="1.8" markerEnd="url(#aT5)" strokeDasharray="4,2" />
-            <line x1="340" y1="225" x2="375" y2="245" stroke="#c8902f" strokeWidth="1.8" markerEnd="url(#aT5)" strokeDasharray="4,2" />
-
-            {/* ── Mini courbe conductimétrique ── */}
-            <rect x="375" y="155" width="130" height="80" rx="6" fill="rgba(56,189,248,0.07)" stroke="rgba(56,189,248,0.3)" strokeWidth="1" />
-            <line x1="385" y1="225" x2="495" y2="225" stroke="#475569" strokeWidth="1" />
-            <line x1="385" y1="225" x2="385" y2="160" stroke="#475569" strokeWidth="1" />
-            <line x1="389" y1="195" x2="432" y2="215" stroke="#38bdf8" strokeWidth="2" />
-            <line x1="432" y1="215" x2="490" y2="185" stroke="#38bdf8" strokeWidth="2" />
-            <line x1="432" y1="158" x2="432" y2="228" stroke="#fbbf24" strokeWidth="1.2" strokeDasharray="3,2" />
-            <text x="432" y="237" fontSize="7.5" fill="#fbbf24" textAnchor="middle" fontFamily="JetBrains Mono">VE</text>
-            <text x="390" y="157" fontSize="7.5" fill="#38bdf8" fontFamily="JetBrains Mono">σ(V)</text>
-
-            {/* ── Mini courbe pH-métrique ── */}
-            <rect x="375" y="245" width="130" height="80" rx="6" fill="rgba(244,114,182,0.07)" stroke="rgba(244,114,182,0.3)" strokeWidth="1" />
-            <line x1="385" y1="315" x2="495" y2="315" stroke="#475569" strokeWidth="1" />
-            <line x1="385" y1="315" x2="385" y2="250" stroke="#475569" strokeWidth="1" />
-            <path d="M389,308 C400,306 415,303 425,295 C432,280 435,265 442,258 C450,252 465,250 490,249"
+            {/* ── Courbe pH-métrique ── */}
+            <rect x="390" y="210" width="105" height="75" rx="6" fill="rgba(244,114,182,0.07)" stroke="rgba(244,114,182,0.3)" strokeWidth="1" />
+            <line x1="398" y1="277" x2="488" y2="277" stroke="#475569" strokeWidth="1" />
+            <line x1="398" y1="277" x2="398" y2="215" stroke="#475569" strokeWidth="1" />
+            <path d="M401,272 C410,270 422,267 432,260 C438,248 441,233 446,226 C453,220 465,218 483,217"
               fill="none" stroke="#f472b6" strokeWidth="2" />
-            <line x1="435" y1="248" x2="435" y2="318" stroke="#fbbf24" strokeWidth="1.2" strokeDasharray="3,2" />
-            <text x="435" y="326" fontSize="7.5" fill="#fbbf24" textAnchor="middle" fontFamily="JetBrains Mono">VE</text>
-            <text x="390" y="249" fontSize="7.5" fill="#f472b6" fontFamily="JetBrains Mono">pH(V)</text>
+            <line x1="444" y1="213" x2="444" y2="279" stroke="#fbbf24" strokeWidth="1.2" strokeDasharray="3,2" />
+            <text x="444" y="290" fontSize="8" fill="#fbbf24" textAnchor="middle" fontFamily="JetBrains Mono">VE</text>
+            <text x="400" y="216" fontSize="8" fill="#f472b6" fontFamily="JetBrains Mono">pH(V)</text>
           </svg>
 
-          {/* Légende */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-2">
+          {/* ─ Légende claire ─ */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
             {[
-              { color: '#38bdf8', label: 'Burette', detail: 'Solution titrante c_B' },
-              { color: '#34d399', label: 'Bécher', detail: 'Solution titrée c_A' },
-              { color: '#a78bfa', label: 'Sonde', detail: 'Conductimètre / pH-mètre' },
-              { color: '#c8902f', label: 'Appareil', detail: 'Mesure σ ou pH' },
+              { color: '#38bdf8', icon: '🧪', label: 'Burette graduée', detail: 'Solution titrante — c_B connue' },
+              { color: '#34d399', icon: '🫙', label: 'Bécher', detail: 'Solution titrée — c_A inconnue' },
+              { color: '#a78bfa', icon: '📡', label: 'Sonde', detail: 'Conductimètre ou pH-mètre' },
+              { color: '#c8902f', icon: '📟', label: 'Appareil de mesure', detail: 'Mesure σ (conductimétrie) ou pH' },
             ].map((item, i) => (
-              <div key={i} className="rounded-lg px-2 py-1.5 text-center" style={{ background: `${item.color}10`, border: `1px solid ${item.color}30` }}>
-                <div className="text-xs font-semibold" style={{ color: item.color }}>{item.label}</div>
-                <div className="text-xs mt-0.5" style={{ color: '#64748b' }}>{item.detail}</div>
+              <div key={i} className="rounded-xl px-3 py-2.5" style={{ background: `${item.color}10`, border: `1px solid ${item.color}35` }}>
+                <div className="text-base mb-1">{item.icon}</div>
+                <div className="text-xs font-bold" style={{ color: item.color }}>{item.label}</div>
+                <div className="text-xs mt-0.5" style={{ color: '#94a3b8' }}>{item.detail}</div>
               </div>
             ))}
           </div>
