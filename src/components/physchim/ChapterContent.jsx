@@ -1,6 +1,16 @@
 import React from 'react';
 import Math from './Math';
 import SchemaBlock from './SchemaBlock';
+import SchemaCh1 from './schemas/SchemaCh1';
+import SchemaCh2 from './schemas/SchemaCh2';
+import SchemaCh3 from './schemas/SchemaCh3';
+
+// Map des schémas enrichis par chapitre
+const RICH_SCHEMAS = {
+  1: SchemaCh1,
+  2: SchemaCh2,
+  3: SchemaCh3,
+};
 
 // Renders text with inline LaTeX: wrap expressions between $ signs
 function InlineMath({ text }) {
@@ -95,18 +105,28 @@ export default function ChapterContent({ chapter }) {
       </section>
 
       {/* Schemas */}
-      {chapter.schemas && chapter.schemas.length > 0 && (
-        <section>
-          <h3 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: chapter.color }}>
-            <span>📊</span> Schémas / Représentations
-          </h3>
-          <div className="space-y-4">
+      <section>
+        <h3 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: chapter.color }}>
+          <span>📊</span> Schémas / Représentations
+        </h3>
+        {/* Schéma enrichi bilan (si disponible) */}
+        {RICH_SCHEMAS[chapter.id] && (
+          <div className="mb-4">
+            <div className="text-xs font-semibold mb-2 px-1" style={{ color: '#c8902f', fontFamily: 'JetBrains Mono, monospace' }}>
+              📖 Schéma bilan — essentiel
+            </div>
+            {React.createElement(RICH_SCHEMAS[chapter.id])}
+          </div>
+        )}
+        {/* Schémas classiques (tableaux/mermaid) */}
+        {chapter.schemas && chapter.schemas.length > 0 && (
+          <div className="space-y-4 mt-4">
             {chapter.schemas.map((s, i) => (
               <SchemaBlock key={i} schema={s} />
             ))}
           </div>
-        </section>
-      )}
+        )}
+      </section>
 
       {/* Tips */}
       <section>
