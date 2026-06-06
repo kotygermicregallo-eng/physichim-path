@@ -18,6 +18,8 @@ import SchemaCh14 from './schemas/SchemaCh14';
 import SchemaCh16 from './schemas/SchemaCh16';
 import SchemaCh17 from './schemas/SchemaCh17';
 import SchemaCh18 from './schemas/SchemaCh18';
+import SchemaCh19 from './schemas/SchemaCh19';
+import SchemaCh20 from './schemas/SchemaCh20';
 
 // Map des schémas enrichis par chapitre
 const RICH_SCHEMAS = {
@@ -38,6 +40,8 @@ const RICH_SCHEMAS = {
   16: SchemaCh16,
   17: SchemaCh17,
   18: SchemaCh18,
+  19: SchemaCh19,
+  20: SchemaCh20,
 };
 
 // Renders text with inline LaTeX: wrap expressions between $ signs
