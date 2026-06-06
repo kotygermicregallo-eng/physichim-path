@@ -13,11 +13,8 @@ export default function SchemaCh1() {
           <span style={{ color: '#38bdf8', fontSize: '0.8rem', fontWeight: 700, fontFamily: 'JetBrains Mono, monospace' }}>📈 ÉTUDE CINÉTIQUE D'UNE RÉACTION</span>
         </div>
         <div className="p-4">
-          <svg viewBox="0 0 540 220" className="w-full" style={{ maxHeight: 220 }}>
+          <svg viewBox="0 0 540 260" className="w-full" style={{ maxHeight: 260 }}>
             <defs>
-              <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                <path d="M0,0 L0,6 L8,3 z" fill="#38bdf8" />
-              </marker>
               <marker id="arrowGray" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                 <path d="M0,0 L0,6 L8,3 z" fill="#64748b" />
               </marker>
@@ -27,47 +24,44 @@ export default function SchemaCh1() {
             </defs>
 
             {/* Axes */}
-            <line x1="60" y1="180" x2="490" y2="180" stroke="#64748b" strokeWidth="1.5" markerEnd="url(#arrowGray)" />
-            <line x1="60" y1="180" x2="60" y2="20" stroke="#64748b" strokeWidth="1.5" markerEnd="url(#arrowGray)" />
+            <line x1="70" y1="190" x2="480" y2="190" stroke="#64748b" strokeWidth="1.5" markerEnd="url(#arrowGray)" />
+            <line x1="70" y1="190" x2="70" y2="25" stroke="#64748b" strokeWidth="1.5" markerEnd="url(#arrowGray)" />
 
             {/* Labels axes */}
-            <text x="495" y="184" fontSize="13" fill="#94a3b8" fontFamily="JetBrains Mono, monospace">t</text>
-            <text x="52" y="16" fontSize="13" fill="#94a3b8" fontFamily="JetBrains Mono, monospace">[C]</text>
+            <text x="485" y="194" fontSize="13" fill="#94a3b8" fontFamily="JetBrains Mono, monospace">t</text>
+            <text x="58" y="22" fontSize="13" fill="#94a3b8" fontFamily="JetBrains Mono, monospace">[C]</text>
 
-            {/* Valeur [C]f */}
-            <line x1="56" y1="45" x2="450" y2="45" stroke="#38bdf8" strokeWidth="1" strokeDasharray="5,4" />
-            <text x="18" y="49" fontSize="11" fill="#38bdf8" fontFamily="JetBrains Mono, monospace">[C]f</text>
+            {/* Ligne [C]f */}
+            <line x1="66" y1="55" x2="455" y2="55" stroke="#38bdf8" strokeWidth="1" strokeDasharray="5,4" />
+            <text x="20" y="59" fontSize="11" fill="#38bdf8" fontFamily="JetBrains Mono, monospace">[C]f</text>
 
-            {/* Valeur [C]f/2 */}
-            <line x1="56" y1="113" x2="195" y2="113" stroke="#fb923c" strokeWidth="1" strokeDasharray="4,3" />
-            <text x="5" y="117" fontSize="10" fill="#fb923c" fontFamily="JetBrains Mono, monospace">[C]f/2</text>
+            {/* Ligne [C]f/2 */}
+            <line x1="66" y1="123" x2="210" y2="123" stroke="#fb923c" strokeWidth="1" strokeDasharray="4,3" />
+            <text x="4" y="127" fontSize="10" fill="#fb923c" fontFamily="JetBrains Mono, monospace">[C]f/2</text>
 
-            {/* Courbe [C](t) - apparition produit */}
-            <path d="M60,178 C100,170 140,140 190,113 C250,82 330,58 430,48 C450,47 465,46 480,45.5"
+            {/* Courbe [C](t) */}
+            <path d="M70,188 C110,178 150,148 205,123 C265,94 345,68 440,58 C455,57 465,56 475,55.5"
               fill="none" stroke="#38bdf8" strokeWidth="2.5" />
 
-            {/* Tangente en t=0 (vitesse initiale) */}
-            <line x1="60" y1="178" x2="170" y2="60" stroke="#fb923c" strokeWidth="1.8" strokeDasharray="3,3" markerEnd="url(#arrowOrange)" />
+            {/* Label [C](t) — au-dessus de la ligne [C]f, tout à droite */}
+            <text x="458" y="47" fontSize="12" fill="#38bdf8" fontFamily="JetBrains Mono, monospace">[C](t)</text>
+
+            {/* Tangente en t=0 */}
+            <line x1="70" y1="188" x2="165" y2="78" stroke="#fb923c" strokeWidth="1.8" strokeDasharray="3,3" markerEnd="url(#arrowOrange)" />
+            {/* Label tangente — à gauche de la tangente, hors courbe */}
+            <text x="72" y="155" fontSize="9" fill="#fb923c" fontFamily="Inter, sans-serif">pente =</text>
+            <text x="72" y="167" fontSize="9" fill="#fb923c" fontFamily="Inter, sans-serif">vitesse₀</text>
 
             {/* t1/2 vertical */}
-            <line x1="195" y1="113" x2="195" y2="180" stroke="#fb923c" strokeWidth="1.2" strokeDasharray="4,3" />
-            <text x="180" y="196" fontSize="11" fill="#fb923c" fontFamily="JetBrains Mono, monospace">t₁/₂</text>
+            <line x1="210" y1="123" x2="210" y2="190" stroke="#fb923c" strokeWidth="1.2" strokeDasharray="4,3" />
+            <text x="196" y="207" fontSize="11" fill="#fb923c" fontFamily="JetBrains Mono, monospace">t₁/₂</text>
+            {/* Label t1/2 — sous le graphe */}
+            <text x="220" y="207" fontSize="9" fill="#fb923c" fontFamily="Inter, sans-serif">temps de demi-réaction</text>
 
-            {/* Label courbe */}
-            <text x="440" y="38" fontSize="12" fill="#38bdf8" fontFamily="JetBrains Mono, monospace">[C](t)</text>
-
-            {/* Annotation vitesse v_A(C) */}
-            <text x="290" y="30" fontSize="10" fill="#94a3b8" fontFamily="Inter, sans-serif">pente tangente</text>
-            <text x="295" y="43" fontSize="10" fill="#94a3b8" fontFamily="Inter, sans-serif">= vitesse</text>
-
-            {/* Légende t1/2 */}
-            <text x="210" y="125" fontSize="10" fill="#fb923c" fontFamily="Inter, sans-serif">t₁/₂ : temps de</text>
-            <text x="210" y="137" fontSize="10" fill="#fb923c" fontFamily="Inter, sans-serif">demi-réaction</text>
-
-            {/* Formules v */}
-            <text x="310" y="70" fontSize="11" fill="#e2e8f0" fontFamily="JetBrains Mono, monospace">v_A(C) = d[C]/dt</text>
-            <text x="310" y="86" fontSize="11" fill="#f472b6" fontFamily="JetBrains Mono, monospace">v_D(A) = −d[A]/dt</text>
-            <text x="310" y="100" fontSize="10" fill="#64748b" fontFamily="Inter, sans-serif">(en mol·L⁻¹·s⁻¹)</text>
+            {/* Formules v — zone claire en bas à droite, sous la courbe */}
+            <text x="280" y="160" fontSize="11" fill="#e2e8f0" fontFamily="JetBrains Mono, monospace">v_A(C) = d[C]/dt</text>
+            <text x="280" y="175" fontSize="11" fill="#f472b6" fontFamily="JetBrains Mono, monospace">v_D(A) = −d[A]/dt</text>
+            <text x="280" y="189" fontSize="9.5" fill="#64748b" fontFamily="Inter, sans-serif">(mol·L⁻¹·s⁻¹)</text>
           </svg>
 
           {/* Légende texte */}
@@ -137,21 +131,26 @@ export default function SchemaCh1() {
               <div style={{ color: '#34d399', fontWeight: 700 }}>[A](t) = [A]₀ · e<sup>−kt</sup></div>
               <div className="mt-1" style={{ color: '#94a3b8' }}>ln([A](t)) = ln([A]₀) − k·t</div>
             </div>
-            <svg viewBox="0 0 240 120" className="w-full" style={{ maxHeight: 120 }}>
+            <svg viewBox="0 0 260 130" className="w-full" style={{ maxHeight: 130 }}>
               <defs>
                 <marker id="arrowPurple" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
                   <path d="M0,0 L0,6 L7,3 z" fill="#a78bfa" />
                 </marker>
               </defs>
-              <line x1="30" y1="100" x2="220" y2="100" stroke="#475569" strokeWidth="1.2" markerEnd="url(#arrowPurple)" />
-              <line x1="30" y1="100" x2="30" y2="10" stroke="#475569" strokeWidth="1.2" markerEnd="url(#arrowPurple)" />
-              <text x="222" y="104" fontSize="11" fill="#a78bfa" fontFamily="JetBrains Mono">t</text>
-              <text x="12" y="14" fontSize="11" fill="#a78bfa" fontFamily="JetBrains Mono">ln[A]</text>
+              {/* Axes avec marge gauche élargie */}
+              <line x1="55" y1="105" x2="245" y2="105" stroke="#475569" strokeWidth="1.2" markerEnd="url(#arrowPurple)" />
+              <line x1="55" y1="105" x2="55" y2="12" stroke="#475569" strokeWidth="1.2" markerEnd="url(#arrowPurple)" />
+              {/* Labels axes — espacés de la droite */}
+              <text x="248" y="109" fontSize="11" fill="#a78bfa" fontFamily="JetBrains Mono">t</text>
+              <text x="8" y="20" fontSize="10" fill="#a78bfa" fontFamily="JetBrains Mono">ln[A]</text>
+              {/* Point départ + label ln[A]₀ à gauche de l'axe */}
+              <circle cx="55" cy="22" r="3" fill="#fb923c" />
+              <text x="2" y="26" fontSize="8.5" fill="#94a3b8" fontFamily="JetBrains Mono">ln[A]₀</text>
               {/* Droite de pente -k */}
-              <line x1="30" y1="20" x2="210" y2="95" stroke="#fb923c" strokeWidth="2" />
-              <text x="110" y="55" fontSize="10" fill="#fb923c" fontFamily="JetBrains Mono">pente = −k</text>
-              <text x="22" y="24" fontSize="9" fill="#94a3b8" fontFamily="JetBrains Mono">ln[A]₀</text>
-              <circle cx="30" cy="20" r="3" fill="#fb923c" />
+              <line x1="55" y1="22" x2="235" y2="100" stroke="#fb923c" strokeWidth="2" />
+              {/* Label pente — au-dessus de la droite, zone dégagée */}
+              <text x="120" y="44" fontSize="10" fill="#fb923c" fontFamily="JetBrains Mono">pente = −k</text>
+              <line x1="118" y1="46" x2="148" y2="60" stroke="#fb923c" strokeWidth="0.8" strokeDasharray="2,2" />
             </svg>
             <div className="text-xs mt-1" style={{ color: '#64748b', fontFamily: 'JetBrains Mono, monospace' }}>
               Si ln([A]) vs t est une droite → ordre 1 confirmé
