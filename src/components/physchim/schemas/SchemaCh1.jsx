@@ -159,49 +159,140 @@ export default function SchemaCh1() {
           </div>
         </div>
 
-        {/* ── Modélisation microscopique ──────────────────────────────────── */}
+        {/* ── Modélisation microscopique (Ch1 + Ch7 combinés) ────────────── */}
         <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(244,114,182,0.05)', border: '1px solid rgba(244,114,182,0.22)' }}>
           <div className="px-4 py-2.5" style={{ background: 'rgba(244,114,182,0.1)', borderBottom: '1px solid rgba(244,114,182,0.15)' }}>
-            <span style={{ color: '#f472b6', fontSize: '0.8rem', fontWeight: 700, fontFamily: 'JetBrains Mono, monospace' }}>⭐ MODÉLISATION MICROSCOPIQUE</span>
+            <span style={{ color: '#f472b6', fontSize: '0.8rem', fontWeight: 700, fontFamily: 'JetBrains Mono, monospace' }}>⭐ MODÉLISATION MICROSCOPIQUE — Ch.1 &amp; Ch.7</span>
           </div>
           <div className="p-4 space-y-3">
             <div className="text-xs" style={{ color: '#94a3b8' }}>
-              Mécanisme réactionnel = succession d'<strong style={{ color: '#f472b6' }}>actes élémentaires</strong>
+              Mécanisme réactionnel = succession d'<strong style={{ color: '#f472b6' }}>actes élémentaires</strong> (chocs efficaces à l'échelle microscopique)
             </div>
             {/* Flèche courbe */}
             <div className="rounded-xl p-3" style={{ background: 'rgba(244,114,182,0.07)', border: '1px solid rgba(244,114,182,0.2)' }}>
-              <div className="text-xs font-semibold mb-2" style={{ color: '#f472b6' }}>Flèche courbe (doublet d'électrons)</div>
-              <svg viewBox="0 0 220 60" className="w-full" style={{ maxHeight: 60 }}>
+              <div className="text-xs font-semibold mb-2" style={{ color: '#f472b6' }}>Flèche courbe = déplacement d'un doublet d'électrons</div>
+              <svg viewBox="0 0 380 70" className="w-full" style={{ maxHeight: 70 }}>
                 <defs>
                   <marker id="arrowPink" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
                     <path d="M0,0 L0,6 L7,3 z" fill="#f472b6" />
                   </marker>
                 </defs>
-                {/* Site donneur X */}
-                <rect x="10" y="20" width="60" height="24" rx="8" fill="rgba(52,211,153,0.15)" stroke="#34d399" strokeWidth="1.5" />
-                <text x="40" y="36" fontSize="12" fill="#34d399" fontFamily="JetBrains Mono" textAnchor="middle" fontWeight="700">X</text>
-                <text x="40" y="14" fontSize="9" fill="#34d399" fontFamily="Inter" textAnchor="middle">Site D (riche e⁻)</text>
-                <text x="40" y="55" fontSize="9" fill="#94a3b8" fontFamily="Inter" textAnchor="middle">δ⁻</text>
+                {/* Site donneur */}
+                <rect x="10" y="22" width="90" height="26" rx="9" fill="rgba(52,211,153,0.15)" stroke="#34d399" strokeWidth="1.5" />
+                <text x="55" y="39" fontSize="12" fill="#34d399" fontFamily="JetBrains Mono" textAnchor="middle" fontWeight="700">X (D:)</text>
+                <text x="55" y="15" fontSize="9" fill="#34d399" fontFamily="Inter" textAnchor="middle">Site donneur — δ⁻</text>
+                <text x="55" y="60" fontSize="8.5" fill="#64748b" fontFamily="Inter" textAnchor="middle">doublet libre / liaison π</text>
                 {/* Flèche courbe */}
-                <path d="M72,30 Q130,5 148,30" fill="none" stroke="#f472b6" strokeWidth="2" markerEnd="url(#arrowPink)" />
-                {/* Site accepteur X' */}
-                <rect x="150" y="20" width="65" height="24" rx="8" fill="rgba(248,113,113,0.15)" stroke="#f87171" strokeWidth="1.5" />
-                <text x="183" y="36" fontSize="12" fill="#f87171" fontFamily="JetBrains Mono" textAnchor="middle" fontWeight="700">X'</text>
-                <text x="183" y="14" fontSize="9" fill="#f87171" fontFamily="Inter" textAnchor="middle">Site A (pauvre e⁻)</text>
-                <text x="183" y="55" fontSize="9" fill="#94a3b8" fontFamily="Inter" textAnchor="middle">δ⁺</text>
+                <path d="M102,33 Q188,5 218,33" fill="none" stroke="#f472b6" strokeWidth="2.2" markerEnd="url(#arrowPink)" />
+                <text x="162" y="14" fontSize="10" fill="#f472b6" fontFamily="JetBrains Mono" textAnchor="middle" fontWeight="700">e⁻</text>
+                {/* Site accepteur */}
+                <rect x="220" y="22" width="90" height="26" rx="9" fill="rgba(248,113,113,0.15)" stroke="#f87171" strokeWidth="1.5" />
+                <text x="265" y="39" fontSize="12" fill="#f87171" fontFamily="JetBrains Mono" textAnchor="middle" fontWeight="700">X' (A)</text>
+                <text x="265" y="15" fontSize="9" fill="#f87171" fontFamily="Inter" textAnchor="middle">Site accepteur — δ⁺</text>
+                <text x="265" y="60" fontSize="8.5" fill="#64748b" fontFamily="Inter" textAnchor="middle">lacune / charge ⊕</text>
+                {/* Règle */}
+                <text x="325" y="35" fontSize="10" fill="#fbbf24" fontFamily="Inter" fontWeight="600">D: → A</text>
+                <text x="315" y="48" fontSize="8.5" fill="#64748b" fontFamily="Inter">riche → pauvre</text>
               </svg>
             </div>
-            <div className="space-y-2 text-xs" style={{ color: '#94a3b8' }}>
-              <div className="flex items-start gap-2">
-                <span style={{ color: '#f472b6' }}>▶</span>
-                <span>Un <strong style={{ color: '#e2e8f0' }}>intermédiaire réactionnel</strong> est formé puis détruit</span>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Bloc 4 : Ch.7 Mécanisme réactionnel complet ───────────────────── */}
+      <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(129,140,248,0.05)', border: '1px solid rgba(129,140,248,0.22)' }}>
+        <div className="px-4 py-2.5 flex items-center justify-between" style={{ background: 'rgba(129,140,248,0.1)', borderBottom: '1px solid rgba(129,140,248,0.15)' }}>
+          <span style={{ color: '#818cf8', fontSize: '0.8rem', fontWeight: 700, fontFamily: 'JetBrains Mono, monospace' }}>🔗 Ch.7 — MÉCANISME RÉACTIONNEL : STRUCTURE</span>
+          <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'rgba(129,140,248,0.15)', color: '#818cf8', border: '1px solid rgba(129,140,248,0.3)', fontFamily: 'JetBrains Mono, monospace' }}>Cinétique (suite)</span>
+        </div>
+        <div className="p-4 space-y-4">
+
+          {/* Schéma flux mécanisme */}
+          <svg viewBox="0 0 540 130" className="w-full" style={{ maxHeight: 130 }}>
+            <defs>
+              <marker id="arrowMech" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#818cf8" />
+              </marker>
+              <marker id="arrowCat" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L7,3 z" fill="#fbbf24" />
+              </marker>
+              <marker id="arrowIR" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L7,3 z" fill="#f472b6" />
+              </marker>
+            </defs>
+
+            {/* Réactifs */}
+            <rect x="5" y="45" width="75" height="36" rx="10" fill="rgba(56,189,248,0.12)" stroke="#38bdf8" strokeWidth="1.5" />
+            <text x="42" y="63" fontSize="11" fill="#38bdf8" textAnchor="middle" fontFamily="JetBrains Mono" fontWeight="700">Réactifs</text>
+            <text x="42" y="77" fontSize="9" fill="#64748b" textAnchor="middle" fontFamily="Inter">A + B</text>
+
+            {/* AE1 */}
+            <line x1="82" y1="63" x2="128" y2="63" stroke="#818cf8" strokeWidth="1.8" markerEnd="url(#arrowMech)" />
+            <text x="105" y="57" fontSize="8.5" fill="#818cf8" textAnchor="middle" fontFamily="Inter">AE 1</text>
+
+            {/* IR1 */}
+            <rect x="130" y="45" width="75" height="36" rx="10" fill="rgba(244,114,182,0.12)" stroke="#f472b6" strokeWidth="1.5" strokeDasharray="4,2" />
+            <text x="168" y="63" fontSize="10" fill="#f472b6" textAnchor="middle" fontFamily="JetBrains Mono" fontWeight="700">IR₁</text>
+            <text x="168" y="76" fontSize="8" fill="#64748b" textAnchor="middle" fontFamily="Inter">intermédiaire</text>
+
+            {/* AE2 */}
+            <line x1="207" y1="63" x2="253" y2="63" stroke="#818cf8" strokeWidth="1.8" markerEnd="url(#arrowMech)" />
+            <text x="230" y="57" fontSize="8.5" fill="#818cf8" textAnchor="middle" fontFamily="Inter">AE 2</text>
+
+            {/* IR2 */}
+            <rect x="255" y="45" width="75" height="36" rx="10" fill="rgba(244,114,182,0.12)" stroke="#f472b6" strokeWidth="1.5" strokeDasharray="4,2" />
+            <text x="293" y="63" fontSize="10" fill="#f472b6" textAnchor="middle" fontFamily="JetBrains Mono" fontWeight="700">IR₂</text>
+            <text x="293" y="76" fontSize="8" fill="#64748b" textAnchor="middle" fontFamily="Inter">intermédiaire</text>
+
+            {/* AE3 */}
+            <line x1="332" y1="63" x2="378" y2="63" stroke="#818cf8" strokeWidth="1.8" markerEnd="url(#arrowMech)" />
+            <text x="355" y="57" fontSize="8.5" fill="#818cf8" textAnchor="middle" fontFamily="Inter">AE 3</text>
+
+            {/* Produits */}
+            <rect x="380" y="45" width="75" height="36" rx="10" fill="rgba(52,211,153,0.12)" stroke="#34d399" strokeWidth="1.5" />
+            <text x="417" y="63" fontSize="11" fill="#34d399" textAnchor="middle" fontFamily="JetBrains Mono" fontWeight="700">Produits</text>
+            <text x="417" y="77" fontSize="9" fill="#64748b" textAnchor="middle" fontFamily="Inter">C + D</text>
+
+            {/* Catalyseur (arc du dessus) */}
+            <path d="M42,44 Q260,8 418,44" fill="none" stroke="#fbbf24" strokeWidth="1.5" strokeDasharray="5,3" markerEnd="url(#arrowCat)" />
+            <text x="230" y="16" fontSize="9.5" fill="#fbbf24" textAnchor="middle" fontFamily="Inter" fontWeight="600">Catalyseur : consommé en AE1 → restitué en AE3</text>
+
+            {/* Label IR disparaît du bilan */}
+            <text x="230" y="112" fontSize="9" fill="#f472b6" textAnchor="middle" fontFamily="Inter">IR₁, IR₂ : formés puis détruits → absents du bilan global</text>
+            <line x1="130" y1="100" x2="330" y2="100" stroke="rgba(244,114,182,0.3)" strokeWidth="1" strokeDasharray="3,3" />
+          </svg>
+
+          {/* Tableau sites D/A */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="rounded-xl p-3" style={{ background: 'rgba(52,211,153,0.07)', border: '1px solid rgba(52,211,153,0.22)' }}>
+              <div className="text-xs font-semibold mb-2" style={{ color: '#34d399' }}>Sites DONNEURS (D:) — riches en e⁻</div>
+              <div className="space-y-1 text-xs" style={{ color: '#94a3b8', fontFamily: 'JetBrains Mono, monospace' }}>
+                <div>• Doublet non liant (O, N, halogènes)</div>
+                <div>• Liaison π (C=C, C=O)</div>
+                <div>• Charge négative / δ⁻</div>
               </div>
-              <div className="flex items-start gap-2">
-                <span style={{ color: '#fb923c' }}>▶</span>
-                <span>Un <strong style={{ color: '#e2e8f0' }}>catalyseur</strong> réagit puis est régénéré (absent du bilan)</span>
+            </div>
+            <div className="rounded-xl p-3" style={{ background: 'rgba(248,113,113,0.07)', border: '1px solid rgba(248,113,113,0.22)' }}>
+              <div className="text-xs font-semibold mb-2" style={{ color: '#f87171' }}>Sites ACCEPTEURS (A) — pauvres en e⁻</div>
+              <div className="space-y-1 text-xs" style={{ color: '#94a3b8', fontFamily: 'JetBrains Mono, monospace' }}>
+                <div>• Charge positive / δ⁺</div>
+                <div>• Lacune électronique</div>
+                <div>• Liaison C–X polarisée (X = O, N, Cl…)</div>
               </div>
             </div>
           </div>
+
+          {/* Règle d'or + bilan */}
+          <div className="rounded-xl p-3" style={{ background: 'rgba(251,191,36,0.07)', border: '1px solid rgba(251,191,36,0.22)' }}>
+            <div className="text-xs font-semibold mb-2" style={{ color: '#fbbf24' }}>📜 Obtenir l'équation bilan depuis le mécanisme</div>
+            <div className="text-xs space-y-1" style={{ color: '#94a3b8' }}>
+              <div>1. Écrire toutes les équations des actes élémentaires AE1 + AE2 + AE3…</div>
+              <div>2. Sommer membre à membre</div>
+              <div>3. <strong style={{ color: '#f472b6' }}>Simplifier les IR</strong> (présents des deux côtés) et le <strong style={{ color: '#fbbf24' }}>catalyseur</strong></div>
+              <div>4. Le résultat = équation bilan globale ✔</div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

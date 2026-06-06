@@ -4,12 +4,14 @@ import SchemaBlock from './SchemaBlock';
 import SchemaCh1 from './schemas/SchemaCh1';
 import SchemaCh2 from './schemas/SchemaCh2';
 import SchemaCh3 from './schemas/SchemaCh3';
+import SchemaCh7 from './schemas/SchemaCh7';
 
 // Map des schémas enrichis par chapitre
 const RICH_SCHEMAS = {
   1: SchemaCh1,
   2: SchemaCh2,
   3: SchemaCh3,
+  7: SchemaCh7,
 };
 
 // Renders text with inline LaTeX: wrap expressions between $ signs
