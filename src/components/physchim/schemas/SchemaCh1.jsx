@@ -1,7 +1,8 @@
 import React from 'react';
-import Math from '../Math';
-
-const F = ({ e }) => <Math expr={e} />;
+import ZoomableSVG from '../ZoomableSVG';
+import FormulaBlock from '../FormulaBlock';
+import SchemaLegend from '../SchemaLegend';
+import { InlineF as F } from '../FormulaBlock';
 
 // ─── Schéma Bilan Chapitre 1 : Cinétique chimique ────────────────────────────
 // Fidèle au manuel Hatier — courbe [C](t) + ordre 1 + facteurs cinétiques
@@ -16,7 +17,8 @@ export default function SchemaCh1() {
           <span style={{ color: '#38bdf8', fontSize: '0.8rem', fontWeight: 700, fontFamily: 'JetBrains Mono, monospace' }}>📈 ÉTUDE CINÉTIQUE D'UNE RÉACTION</span>
         </div>
         <div className="p-4">
-          <svg viewBox="0 0 540 260" className="w-full" style={{ maxHeight: 260 }}>
+          <ZoomableSVG maxHeight={260} caption="Courbe [C](t) — tangente en t=0 = vitesse initiale — t₁/₂ = temps de demi-réaction">
+          <svg viewBox="0 0 540 260" style={{ width: '100%' }}>
             <defs>
               <marker id="arrowGray" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                 <path d="M0,0 L0,6 L8,3 z" fill="#64748b" />
@@ -66,23 +68,11 @@ export default function SchemaCh1() {
             <text x="280" y="175" fontSize="11" fill="#f472b6" fontFamily="JetBrains Mono, monospace">v_D(A) = −d[A]/dt</text>
             <text x="280" y="189" fontSize="9.5" fill="#64748b" fontFamily="Inter, sans-serif">(mol·L⁻¹·s⁻¹)</text>
           </svg>
-
-          {/* Légende texte */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
-            <div className="rounded-xl px-3 py-2.5" style={{ background: 'rgba(56,189,248,0.07)', border: '1px solid rgba(56,189,248,0.2)' }}>
-              <div className="text-xs font-semibold mb-1" style={{ color: '#38bdf8' }}>Mesure de [C](t)</div>
-              <div className="text-xs space-y-0.5" style={{ color: '#94a3b8' }}>
-                <div>• Méthodes physiques : conductimétrie, spectrophotométrie</div>
-                <div>• Méthodes chimiques : titrage</div>
-              </div>
-            </div>
-            <div className="rounded-xl px-3 py-2.5" style={{ background: 'rgba(251,146,60,0.07)', border: '1px solid rgba(251,146,60,0.2)' }}>
-              <div className="text-xs font-semibold mb-1" style={{ color: '#fb923c' }}>Temps de demi-réaction t₁/₂</div>
-              <div className="text-xs" style={{ color: '#94a3b8' }}>
-                Date à laquelle l'avancement est égal à la <strong style={{ color: '#fb923c' }}>moitié</strong> de sa valeur finale. Lecture graphique : abscisse où [C] = [C]f/2
-              </div>
-            </div>
-          </div>
+          </ZoomableSVG>
+          <SchemaLegend cols={2} items={[
+            { color: '#38bdf8', label: 'Mesure de [C](t)', detail: 'Physique : conductimétrie, spectrophotométrie · Chimique : titrage' },
+            { color: '#fb923c', label: 'Temps de demi-réaction t₁/₂', detail: 'Abscisse où [C] = [C]f/2 — lecture graphique' },
+          ]} />
         </div>
       </div>
 
@@ -92,7 +82,8 @@ export default function SchemaCh1() {
           <span style={{ color: '#34d399', fontSize: '0.8rem', fontWeight: 700, fontFamily: 'JetBrains Mono, monospace' }}>⚡ FACTEURS CINÉTIQUES ET CATALYSE</span>
         </div>
         <div className="p-4">
-          <svg viewBox="0 0 540 90" className="w-full" style={{ maxHeight: 90 }}>
+          <ZoomableSVG maxHeight={90} caption="Augmenter T, concentrations ou ajouter un catalyseur → vitesse ↑ et t₁/₂ ↓">
+          <svg viewBox="0 0 540 90" style={{ width: '100%' }}>
             <defs>
               <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
                 <path d="M0,0 L0,8 L10,4 z" fill="#34d399" />
@@ -115,6 +106,7 @@ export default function SchemaCh1() {
             <text x="313" y="57" fontSize="11" fill="#e2e8f0" fontFamily="Inter, sans-serif">• Temps demi-réaction t₁/₂ ↓</text>
             <text x="313" y="71" fontSize="11" fill="#e2e8f0" fontFamily="Inter, sans-serif">• Vitesse volumique ↑</text>
           </svg>
+          </ZoomableSVG>
         </div>
       </div>
 
@@ -125,20 +117,12 @@ export default function SchemaCh1() {
             <span style={{ color: '#a78bfa', fontSize: '0.8rem', fontWeight: 700, fontFamily: 'JetBrains Mono, monospace' }}>📉 RÉACTION D'ORDRE 1</span>
           </div>
           <div className="p-4 space-y-3">
-            {/* Loi de vitesse */}
-            <div className="rounded-lg px-3 py-2.5" style={{ background: 'rgba(168,139,250,0.08)', border: '1px solid rgba(168,139,250,0.2)' }}>
-              <div className="text-xs mb-1" style={{ color: '#94a3b8' }}>Loi de vitesse :</div>
-              <div className="text-sm"><F e="v_{D(A)} = k\,[A]" /></div>
-              <div className="text-xs mt-2 mb-1" style={{ color: '#94a3b8' }}>Équation différentielle :</div>
-              <div className="text-sm"><F e="\dfrac{d[A]}{dt} + k\,[A] = 0" /></div>
-            </div>
-            {/* Solutions */}
-            <div className="rounded-lg px-3 py-2.5 space-y-2" style={{ background: 'rgba(52,211,153,0.06)', border: '1px solid rgba(52,211,153,0.2)' }}>
-              <div className="text-sm"><F e="[A](t) = [A]_0\,e^{-kt}" /></div>
-              <div className="text-sm"><F e="\ln[A](t) = \ln[A]_0 - k\,t" /></div>
-            </div>
-            {/* SVG — axes uniquement, zéro texte dans le SVG */}
-            <svg viewBox="0 0 260 110" className="w-full" style={{ maxHeight: 110 }}>
+            <FormulaBlock expr="v_{D(A)} = k\,[A]" title="Loi de vitesse" color="#a78bfa" compact />
+            <FormulaBlock expr="\dfrac{d[A]}{dt} + k\,[A] = 0" title="Équation différentielle" color="#a78bfa" compact />
+            <FormulaBlock expr="[A](t) = [A]_0\,e^{-kt}" color="#34d399" compact />
+            <FormulaBlock expr="\ln[A](t) = \ln[A]_0 - k\,t" color="#34d399" compact />
+            <ZoomableSVG maxHeight={110} caption="ln[A] en fonction de t → droite de pente −k si ordre 1">
+            <svg viewBox="0 0 260 110" style={{ width: '100%' }}>
               <defs>
                 <marker id="arrowPurple" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
                   <path d="M0,0 L0,6 L7,3 z" fill="#a78bfa" />
@@ -153,13 +137,13 @@ export default function SchemaCh1() {
               {/* petit tiret à t=0 */}
               <line x1="36" y1="15" x2="44" y2="15" stroke="#94a3b8" strokeWidth="1" />
             </svg>
-            {/* Labels KaTeX sous le SVG */}
-            <div className="grid grid-cols-3 gap-1 text-xs -mt-1">
-              <div style={{ color: '#a78bfa' }}>↑ <F e="\ln[A]" /></div>
-              <div className="text-center" style={{ color: '#fb923c' }}>pente <F e="= -k" /></div>
-              <div className="text-right" style={{ color: '#94a3b8' }}><F e="\ln[A]_0" /> en <F e="t=0" /></div>
-            </div>
-            <div className="text-xs" style={{ color: '#64748b' }}>
+            </ZoomableSVG>
+            <SchemaLegend cols={3} items={[
+              { color: '#a78bfa', label: 'Axe ordonnée', detail: 'ln[A]' },
+              { color: '#fb923c', label: 'Pente = −k', detail: 'constante de vitesse' },
+              { color: '#94a3b8', label: 'Origine', detail: 'ln[A]₀ à t=0' },
+            ]} />
+            <div className="text-xs mt-1" style={{ color: '#64748b' }}>
               Si <F e="\ln[A]" /> vs <F e="t" /> est une droite → ordre 1 confirmé
             </div>
           </div>
@@ -214,7 +198,8 @@ export default function SchemaCh1() {
         <div className="p-4 space-y-4">
 
           {/* Schéma flux mécanisme */}
-          <svg viewBox="0 0 540 130" className="w-full" style={{ maxHeight: 130 }}>
+          <ZoomableSVG maxHeight={130} caption="Mécanisme réactionnel : AE = acte élémentaire · IR = intermédiaire réactionnel · disparaissent du bilan global">
+          <svg viewBox="0 0 540 130" style={{ width: '100%' }}>
             <defs>
               <marker id="arrowMech" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                 <path d="M0,0 L0,6 L8,3 z" fill="#818cf8" />
@@ -267,6 +252,13 @@ export default function SchemaCh1() {
             <text x="230" y="112" fontSize="9" fill="#f472b6" textAnchor="middle" fontFamily="Inter">IR₁, IR₂ : formés puis détruits → absents du bilan global</text>
             <line x1="130" y1="100" x2="330" y2="100" stroke="rgba(244,114,182,0.3)" strokeWidth="1" strokeDasharray="3,3" />
           </svg>
+          </ZoomableSVG>
+          <SchemaLegend cols={4} items={[
+            { color: '#38bdf8', label: 'Réactifs', detail: 'A + B' },
+            { color: '#818cf8', label: 'Actes élémentaires', detail: 'AE1, AE2, AE3…' },
+            { color: '#f472b6', label: 'Intermédiaires (IR)', detail: 'absents du bilan' },
+            { color: '#fbbf24', label: 'Catalyseur', detail: 'consommé puis restitué' },
+          ]} />
 
           {/* Tableau sites D/A */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
