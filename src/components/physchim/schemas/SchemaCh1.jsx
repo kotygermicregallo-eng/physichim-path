@@ -1,5 +1,10 @@
 import React from 'react';
 
+import React from 'react';
+import Math from '../Math';
+
+const F = ({ e }) => <Math expr={e} />;
+
 // ─── Schéma Bilan Chapitre 1 : Cinétique chimique ────────────────────────────
 // Fidèle au manuel Hatier — courbe [C](t) + ordre 1 + facteurs cinétiques
 
@@ -121,39 +126,43 @@ export default function SchemaCh1() {
           <div className="px-4 py-2.5" style={{ background: 'rgba(168,139,250,0.1)', borderBottom: '1px solid rgba(168,139,250,0.15)' }}>
             <span style={{ color: '#a78bfa', fontSize: '0.8rem', fontWeight: 700, fontFamily: 'JetBrains Mono, monospace' }}>📉 RÉACTION D'ORDRE 1</span>
           </div>
-          <div className="p-4 space-y-2">
-            <div className="rounded-lg px-3 py-2" style={{ background: 'rgba(168,139,250,0.08)', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.8rem', color: '#e2e8f0' }}>
-              <div>a A<sub>(aq)</sub> → b B + c C</div>
-              <div className="mt-1" style={{ color: '#a78bfa' }}>v<sub>D(A)</sub> = k [A]</div>
-              <div className="mt-1" style={{ color: '#38bdf8' }}>d[A]/dt + k [A] = 0</div>
+          <div className="p-4 space-y-3">
+            {/* Loi de vitesse */}
+            <div className="rounded-lg px-3 py-2.5" style={{ background: 'rgba(168,139,250,0.08)', border: '1px solid rgba(168,139,250,0.2)' }}>
+              <div className="text-xs mb-1" style={{ color: '#94a3b8' }}>Loi de vitesse :</div>
+              <div className="text-sm"><F e="v_{D(A)} = k\,[A]" /></div>
+              <div className="text-xs mt-2 mb-1" style={{ color: '#94a3b8' }}>Équation différentielle :</div>
+              <div className="text-sm"><F e="\dfrac{d[A]}{dt} + k\,[A] = 0" /></div>
             </div>
-            <div className="rounded-lg px-3 py-2" style={{ background: 'rgba(52,211,153,0.06)', border: '1px solid rgba(52,211,153,0.2)', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.8rem' }}>
-              <div style={{ color: '#34d399', fontWeight: 700 }}>[A](t) = [A]₀ · e<sup>−kt</sup></div>
-              <div className="mt-1" style={{ color: '#94a3b8' }}>ln([A](t)) = ln([A]₀) − k·t</div>
+            {/* Solutions */}
+            <div className="rounded-lg px-3 py-2.5 space-y-2" style={{ background: 'rgba(52,211,153,0.06)', border: '1px solid rgba(52,211,153,0.2)' }}>
+              <div className="text-sm"><F e="[A](t) = [A]_0\,e^{-kt}" /></div>
+              <div className="text-sm"><F e="\ln[A](t) = \ln[A]_0 - k\,t" /></div>
             </div>
-            <svg viewBox="0 0 260 130" className="w-full" style={{ maxHeight: 130 }}>
+            {/* SVG — axes uniquement, zéro texte dans le SVG */}
+            <svg viewBox="0 0 260 110" className="w-full" style={{ maxHeight: 110 }}>
               <defs>
                 <marker id="arrowPurple" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
                   <path d="M0,0 L0,6 L7,3 z" fill="#a78bfa" />
                 </marker>
               </defs>
-              {/* Axes avec marge gauche élargie */}
-              <line x1="55" y1="105" x2="245" y2="105" stroke="#475569" strokeWidth="1.2" markerEnd="url(#arrowPurple)" />
-              <line x1="55" y1="105" x2="55" y2="12" stroke="#475569" strokeWidth="1.2" markerEnd="url(#arrowPurple)" />
-              {/* Labels axes — espacés de la droite */}
-              <text x="248" y="109" fontSize="11" fill="#a78bfa" fontFamily="JetBrains Mono">t</text>
-              <text x="8" y="20" fontSize="10" fill="#a78bfa" fontFamily="JetBrains Mono">ln[A]</text>
-              {/* Point départ + label ln[A]₀ à gauche de l'axe */}
-              <circle cx="55" cy="22" r="3" fill="#fb923c" />
-              <text x="2" y="26" fontSize="8.5" fill="#94a3b8" fontFamily="JetBrains Mono">ln[A]₀</text>
-              {/* Droite de pente -k */}
-              <line x1="55" y1="22" x2="235" y2="100" stroke="#fb923c" strokeWidth="2" />
-              {/* Label pente — au-dessus de la droite, zone dégagée */}
-              <text x="120" y="44" fontSize="10" fill="#fb923c" fontFamily="JetBrains Mono">pente = −k</text>
-              <line x1="118" y1="46" x2="148" y2="60" stroke="#fb923c" strokeWidth="0.8" strokeDasharray="2,2" />
+              <line x1="40" y1="95" x2="245" y2="95" stroke="#475569" strokeWidth="1.2" markerEnd="url(#arrowPurple)" />
+              <line x1="40" y1="95" x2="40" y2="8" stroke="#475569" strokeWidth="1.2" markerEnd="url(#arrowPurple)" />
+              {/* Point initial */}
+              <circle cx="40" cy="15" r="3.5" fill="#fb923c" />
+              {/* Droite pente -k */}
+              <line x1="40" y1="15" x2="230" y2="90" stroke="#fb923c" strokeWidth="2" />
+              {/* petit tiret à t=0 */}
+              <line x1="36" y1="15" x2="44" y2="15" stroke="#94a3b8" strokeWidth="1" />
             </svg>
-            <div className="text-xs mt-1" style={{ color: '#64748b', fontFamily: 'JetBrains Mono, monospace' }}>
-              Si ln([A]) vs t est une droite → ordre 1 confirmé
+            {/* Labels KaTeX sous le SVG */}
+            <div className="grid grid-cols-3 gap-1 text-xs -mt-1">
+              <div style={{ color: '#a78bfa' }}>↑ <F e="\ln[A]" /></div>
+              <div className="text-center" style={{ color: '#fb923c' }}>pente <F e="= -k" /></div>
+              <div className="text-right" style={{ color: '#94a3b8' }}><F e="\ln[A]_0" /> en <F e="t=0" /></div>
+            </div>
+            <div className="text-xs" style={{ color: '#64748b' }}>
+              Si <F e="\ln[A]" /> vs <F e="t" /> est une droite → ordre 1 confirmé
             </div>
           </div>
         </div>

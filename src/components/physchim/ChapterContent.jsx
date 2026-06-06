@@ -4,6 +4,9 @@ import SchemaBlock from './SchemaBlock';
 import SchemaCh1 from './schemas/SchemaCh1';
 import SchemaCh2 from './schemas/SchemaCh2';
 import SchemaCh3 from './schemas/SchemaCh3';
+import SchemaCh4 from './schemas/SchemaCh4';
+import SchemaCh5 from './schemas/SchemaCh5';
+import SchemaCh6 from './schemas/SchemaCh6';
 import SchemaCh7 from './schemas/SchemaCh7';
 
 // Map des schémas enrichis par chapitre
@@ -11,6 +14,9 @@ const RICH_SCHEMAS = {
   1: SchemaCh1,
   2: SchemaCh2,
   3: SchemaCh3,
+  4: SchemaCh4,
+  5: SchemaCh5,
+  6: SchemaCh6,
   7: SchemaCh7,
 };
 
