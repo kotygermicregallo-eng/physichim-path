@@ -142,6 +142,68 @@ export const quizCh11 = [
       bacLink: "PFD — plan incliné Bac"
     })
   },
+,
+  // ── Questions graphiques Ch.11 ────────────────────────────────────────
+  {
+    id: 'ch11_g1', type: 11, chapter: 11,
+    question: "Sur ce graphe de trajectoire parabolique (lancer oblique à α=30°), comment reconnaît-on graphiquement la hauteur maximale ?",
+    graphData: { type: 'parabolic_trajectory', v0: 15, angle_deg: 30 },
+    options: [
+      "C'est le point d'arrivée sur l'axe x",
+      "C'est le sommet de la parabole (vy = 0)",
+      "C'est le point où vx = 0",
+      "C'est le point où la trajectoire coupe y = 0"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "Le sommet de la parabole correspond à vy = 0. C'est la hauteur maximale h_max.",
+      explanation: "Au sommet : composante verticale vy = 0. t_sommet = v₀sinα/g. h_max = v₀²sin²α/(2g).",
+      memo: "Sommet parabole : vy = 0. h_max = v₀²sin²α/(2g).",
+      trap: "vx ne s'annule jamais (MRU horizontal). C'est vy qui s'annule au sommet.",
+      technique: "vy(t) = v₀sinα − gt = 0 → t_s = v₀sinα/g → h = y(t_s).",
+      bacLink: "Ch.12 — Hauteur maximale, sommet parabole"
+    })
+  },
+  {
+    id: 'ch11_g2', type: 11, chapter: 11,
+    question: "Sur la trajectoire parabolique (α=30°, v₀=15 m/s, g=10 m/s²), quelle est la portée (distance horizontale totale) ?",
+    graphData: { type: 'parabolic_trajectory', v0: 15, angle_deg: 30 },
+    options: [
+      "R = v₀²sin(2α)/g = 225×sin(60°)/10 = 19,5 m",
+      "R = v₀²/g = 225/10 = 22,5 m",
+      "R = v₀×sin(α) = 15×0,5 = 7,5 m",
+      "R = v₀²cos(2α)/g = 11,25 m"
+    ],
+    correctIndex: 0,
+    correction: buildCorrection({
+      answer: "R = v₀²sin(2α)/g = 225×sin(60°)/10 = 225×0,866/10 ≈ 19,5 m",
+      explanation: "Portée : R = v₀²sin(2α)/g. Pour α=30° : sin(60°) = √3/2 ≈ 0,866. R = 225×0,866/10 ≈ 19,5 m.",
+      memo: "R = v₀²sin(2α)/g. R_max pour α=45° (sin90°=1).",
+      trap: "sin(2α) = sin(2×30°) = sin(60°) ≠ 2×sin(30°).",
+      technique: "t_vol = 2v₀sinα/g. R = vx × t_vol = v₀cosα × 2v₀sinα/g = v₀²sin(2α)/g.",
+      bacLink: "Ch.12 — Portée d'un lancer oblique"
+    })
+  },
+  {
+    id: 'ch11_g3', type: 11, chapter: 11,
+    question: "Sur la trajectoire parabolique, l'angle α est réduit à 0° (lancer horizontal, v₀ = 15 m/s, h₀ = 5 m). Quelle est la portée ? (g = 10 m/s²)",
+    graphData: { type: 'parabolic_trajectory', v0: 15, angle_deg: 0 },
+    options: [
+      "R = v₀ × √(2h₀/g) = 15 × √1 = 15 m",
+      "R = v₀ × h₀/g = 15 × 0,5 = 7,5 m",
+      "R = √(2h₀/g) = 1 m",
+      "R = v₀ × 2h₀/g = 15 m"
+    ],
+    correctIndex: 0,
+    correction: buildCorrection({
+      answer: "t_chute = √(2h₀/g) = √(2×5/10) = √1 = 1 s. R = v₀ × t = 15 × 1 = 15 m.",
+      explanation: "Lancer horizontal : y = h₀ − gt²/2 = 0 → t = √(2h₀/g). Puis R = v₀ × t.",
+      memo: "Lancer horizontal : t = √(2h/g), puis R = v₀t.",
+      trap: "α = 0 → vy₀ = 0. Seule la hauteur initiale détermine le temps de vol.",
+      technique: "h₀ = 5 m, g = 10 → t = √(10/10) = 1 s → R = 15×1 = 15 m.",
+      bacLink: "Ch.12 — Lancer horizontal"
+    })
+  },
 ];
 
 // ─── CHAPITRE 12 : Mouvement dans un champ uniforme ──────────────────────────
@@ -284,6 +346,68 @@ export const quizCh12 = [
       trap: "E = U/d, pas E = U·d.",
       technique: "U = E·d → E = U/d.",
       bacLink: "Condensateur plan — champ électrique"
+    })
+  },
+,
+  // ── Questions graphiques Ch.12 ────────────────────────────────────────
+  {
+    id: 'ch12_g1', type: 11, chapter: 12,
+    question: "Sur ce graphe de trajectoire parabolique (chute libre 2D), que se passe-t-il au niveau du vecteur vitesse au sommet ?",
+    graphData: { type: 'parabolic_trajectory', v0: 20, angle_deg: 45 },
+    options: [
+      "Le vecteur vitesse est nul au sommet",
+      "Le vecteur vitesse est horizontal (vy = 0, vx = v₀cosα ≠ 0)",
+      "Le vecteur vitesse est vertical",
+      "Le vecteur vitesse est nul seulement si α = 45°"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "Au sommet : vy = 0 mais vx = v₀cosα ≠ 0. Le vecteur vitesse est HORIZONTAL.",
+      explanation: "MRU horizontal : vx = v₀cosα constant. MRUA vertical : vy = v₀sinα − gt. Au sommet : vy = 0. Donc v⃗ est horizontal.",
+      memo: "Sommet : vy = 0, vx = v₀cosα. Vitesse minimale = v₀cosα (jamais nulle sauf α = 90°).",
+      trap: "La vitesse totale n'est pas nulle au sommet (sauf lancer vertical, α = 90°).",
+      technique: "v⃗ = vx×î + vy×ĵ. Au sommet : vy = 0 → v⃗ = vx×î.",
+      bacLink: "Ch.12 — Vecteur vitesse au sommet"
+    })
+  },
+  {
+    id: 'ch12_g2', type: 11, chapter: 12,
+    question: "Pour un lancer à α = 45°, la portée est maximale. Sur le graphe, comparer avec α = 30° : quelle portée est plus grande ?",
+    graphData: { type: 'parabolic_trajectory', v0: 15, angle_deg: 45 },
+    options: [
+      "α = 30° donne une portée plus grande car l'objet reste plus longtemps en l'air",
+      "α = 45° donne la portée maximale (sin90° = 1 dans R = v₀²sin(2α)/g)",
+      "α = 60° donne une portée plus grande que α = 45°",
+      "La portée est identique pour tous les angles"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "R = v₀²sin(2α)/g. Maximale pour sin(2α) = 1 → 2α = 90° → α = 45°.",
+      explanation: "α = 45° : R = v₀²/g (maximum). α = 30° : R = v₀²sin(60°)/g ≈ 0,866×v₀²/g < R_max. α = 60° : R = v₀²sin(120°)/g = même que α = 30° (angles complémentaires).",
+      memo: "R_max à α = 45°. Angles complémentaires (α et 90°−α) donnent la même portée.",
+      trap: "α = 60° donne la MÊME portée que α = 30° (pas plus grande).",
+      technique: "sin(2×60°) = sin(120°) = sin(60°) → même portée pour 30° et 60°.",
+      bacLink: "Ch.12 — Portée maximale et angles complémentaires"
+    })
+  },
+  {
+    id: 'ch12_g3', type: 11, chapter: 12,
+    question: "Sur la trajectoire parabolique, identifier graphiquement la résultante du vecteur vitesse à mi-vol (t = t_vol/2).",
+    graphData: { type: 'parabolic_trajectory', v0: 15, angle_deg: 30 },
+    options: [
+      "v⃗ est vertical pointant vers le bas",
+      "v⃗ est horizontal pointant vers la droite (car vy s'annule exactement à mi-vol)",
+      "v⃗ a une composante horizontale v₀cosα et verticale nulle seulement si le lancer est symétrique",
+      "v⃗ est oblique vers le bas à gauche"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "À t = t_vol/2, on est exactement au sommet : vy = 0. v⃗ est horizontal = v₀cosα.",
+      explanation: "Pour un lancer sur terrain plat, le sommet est bien à t_vol/2 (symétrie de la parabole). À ce moment vy = 0 → v⃗ = v₀cosα horizontal.",
+      memo: "Sommet à t_vol/2 (terrain plat). v⃗ horizontal à ce moment.",
+      trap: "Seulement vrai si le point de départ et d'arrivée sont à la même hauteur (terrain plat).",
+      technique: "t_sommet = v₀sinα/g = t_vol/2 pour terrain plat.",
+      bacLink: "Ch.12 — Symétrie de la trajectoire parabolique"
     })
   },
 ];
@@ -430,6 +554,68 @@ export const quizCh13 = [
       bacLink: "Satellite géostationnaire — altitude"
     })
   },
+,
+  // ── Questions graphiques Ch.13 ────────────────────────────────────────
+  {
+    id: 'ch13_g1', type: 11, chapter: 13,
+    question: "Sur ce schéma d'orbite elliptique de Kepler, les deux zones colorées ont la même aire. La zone près du périhélie est plus étroite. Que cela implique-t-il sur les vitesses ?",
+    graphData: { type: 'kepler_orbit' },
+    options: [
+      "La planète va moins vite au périhélie car la zone est plus étroite",
+      "La planète va plus vite au périhélie (rayon court → vitesse grande pour balayer même aire en même ΔT)",
+      "La vitesse est constante sur toute l'orbite",
+      "La vitesse est maximale à l'aphélie"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "Même aire, même durée → si r petit (périhélie), la planète couvre un arc plus long → vitesse plus grande.",
+      explanation: "2ème loi de Kepler : dA/dt = constante. Près du périhélie, r est petit → pour dA = r×dθ/2 = constante, dθ/dt (vitesse angulaire) est grande → vitesse linéaire v = r×(dθ/dt) aussi grande.",
+      memo: "Périhélie : r petit, v grand. Aphélie : r grand, v petit.",
+      trap: "Zone 'étroite' mais même aire → la planète parcourt un arc PLUS LONG en même durée → plus vite.",
+      technique: "Conservation du moment cinétique : r×v = constante → r↓ → v↑.",
+      bacLink: "Ch.13 — 2ème loi de Kepler, vitesses orbitales"
+    })
+  },
+  {
+    id: 'ch13_g2', type: 11, chapter: 13,
+    question: "Sur le schéma d'orbite, le demi-grand axe a est indiqué. Si on trace T² en fonction de a³ pour plusieurs planètes du même système, quelle est la forme de la courbe ?",
+    graphData: { type: 'kepler_orbit' },
+    options: [
+      "Une parabole",
+      "Une droite passant par l'origine de pente 4π²/(GM)",
+      "Une courbe exponentielle",
+      "Une hyperbole"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "T²/a³ = 4π²/(GM) = constante → T² = (4π²/GM) × a³ → droite passant par l'origine.",
+      explanation: "La 3ème loi de Kepler donne T² proportionnel à a³. La représentation graphique T²(a³) est une droite d'origine avec pente K = 4π²/(GM).",
+      memo: "T² vs a³ → droite d'origine. Pente = 4π²/(GM).",
+      trap: "Ce n'est pas T vs a (ce serait T ∝ a^(3/2)), mais T² vs a³ qui est linéaire.",
+      technique: "Méthode de linéarisation : T² = K×a³ → axes T² (y) et a³ (x) → droite.",
+      bacLink: "Ch.13 — Représentation graphique 3ème loi Kepler"
+    })
+  },
+  {
+    id: 'ch13_g3', type: 11, chapter: 13,
+    question: "Sur le schéma d'orbite, la Terre (a=1 UA, T=1 an) et Mars (a=1,52 UA) orbitent autour du Soleil. Calculer T_Mars.",
+    graphData: { type: 'kepler_orbit' },
+    options: [
+      "T_Mars = 1,52 ans (proportionnel à a)",
+      "T_Mars = 1,52^(3/2) = √(1,52³) ≈ 1,87 ans",
+      "T_Mars = 1,52² = 2,31 ans",
+      "T_Mars = √1,52 ≈ 1,23 ans"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "T²/a³ = cste → T_Mars² = T_Terre² × (a_Mars/a_Terre)³ = 1 × 1,52³ = 3,51 → T_Mars = √3,51 ≈ 1,87 an.",
+      explanation: "3ème loi : (T_Mars/T_Terre)² = (a_Mars/a_Terre)³ → T_Mars = (a_Mars/a_Terre)^(3/2) × T_Terre = 1,52^1,5 ≈ 1,87 an.",
+      memo: "T ∝ a^(3/2). Si a multipié par 1,52 → T multiplié par 1,52^1,5 ≈ 1,87.",
+      trap: "T ∝ a^(3/2), pas T ∝ a. Exposant 3/2, pas 1 ni 2.",
+      technique: "T_Mars = (1,52)^(3/2) = (1,52)^1 × (1,52)^0,5 = 1,52 × 1,233 ≈ 1,87 an.",
+      bacLink: "Ch.13 — Application 3ème loi Kepler"
+    })
+  },
 ];
 
 // ─── CHAPITRE 14 : Mécanique des fluides ─────────────────────────────────────
@@ -574,10 +760,133 @@ export const quizCh14 = [
       bacLink: "Statique des fluides — variation de pression"
     })
   },
+,
+  // ── Questions graphiques Ch.14 ────────────────────────────────────────
+  {
+    id: 'ch14_g1', type: 11, chapter: 14,
+    question: "Sur le schéma de l'effet Venturi, le tube se rétrécit entre les sections 1 et 2. Si v₁ = 2 m/s et S₁/S₂ = 4, quelle est v₂ et comment P₂ se compare-t-il à P₁ ?",
+    graphData: { type: 'bernoulli_venturi' },
+    options: [
+      "v₂ = 8 m/s et P₂ < P₁ (Bernoulli : v↑ → P↓)",
+      "v₂ = 0,5 m/s et P₂ > P₁",
+      "v₂ = 8 m/s et P₂ > P₁",
+      "v₂ = 4 m/s et P₂ = P₁"
+    ],
+    correctIndex: 0,
+    correction: buildCorrection({
+      answer: "Conservation débit : v₂ = v₁×S₁/S₂ = 2×4 = 8 m/s. Bernoulli : v₂ > v₁ → P₂ < P₁.",
+      explanation: "Équation de continuité : v₁S₁ = v₂S₂ → v₂ = 4v₁ = 8 m/s. Bernoulli : P + ½ρv² = cste → P₂ = P₁ − ½ρ(v₂²−v₁²) < P₁.",
+      memo: "Venturi : tube rétréci → v↑ → P↓. C'est l'effet Venturi.",
+      trap: "Contre-intuitif ! On pourrait penser que la pression augmente quand le tube se rétrécit.",
+      technique: "Continuité → v₂. Bernoulli → P₂.",
+      bacLink: "Ch.14 — Effet Venturi, Bernoulli + continuité"
+    })
+  },
+  {
+    id: 'ch14_g2', type: 11, chapter: 14,
+    question: "Sur le schéma Venturi, si on perce un petit tube vertical dans la section étroite (manomètre), le niveau de liquide serait :",
+    graphData: { type: 'bernoulli_venturi' },
+    options: [
+      "Plus haut dans la section étroite (P plus grande)",
+      "Plus bas dans la section étroite car P₂ < P₁ (Bernoulli)",
+      "Identique partout",
+      "Nul dans la section étroite"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "Section étroite : v↑ → P↓. Manomètre : colonne de liquide plus BASSE (car pression plus faible).",
+      explanation: "Bernoulli : v₂ > v₁ → P₂ < P₁. Dans le tube manométrique, la hauteur h est proportionnelle à P → h₂ < h₁.",
+      memo: "P₂ < P₁ → colonne manométrique plus basse dans la section étroite.",
+      trap: "Le manomètre mesure la pression statique. Plus basse dans la section étroite.",
+      technique: "P = ρ_liq × g × h → P₂ < P₁ → h₂ < h₁.",
+      bacLink: "Ch.14 — Mesure de pression par manomètre"
+    })
+  },
+  {
+    id: 'ch14_g3', type: 11, chapter: 14,
+    question: "Sur le schéma, un orifice est percé à une hauteur h = 0,2 m sous la surface libre (formule de Torricelli, g = 10 m/s²). Quelle est la vitesse de sortie ?",
+    graphData: { type: 'bernoulli_venturi' },
+    options: [
+      "v = √(gh) = √2 ≈ 1,41 m/s",
+      "v = √(2gh) = √(2×10×0,2) = √4 = 2 m/s",
+      "v = 2gh = 4 m/s",
+      "v = gh = 2 m/s"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "Formule de Torricelli : v = √(2gh) = √(2×10×0,2) = √4 = 2 m/s.",
+      explanation: "Application de Bernoulli entre la surface libre (v ≈ 0) et l'orifice (altitude plus basse) : ½ρv² = ρgh → v = √(2gh).",
+      memo: "Torricelli : v = √(2gh). Ne pas oublier le facteur 2.",
+      trap: "v = √(gh) oublie le facteur 2. La formule complète est v = √(2gh).",
+      technique: "Bernoulli : P_atm + ρgh = P_atm + ½ρv² → v² = 2gh → v = √(2gh).",
+      bacLink: "Ch.14 — Formule de Torricelli"
+    })
+  },
 ];
 
 // ─── CHAPITRE 15 : Thermodynamique — 1er principe ────────────────────────────
 export const quizCh15 = [
+  // ── Questions graphiques Ch.15 ────────────────────────────────────────
+  {
+    id: 'ch15_g1', type: 11, chapter: 15,
+    question: "Sur un graphe P(V) (diagramme de Clapeyron) pour un gaz parfait, une isotherme (T = constante) est représentée. Quelle est sa forme ?",
+    graphData: { type: 'exponential_decay', A0: 5, k: 0.15, xLabel: 'V (L)', yLabel: 'P (kPa)' },
+    options: [
+      "Une droite (loi de Boyle : P = nRT/V)",
+      "Une hyperbole P×V = nRT = constante (courbe décroissante)",
+      "Une parabole",
+      "Une droite horizontale"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "P×V = nRT = constante → hyperbole (courbe décroissante). P = nRT/V : si V↑ → P↓.",
+      explanation: "Loi de Boyle (T=cste) : PV = cste → hyperbole. Plus V est grand, plus P est faible. La courbe ressemble à une exponentielle décroissante sur ce graphe.",
+      memo: "Isotherme → P×V = nRT = cste → hyperbole P(V).",
+      trap: "P = nRT/V est une hyperbole, pas une droite.",
+      technique: "Plusieurs isothermes à T croissantes → hyperboles de plus en plus hautes.",
+      bacLink: "Ch.15 — Gaz parfait, diagramme PV"
+    })
+  },
+  {
+    id: 'ch15_g2', type: 11, chapter: 15,
+    question: "Sur ce graphe de refroidissement T(t) d'un objet solide (approximation), identifier la constante de temps τ si T₀ = 80°C, T_ext = 20°C.",
+    graphData: { type: 'cooling_curve', T0: 80, Text: 20, tau: 20 },
+    options: [
+      "τ = temps pour que T passe de 80°C à 40°C (mi-hauteur)",
+      "τ = abscisse où T = T_ext + (T₀−T_ext)/e ≈ 20 + 22 = 42°C (méthode de la tangente)",
+      "τ = T₀ − T_ext = 60°C",
+      "τ = abscisse où T = T_ext = 20°C"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "τ = abscisse où T = T_ext + (T₀−T_ext)×e⁻¹ ≈ 20 + 60/e ≈ 42°C. Ou : tangente(t=0) ∩ asymptote T_ext.",
+      explanation: "T(τ) = T_ext + (T₀−T_ext)e⁻¹ ≈ T_ext + 0,368×(T₀−T_ext). La mi-hauteur correspond à τ×ln2, pas à τ.",
+      memo: "τ : T = T_ext + 0,368×(T₀−T_ext) ≈ 42°C ici.",
+      trap: "Mi-hauteur (T = 50°C ici) correspond à t₁/₂ = τ×ln2 ≈ 0,693τ, pas à τ.",
+      technique: "Tracer la tangente en t=0, lire l'intersection avec y = T_ext.",
+      bacLink: "Ch.16 — Détermination de τ de refroidissement"
+    })
+  },
+  {
+    id: 'ch15_g3', type: 11, chapter: 15,
+    question: "Sur le graphe de refroidissement, si on augmente la capacité thermique C (objet plus massif, même τ initial), que se passe-t-il à τ ?",
+    graphData: { type: 'cooling_curve', T0: 80, Text: 20, tau: 20 },
+    options: [
+      "τ diminue (refroidissement plus rapide)",
+      "τ augmente car τ = C/(hS) : si C↑ → τ↑ → objet met plus de temps à se refroidir",
+      "τ ne change pas car T₀ et T_ext sont les mêmes",
+      "τ dépend uniquement de h et S, pas de C"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "τ = C/(hS). C = mc. Si m↑ (objet plus massif) → C↑ → τ↑ → refroidissement plus lent.",
+      explanation: "Un objet plus massif stocke plus d'énergie thermique → prend plus de temps à se refroidir. τ = C/(hS) = mc/(hS) : proportionnel à la masse.",
+      memo: "τ = C/(hS). Objet lourd → τ grand → refroidissement lent.",
+      trap: "T₀ et T_ext restent inchangés. C'est la DURÉE du refroidissement qui change.",
+      technique: "Si masse double → C double → τ double → même T₀, même T_ext, mais courbe 2× plus lente.",
+      bacLink: "Ch.16 — Rôle de la capacité thermique C sur τ"
+    })
+  },
   {
     id: 'ch15_1', chapter: 15, type: 1,
     question: "Le premier principe de la thermodynamique s'énonce :",

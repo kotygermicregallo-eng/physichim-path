@@ -82,9 +82,72 @@ export const quizCh3 = [
       bacLink: "Ch.3 — Interprétation du pH"
     })
   },
+,
+  // ── Questions graphiques Ch.3 ─────────────────────────────────────────
+  {
+    id: 'ch3_g1', type: 11, chapter: 3,
+    question: "Sur la courbe de titrage pH-métrique ci-dessous (acide fort + base forte), identifier la valeur de pH à l'équivalence.",
+    graphData: { type: 'titration_curve', VE_mL: 20 },
+    options: [
+      "pH_E = 7 car HCl + NaOH → NaCl + H₂O (sel neutre)",
+      "pH_E = 4,8 car c'est le pKa",
+      "pH_E = 11 car la base est en excès",
+      "pH_E < 7 toujours pour un acide fort"
+    ],
+    correctIndex: 0,
+    correction: buildCorrection({
+      answer: "pH_E = 7 pour HCl + NaOH : le sel NaCl ne s'hydrolyse pas → solution neutre à l'équivalence.",
+      explanation: "Pour acide fort + base forte, le pH à l'équivalence est 7 à 25°C. Pour un acide faible, pH_E > 7 (base conjuguée qui se réactionne avec l'eau).",
+      memo: "Acide fort + base forte → pH_E = 7. Acide faible + base forte → pH_E > 7.",
+      trap: "Pour acide faible (CH₃COOH + NaOH), pH_E > 7 car CH₃COO⁻ est basique.",
+      technique: "Lire le pH au point d'équivalence (milieu du saut).",
+      bacLink: "Ch.5 — pH à l'équivalence"
+    })
+  },
+  {
+    id: 'ch3_g2', type: 11, chapter: 3,
+    question: "Sur la courbe conductimétrique ci-dessous (titrage HCl par NaOH), expliquer pourquoi la conductivité DIMINUE avant VE.",
+    graphData: { type: 'conductimetric_curve', VE_mL: 15 },
+    options: [
+      "Parce que NaOH est non conducteur",
+      "Parce que H₃O⁺ très conducteur (λ = 35,0) est remplacé par Na⁺ peu conducteur (λ = 5,0)",
+      "Parce que la dilution diminue la conductivité",
+      "Parce que NaCl précipite"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "Les ions H₃O⁺ (λ = 35,0 mS·m²/mol) disparaissent et sont remplacés par Na⁺ (λ = 5,0) → σ globale diminue avant VE.",
+      explanation: "Avant VE : H₃O⁺ + OH⁻ → H₂O. H₃O⁺ très conducteur est consommé, remplacé par Na⁺ peu conducteur. Après VE : l'excès de NaOH ajoute des ions → σ remonte.",
+      memo: "λ(H₃O⁺) = 35 >> λ(Na⁺) = 5 → H₃O⁺ → Na⁺ : σ chute avant VE.",
+      trap: "Après VE, l'excès de NaOH (ions Na⁺ + HO⁻) fait remonter la conductivité.",
+      technique: "Lire VE à l'intersection des deux demi-droites.",
+      bacLink: "Ch.5 — Titrage conductimétrique"
+    })
+  },
+  {
+    id: 'ch3_g3', type: 11, chapter: 3,
+    question: "Sur la courbe de titrage pH-métrique, comment déterminer VE par la méthode de la dérivée dpH/dV ?",
+    graphData: { type: 'titration_curve', VE_mL: 20 },
+    options: [
+      "VE = abscisse du minimum de dpH/dV",
+      "VE = abscisse du maximum de dpH/dV (pic de la dérivée)",
+      "VE = abscisse où pH = 7",
+      "VE = abscisse du plateau de pH"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "VE = abscisse du PIC (maximum) de la courbe dérivée dpH/dV — c'est là que la pente de pH(V) est la plus grande.",
+      explanation: "Le saut de pH est maximal en VE → la dérivée dpH/dV présente un pic au point d'équivalence. Cette méthode est plus précise que la méthode des tangentes.",
+      memo: "Méthode dérivée : max de dpH/dV = VE.",
+      trap: "Le minimum correspondrait à la pente la plus faible, pas à l'équivalence.",
+      technique: "Calculer dpH/dV entre points successifs, repérer le pic.",
+      bacLink: "Ch.5 — Méthode de la dérivée"
+    })
+  },
 ];
 
 export const quizCh4 = [
+
   {
     id: 'ch4_q1', type: 1, chapter: 4,
     question: "Plus le pKa d'un acide est petit, plus l'acide est :",
@@ -182,9 +245,133 @@ export const quizCh4 = [
       bacLink: "Ch.4 — Henderson-Hasselbalch"
     })
   },
+,
+  // ── Questions graphiques Ch.4 ─────────────────────────────────────────
+  {
+    id: 'ch4_g1', type: 11, chapter: 4,
+    question: "Sur ce diagramme de prédominance du couple CH₃COOH/CH₃COO⁻ (pKa = 4,8), quelle espèce prédomine à pH = 7 ?",
+    graphData: { type: 'predominance_diagram', pKa: 4.8, acidName: 'CH₃COOH', baseName: 'CH₃COO⁻' },
+    options: [
+      "CH₃COOH car pH < 7",
+      "CH₃COO⁻ car pH = 7 > pKa = 4,8",
+      "Les deux en proportions égales car pH ≠ pKa",
+      "H₃O⁺ car la solution est acide"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "pH = 7 > pKa = 4,8 → on est dans la zone basique du diagramme → CH₃COO⁻ prédomine.",
+      explanation: "Règle : pH > pKa → forme basique (A⁻) prédomine. pH < pKa → forme acide (AH). pH = pKa → [AH] = [A⁻] (proportions égales).",
+      memo: "pH > pKa → base (A⁻). pH < pKa → acide (AH).",
+      trap: "Ne pas confondre 'solution basique (pH > 7)' et 'forme basique du couple prédomine (pH > pKa)'.",
+      technique: "Repérer pKa sur le diagramme, comparer avec le pH demandé.",
+      bacLink: "Ch.4 — Diagramme de prédominance, lecture"
+    })
+  },
+  {
+    id: 'ch4_g2', type: 11, chapter: 4,
+    question: "Sur le diagramme du couple NH₄⁺/NH₃ (pKa = 9,2), à pH = 9,2 que vaut le rapport [NH₄⁺]/[NH₃] ?",
+    graphData: { type: 'predominance_diagram', pKa: 9.2, acidName: 'NH₄⁺', baseName: 'NH₃' },
+    options: [
+      "[NH₄⁺]/[NH₃] = 10",
+      "[NH₄⁺]/[NH₃] = 1 (les deux en proportions égales)",
+      "[NH₄⁺]/[NH₃] = 0,1",
+      "[NH₄⁺]/[NH₃] = 9,2"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "À pH = pKa = 9,2 : [NH₄⁺] = [NH₃] → rapport = 1 (demi-neutralisation).",
+      explanation: "Henderson-Hasselbalch : pH = pKa + log([A⁻]/[AH]). Si pH = pKa → log([A⁻]/[AH]) = 0 → [A⁻]/[AH] = 1.",
+      memo: "pH = pKa → les deux formes en proportions égales (point de demi-neutralisation).",
+      trap: "C'est la définition même du pKa : Ka = [A⁻][H₃O⁺]/[AH] → à pH = pKa, [A⁻] = [AH].",
+      technique: "Lecture directe du diagramme : la frontière entre les deux zones.",
+      bacLink: "Ch.4 — Point de demi-neutralisation pH = pKa"
+    })
+  },
+  {
+    id: 'ch4_g3', type: 11, chapter: 4,
+    question: "Sur le diagramme de l'acide lactique (pKa = 3,9), dans le sang (pH = 7,4), quelle est la forme dominante ?",
+    graphData: { type: 'predominance_diagram', pKa: 3.9, acidName: 'Lact-H', baseName: 'Lact⁻' },
+    options: [
+      "Lact-H (forme acide) car pKa < 7",
+      "Lact⁻ (lactate, forme basique) car pH = 7,4 >> pKa = 3,9",
+      "Les deux en proportions égales",
+      "H₃O⁺ car le sang est légèrement acide"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "pH = 7,4 >> pKa = 3,9 → très largement dans la zone basique → Lact⁻ (lactate) prédomine très largement.",
+      explanation: "Log([Lact⁻]/[Lact-H]) = pH − pKa = 7,4 − 3,9 = 3,5 → [Lact⁻]/[Lact-H] = 10^3,5 ≈ 3162 → forme basique écrase totalement la forme acide.",
+      memo: "Si pH >> pKa → forme basique très largement majoritaire.",
+      trap: "Dans le sang, l'acide lactique est ESSENTIELLEMENT sous forme Lact⁻ (ionisée).",
+      technique: "Calculer pH − pKa = 3,5 → rapport 10^3.5 ≈ 3000 en faveur de la base.",
+      bacLink: "Ch.4 — Application diagramme de prédominance biologique"
+    })
+  },
 ];
 
 export const quizCh5 = [
+
+  // ── Questions graphiques Ch.5 ─────────────────────────────────────────
+  {
+    id: 'ch5_g1', type: 11, chapter: 5,
+    question: "Sur cette courbe pH-métrique, lire graphiquement VE et en déduire la concentration de la solution titrée (VA = 20 mL, cB = 0,1 mol/L, réaction 1:1).",
+    graphData: { type: 'titration_curve', VE_mL: 20 },
+    options: [
+      "VE ≈ 20 mL → cA = cB × VE/VA = 0,1 × 20/20 = 0,1 mol/L",
+      "VE ≈ 20 mL → cA = VA × VE = 20 × 20 = 400 mol/L",
+      "VE ≈ 7 mL (pH = 7) → cA = 0,035 mol/L",
+      "VE ≈ 20 mL → cA = cB × VA/VE = 0,1 × 20/20 = 0,1 mol/L"
+    ],
+    correctIndex: 0,
+    correction: buildCorrection({
+      answer: "VE ≈ 20 mL. Relation : cA × VA = cB × VE → cA = 0,1 × 20/20 = 0,1 mol/L.",
+      explanation: "Lire VE au milieu du saut de pH. Puis appliquer la relation à l'équivalence : cA = cB × VE/VA.",
+      memo: "VE = lecture graphique au saut. cA = cB × VE/VA.",
+      trap: "VE ≠ abscisse où pH = 7. C'est le milieu du saut, indépendamment de la valeur du pH.",
+      technique: "Repérer le saut de pH, trouver l'inflexion, lire VE.",
+      bacLink: "Ch.5 — Exploitation courbe de titrage"
+    })
+  },
+  {
+    id: 'ch5_g2', type: 11, chapter: 5,
+    question: "Sur la courbe conductimétrique, à quel volume correspond l'équivalence ?",
+    graphData: { type: 'conductimetric_curve', VE_mL: 15 },
+    options: [
+      "VE = abscisse du minimum de σ (minimum de la courbe en V)",
+      "VE = abscisse de l'intersection des deux demi-droites",
+      "VE = abscisse où σ = 0",
+      "VE = volume total versé"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "VE = abscisse de l'intersection des deux demi-droites prolongées.",
+      explanation: "La courbe conductimétrique est composée de deux demi-droites de pentes différentes. Leur intersection marque précisément VE.",
+      memo: "Conductimétrique : VE = intersection des deux droites.",
+      trap: "Le minimum n'est pas forcément précis. L'intersection des droites est plus précise.",
+      technique: "Tracer les deux demi-droites (régression linéaire), trouver l'intersection.",
+      bacLink: "Ch.5 — Exploitation courbe conductimétrique"
+    })
+  },
+  {
+    id: 'ch5_g3', type: 11, chapter: 5,
+    question: "Après VE sur la courbe conductimétrique, la conductivité remonte. Pourquoi ?",
+    graphData: { type: 'conductimetric_curve', VE_mL: 15 },
+    options: [
+      "Car le sel formé est conducteur",
+      "Car l'excès de base forte NaOH introduit Na⁺ et HO⁻, tous deux conducteurs",
+      "Car la température augmente après VE",
+      "Car HCl réapparaît en solution"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "Après VE, NaOH est en excès : chaque ajout introduit Na⁺ (λ = 5,0) et HO⁻ (λ = 19,8) qui augmentent σ.",
+      explanation: "Avant VE : H₃O⁺ consommés → σ ↓. À VE : seulement NaCl en solution (σ minimale). Après VE : excès NaOH → ions supplémentaires → σ ↑.",
+      memo: "Après VE : excès base → ions supplémentaires → σ remonte.",
+      trap: "Ce n'est pas le sel NaCl qui fait remonter σ (il est déjà présent avant VE).",
+      technique: "Analyser les espèces présentes à chaque stade du titrage.",
+      bacLink: "Ch.5 — Interprétation courbe conductimétrique après VE"
+    })
+  },
   {
     id: 'ch5_q1', type: 1, chapter: 5,
     question: "La condition sur la réaction de titrage est qu'elle doit être :",

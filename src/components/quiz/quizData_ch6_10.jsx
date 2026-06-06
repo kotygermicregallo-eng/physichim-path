@@ -142,9 +142,72 @@ export const quizCh6 = [
       bacLink: "Synthèse organique — calcul de rendement Bac"
     })
   },
+,
+  // ── Questions graphiques Ch.6 ─────────────────────────────────────────
+  {
+    id: 'ch6_g1', type: 11, chapter: 6,
+    question: "Sur un graphe de CCM (Rf = hauteur composé / hauteur front), deux taches ont Rf = 0,45 et Rf = 0,72. Quelle tache correspond au produit le plus polaire ?",
+    graphData: { type: 'exponential_decay', A0: 1, k: 0.05, xLabel: 'temps (min)', yLabel: 'concentration relative' },
+    options: [
+      "La tache à Rf = 0,72 (monte plus haut = moins polaire)",
+      "La tache à Rf = 0,45 (monte moins haut = plus polaire, reste plus sur phase stationnaire)",
+      "Les deux sont équivalentes",
+      "Impossible à dire sans connaître la phase mobile"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "Rf = 0,45 → composé qui monte moins haut → plus polaire, plus affin à la phase stationnaire (silice polaire) → reste en bas.",
+      explanation: "Phase stationnaire = silice (polaire). Composé polaire → plus affin avec la silice → monte moins haut → Rf plus petit. Rf grand → moins polaire → monte haut avec la phase mobile.",
+      memo: "Rf petit → plus polaire (reste bas). Rf grand → moins polaire (monte haut).",
+      trap: "Phase mobile apolaire (hexane, éther) : composé polaire reste bas (Rf petit). Attention à la phase mobile choisie.",
+      technique: "Rf = d_composé / d_front ∈ [0,1]. Rf = 0 → reste sur la ligne de dépôt. Rf = 1 → monte avec le front.",
+      bacLink: "Ch.6 — CCM, Rf et polarité"
+    })
+  },
+  {
+    id: 'ch6_g2', type: 11, chapter: 6,
+    question: "Sur un graphe de rendement η = f(excès réactif), η augmente avec l'excès. Pourquoi cela atteint-il un plateau ?",
+    graphData: { type: 'equilibrium_advance', xMax: 1, tau: 0.85, xLabel: 'excès réactif (%)', yLabel: 'rendement η' },
+    options: [
+      "Car le rendement ne peut jamais dépasser 100%",
+      "Car même avec un excès infini, les pertes lors de la purification limitent η",
+      "Car l'excès réactif diminue la vitesse après un seuil",
+      "Car le réactif en excès précipite"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "Le plateau s'explique par les pertes incompressibles lors de la purification (filtration, distillation…) : η < 100% même avec réactif très en excès.",
+      explanation: "Excès réactif déplace l'équilibre → η augmente au départ. Mais les opérations de purification causent des pertes inévitables → η plafonne avant 100%.",
+      memo: "η < 100% toujours en pratique. Pertes = filtration, distillation, cristallisation...",
+      trap: "L'excès maximise l'avancement mais ne compense pas les pertes de purification.",
+      technique: "η = n_obtenu/n_théo. Les opérations de purification réduisent n_obtenu.",
+      bacLink: "Ch.6 — Rendement et pertes de purification"
+    })
+  },
+  {
+    id: 'ch6_g3', type: 11, chapter: 6,
+    question: "Sur un graphe [ester](t) pour une estérification à l'équilibre, le palier est à 67% de [ester]_max. Quel est le taux d'avancement τ si le rapport initial est 1:1 ?",
+    graphData: { type: 'equilibrium_advance', xMax: 1, tau: 0.67, xLabel: 't (heures)', yLabel: '[ester]/[ester]_max' },
+    options: [
+      "τ = 0,67 (67% d'avancement) — réaction d'équilibre classique estérification",
+      "τ = 1 car la réaction est totale",
+      "τ = 0,33 (33% de réactifs restants)",
+      "τ dépend uniquement de K"
+    ],
+    correctIndex: 0,
+    correction: buildCorrection({
+      answer: "τ = x_eq/x_max = 0,67. Pour une estérification 1:1 à l'équilibre, τ ≈ 2/3 (résultat classique, K ≈ 4 pour acide éthanoïque + éthanol).",
+      explanation: "Estérification 1:1 (1 mol acide + 1 mol alcool) : K = [ester][eau]/([acide][alcool]) ≈ 4 → x_eq ≈ 2/3 × x_max. τ ≈ 0,67 est bien connue pour cette réaction.",
+      memo: "Estérification 1:1 : τ ≈ 2/3 = 0,67. K ≈ 4.",
+      trap: "τ = 2/3 est valable SEULEMENT pour 1 mol acide + 1 mol alcool. Excès d'un réactif augmente τ.",
+      technique: "K = τ²/(1−τ)² → pour K=4 : τ/(1−τ) = 2 → τ = 2/3.",
+      bacLink: "Ch.6 — Taux d'avancement estérification"
+    })
+  },
 ];
 
 // ─── CHAPITRE 7 : Mécanismes réactionnels ────────────────────────────────────
+
 export const quizCh7 = [
   {
     id: 'ch7_1', chapter: 7, type: 1,
@@ -286,9 +349,72 @@ export const quizCh7 = [
       bacLink: "Mécanismes — addition électrophile"
     })
   },
+,
+  // ── Questions graphiques Ch.7 ─────────────────────────────────────────
+  {
+    id: 'ch7_g1', type: 11, chapter: 7,
+    question: "Sur un graphe [A](t), la pente de la tangente en t=0 est −0,04 mol·L⁻¹·s⁻¹. Si [A]₀ = 0,8 mol/L, la réaction est-elle d'ordre 1 ? Quel serait k ?",
+    graphData: { type: 'exponential_decay', A0: 0.8, k: 0.05, xLabel: 't (s)', yLabel: '[A] (mol/L)' },
+    options: [
+      "k = 0,04/0,8 = 0,05 s⁻¹ → cohérent avec ordre 1 si la courbe est exponentielle",
+      "k = 0,04 mol/L·s (c'est la pente directement)",
+      "On ne peut pas déterminer k depuis la pente en t=0",
+      "k = 0,8/0,04 = 20 s"
+    ],
+    correctIndex: 0,
+    correction: buildCorrection({
+      answer: "Ordre 1 : v₀ = k[A]₀ → k = v₀/[A]₀ = 0,04/0,8 = 0,05 s⁻¹.",
+      explanation: "Pour l'ordre 1, loi de vitesse : v = k[A]. En t=0 : v₀ = k[A]₀ → k = v₀/[A]₀. Si la courbe est exponentielle ET que ce k satisfait [A](t) = [A]₀e^(−kt), c'est bien l'ordre 1.",
+      memo: "k = v₀/[A]₀ (pour ordre 1). Vérifier que la courbe est exponentielle.",
+      trap: "La pente = −v₀ (négative). v₀ = |pente| = 0,04 mol·L⁻¹·s⁻¹.",
+      technique: "v₀ = |d[A]/dt|₀| = k[A]₀ → k = v₀/[A]₀.",
+      bacLink: "Ch.1 — Détermination de k depuis la tangente"
+    })
+  },
+  {
+    id: 'ch7_g2', type: 11, chapter: 7,
+    question: "Sur la courbe [A](t) exponentielle, si on double [A]₀ mais garde k constant, comment évolue la pente à l'origine ?",
+    graphData: { type: 'exponential_decay', A0: 0.8, k: 0.05, xLabel: 't (s)', yLabel: '[A] (mol/L)' },
+    options: [
+      "La pente est divisée par 2",
+      "La pente est multipliée par 2 (v₀ = k×2[A]₀ = 2v₀)",
+      "La pente ne change pas car k est constant",
+      "La pente est multipliée par 4"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "v₀ = k[A]₀. Si [A]₀ double → v₀ double → pente initiale multipliée par 2.",
+      explanation: "La vitesse initiale est proportionnelle à [A]₀ (pour l'ordre 1). Doubler [A]₀ double v₀ donc la pente de la tangente en t=0.",
+      memo: "Ordre 1 : v₀ ∝ [A]₀. Double [A]₀ → double pente initiale. Mais t½ inchangé.",
+      trap: "t½ = ln2/k reste IDENTIQUE même si [A]₀ change (propriété de l'ordre 1).",
+      technique: "v₀ = k[A]₀ : pente proportionnelle à la concentration initiale.",
+      bacLink: "Ch.1 — Effet de [A]₀ sur la vitesse initiale"
+    })
+  },
+  {
+    id: 'ch7_g3', type: 11, chapter: 7,
+    question: "Sur ln[A] vs t (droite) : deux mesures donnent ln[A₁] = −0,5 en t₁ = 5s et ln[A₂] = −1,5 en t₂ = 25s. Calculer k.",
+    graphData: { type: 'ln_decay', A0: 1, k: 0.05, xLabel: 't (s)', yLabel: 'ln[A]' },
+    options: [
+      "k = |Δ(ln[A])/Δt| = |−1,5−(−0,5)| / (25−5) = 1/20 = 0,05 s⁻¹",
+      "k = (−0,5)/(5) = −0,1 s⁻¹",
+      "k = 1,5/25 = 0,06 s⁻¹",
+      "k = (25−5)/(−1,5−(−0,5)) = 20 s"
+    ],
+    correctIndex: 0,
+    correction: buildCorrection({
+      answer: "k = |pente| = |Δ(ln[A])/Δt| = |(−1,5+0,5)/(25−5)| = 1/20 = 0,05 s⁻¹",
+      explanation: "Pente = Δy/Δx = (−1,5 − (−0,5))/(25 − 5) = −1/20 = −0,05 s⁻¹. k = |pente| = 0,05 s⁻¹.",
+      memo: "k = |pente de ln[A] vs t|. Toujours positif.",
+      trap: "La pente est NÉGATIVE (−0,05). k = valeur ABSOLUE = 0,05.",
+      technique: "Δy/Δx = (y₂−y₁)/(x₂−x₁). k = |résultat|.",
+      bacLink: "Ch.1 — Calcul de k depuis graphe ln[A]"
+    })
+  },
 ];
 
 // ─── CHAPITRE 8 : Radioactivité ──────────────────────────────────────────────
+
 export const quizCh8 = [
   {
     id: 'ch8_1', chapter: 8, type: 1,
@@ -430,9 +556,72 @@ export const quizCh8 = [
       bacLink: "Datation — limites de la méthode"
     })
   },
+,
+  // ── Questions graphiques Ch.8 ─────────────────────────────────────────
+  {
+    id: 'ch8_g1', type: 11, chapter: 8,
+    question: "Sur ce graphe de décroissance radioactive N(t), après combien de demi-vies reste-t-il 12,5% de N₀ ?",
+    graphData: { type: 'radioactive_decay', N0: 1000, t12: 10 },
+    options: [
+      "1 demi-vie (N = N₀/2 = 50%)",
+      "2 demi-vies (N = N₀/4 = 25%)",
+      "3 demi-vies (N = N₀/8 = 12,5%)",
+      "4 demi-vies (N = N₀/16 = 6,25%)"
+    ],
+    correctIndex: 2,
+    correction: buildCorrection({
+      answer: "12,5% = 1/8 = (1/2)³ → 3 demi-vies. Lecture sur le graphe : N = N₀/8 à t = 3t½.",
+      explanation: "Après n demi-vies : N = N₀/2ⁿ. 1/8 = 1/2³ → n = 3. Sur le graphe, les pointillés montrent les paliers à N₀/2, N₀/4, N₀/8.",
+      memo: "N₀/2 → 1t½. N₀/4 → 2t½. N₀/8 → 3t½. N = N₀×(1/2)ⁿ.",
+      trap: "Ne pas calculer n = N₀/(0,125 N₀) = 8. Il faut n = log(N₀/N)/log(2).",
+      technique: "N/N₀ = (1/2)ⁿ → n = log(N₀/N)/log(2) = log(8)/log(2) = 3.",
+      bacLink: "Ch.8 — Lecture graphique demi-vies"
+    })
+  },
+  {
+    id: 'ch8_g2', type: 11, chapter: 8,
+    question: "Sur le graphe N(t), si on double N₀ (double la quantité initiale), comment évolue t½ ?",
+    graphData: { type: 'radioactive_decay', N0: 1000, t12: 10 },
+    options: [
+      "t½ double car il y a plus de noyaux à désintégrer",
+      "t½ reste identique : t½ = ln2/λ ne dépend pas de N₀",
+      "t½ est divisé par 2 car l'activité double",
+      "t½ augmente légèrement"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "t½ = ln2/λ est indépendant de N₀. Doubler N₀ double A₀ mais ne change pas t½.",
+      explanation: "t½ = ln2/λ : ne dépend que de λ (constante intrinsèque du noyau). Doubler N₀ double l'activité initiale A₀ = λN₀ mais t½ est inchangé.",
+      memo: "t½ indépendant de N₀ (comme l'ordre 1 en cinétique chimique).",
+      trap: "L'activité initiale A₀ = λN₀ double si N₀ double, mais t½ reste identique.",
+      technique: "Graphiquement : la courbe est dilatée verticalement mais les marquages horizontaux (t½, 2t½) ne bougent pas.",
+      bacLink: "Ch.8 — t½ indépendant de N₀"
+    })
+  },
+  {
+    id: 'ch8_g3', type: 11, chapter: 8,
+    question: "Un fossile a une activité A = 125 désintégrations/s. L'activité initiale était A₀ = 1000 désin./s. t½ = 5730 ans. Quel est l'âge ?",
+    graphData: { type: 'radioactive_decay', N0: 1000, t12: 5 },
+    options: [
+      "A/A₀ = 1/8 = (1/2)³ → 3 demi-vies → âge = 3×5730 = 17 190 ans",
+      "A/A₀ = 1/8 → âge = 8×5730 = 45 840 ans",
+      "A/A₀ = 125/1000 → âge = 5730/0,125 = 45 840 ans",
+      "âge = t½ × (A₀/A) = 5730 × 8 = 45 840 ans"
+    ],
+    correctIndex: 0,
+    correction: buildCorrection({
+      answer: "A/A₀ = 125/1000 = 1/8 = (1/2)³ → 3 demi-vies → t = 3 × 5730 = 17 190 ans.",
+      explanation: "A(t) = A₀×(1/2)^(t/t½). A/A₀ = 1/8 = (1/2)³ → t/t½ = 3 → t = 3t½.",
+      memo: "A/A₀ = (1/2)ⁿ → n demi-vies → t = n×t½.",
+      trap: "Ne pas multiplier t½ par A₀/A. Il faut résoudre (1/2)ⁿ = A/A₀.",
+      technique: "n = log(A₀/A)/log(2) = log(8)/log(2) = 3.",
+      bacLink: "Ch.8 — Datation radioactive"
+    })
+  },
 ];
 
 // ─── CHAPITRE 9 : Évolution forcée ───────────────────────────────────────────
+
 export const quizCh9 = [
   {
     id: 'ch9_1', chapter: 9, type: 1,
@@ -574,10 +763,134 @@ export const quizCh9 = [
       bacLink: "Pile Daniell — anode et cathode"
     })
   },
+,
+  // ── Questions graphiques Ch.9 ─────────────────────────────────────────
+  {
+    id: 'ch9_g1', type: 11, chapter: 9,
+    question: "Sur ce graphe N(t) de radioactivité, l'activité A(t) = λN(t). Si à t=0, A₀ = 800 Bq, quel est A après 2 demi-vies ? (Raisonnement graphique)",
+    graphData: { type: 'radioactive_decay', N0: 800, t12: 10 },
+    options: [
+      "A(2t½) = 800/4 = 200 Bq",
+      "A(2t½) = 800/2 = 400 Bq",
+      "A(2t½) = 800×e⁻² ≈ 108 Bq",
+      "A(2t½) = 800/8 = 100 Bq"
+    ],
+    correctIndex: 0,
+    correction: buildCorrection({
+      answer: "Après 2 demi-vies : A = A₀/2² = 800/4 = 200 Bq.",
+      explanation: "A(n×t½) = A₀/2ⁿ. Après 2 t½ : A = 800/4 = 200 Bq. Graphiquement : lire N à 2t½ sur l'axe, A = λN.",
+      memo: "A → moitié à chaque t½. Après n t½ : A = A₀/2ⁿ.",
+      trap: "e⁻² ≈ 0,135 serait le calcul à t = 2τ (temps caractéristique), pas à 2×t½.",
+      technique: "2 demi-vies → ÷4. 3 demi-vies → ÷8.",
+      bacLink: "Ch.8 — Activité radioactive et demi-vies"
+    })
+  },
+  {
+    id: 'ch9_g2', type: 11, chapter: 9,
+    question: "Sur ce graphe de décroissance N(t), lire graphiquement λ si t½ ≈ 10 unités.",
+    graphData: { type: 'radioactive_decay', N0: 1000, t12: 10 },
+    options: [
+      "λ = t½/ln2 ≈ 14,4 unités⁻¹",
+      "λ = ln2/t½ = 0,693/10 ≈ 0,069 unités⁻¹",
+      "λ = 1/t½ = 0,1 unités⁻¹",
+      "λ = t½ = 10 unités"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "λ = ln2/t½ = 0,693/10 ≈ 0,069 unités⁻¹ (lecture de t½ sur le graphe).",
+      explanation: "t½ = ln2/λ → λ = ln2/t½. Sur le graphe : lire t½ (abscisse du point N = N₀/2).",
+      memo: "λ = ln2/t½ = 0,693/t½.",
+      trap: "λ ≠ 1/t½ (c'est τ = 1/λ = t½/ln2 qui est le temps caractéristique).",
+      technique: "Lire t½ → λ = 0,693/t½.",
+      bacLink: "Ch.8 — Relation λ et t½"
+    })
+  },
+  {
+    id: 'ch9_g3', type: 11, chapter: 9,
+    question: "Sur ce graphe N(t), si la demi-vie était 2× plus courte (noyau plus instable), que se passerait-il graphiquement ?",
+    graphData: { type: 'radioactive_decay', N0: 1000, t12: 10 },
+    options: [
+      "La courbe serait plus aplatie (descente plus lente)",
+      "La courbe descendrait plus vite, λ serait double, t½ serait divisé par 2",
+      "N₀ diminuerait",
+      "La courbe serait identique (N₀ inchangé)"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "t½ deux fois plus court → λ = ln2/t½ double → désintégration plus rapide → courbe plus raide.",
+      explanation: "Noyau plus instable → λ plus grand → décroissance plus rapide → t½ plus court. Sur le graphe, les marquages t½, 2t½... seraient à gauche (plus tôt).",
+      memo: "Instable → t½ court → λ grand → descente rapide.",
+      trap: "N₀ reste le même — c'est la VITESSE de décroissance qui change, pas la quantité initiale.",
+      technique: "λ double → décroissance 2× plus rapide → même N₀ mais atteint N₀/2 2× plus tôt.",
+      bacLink: "Ch.8 — Effet de λ sur la courbe de décroissance"
+    })
+  },
 ];
 
 // ─── CHAPITRE 10 : Cinématique du point ──────────────────────────────────────
+
 export const quizCh10 = [
+  // ── Questions graphiques Ch.10 ────────────────────────────────────────
+  {
+    id: 'ch10_g1', type: 11, chapter: 10,
+    question: "Sur ce graphe de trajectoire parabolique, comment identifier graphiquement que vx est CONSTANT mais vy varie ?",
+    graphData: { type: 'parabolic_trajectory', v0: 20, angle_deg: 45 },
+    options: [
+      "En mesurant l'espacement horizontal entre des points consécutifs à Δt constant : constant si vx = cste",
+      "En regardant la courbure de la parabole",
+      "En comptant les oscillations",
+      "La tangente à la trajectoire donne vx directement"
+    ],
+    correctIndex: 0,
+    correction: buildCorrection({
+      answer: "Méthode chronophoto : si Δx entre points consécutifs (même Δt) est constant → vx = cste (MRU horizontal).",
+      explanation: "En chronophotographie : si les positions horizontales sont également espacées → vx = cste. Si les positions verticales sont de plus en plus rapprochées (descente) → vy varie.",
+      memo: "Espacement horizontal égal → vx = cste. Espacement vertical croissant → vy varie.",
+      trap: "La tangente à la trajectoire donne la DIRECTION de v⃗, pas vx et vy séparément.",
+      technique: "Mesurer Δx = x_{n+1} − x_n et Δy = y_{n+1} − y_n sur les points chronophoto.",
+      bacLink: "Ch.10 — Chronophotographie, composantes de v⃗"
+    })
+  },
+  {
+    id: 'ch10_g2', type: 11, chapter: 10,
+    question: "Sur la trajectoire parabolique (α = 45°, v₀ = 20 m/s, g = 10 m/s²), quel est le module du vecteur vitesse au moment de l'impact (retour au sol) ?",
+    graphData: { type: 'parabolic_trajectory', v0: 20, angle_deg: 45 },
+    options: [
+      "||v|| = v₀ = 20 m/s (même qu'au départ par conservation d'énergie sur terrain plat)",
+      "||v|| < v₀ car vy est réduit par frottements",
+      "||v|| > v₀ car la gravité accélère",
+      "||v|| = v₀cosα = 14,1 m/s"
+    ],
+    correctIndex: 0,
+    correction: buildCorrection({
+      answer: "Sur terrain plat (même altitude départ/arrivée), ||v_arrivée|| = ||v₀|| = 20 m/s par conservation de l'énergie (sans frottements).",
+      explanation: "Conservation de l'énergie : E_c initiale = E_c finale (même altitude, sans frottements). ½mv₀² = ½mv_f² → v_f = v₀. La direction est symétrique (angle −α sous l'horizontale).",
+      memo: "Terrain plat, sans frottements : ||v_final|| = ||v_initial|| = v₀.",
+      trap: "La vitesse à l'impact a la même norme mais pas la même direction (angle inversé).",
+      technique: "vx inchangé. vy_final = −vy_initial (symétrie). ||v|| = √(vx² + vy²) = v₀.",
+      bacLink: "Ch.10/12 — Conservation énergie, vitesse d'impact"
+    })
+  },
+  {
+    id: 'ch10_g3', type: 11, chapter: 10,
+    question: "Sur la trajectoire, comparer graphiquement les vecteurs vitesse au lancement et au sommet. Quelle est la composante qui a changé ?",
+    graphData: { type: 'parabolic_trajectory', v0: 20, angle_deg: 30 },
+    options: [
+      "vx a changé (MRU horizontal n'est pas vérifié)",
+      "vy a changé : de v₀sinα vers 0 au sommet (vy s'annule progressivement)",
+      "Les deux ont changé",
+      "Aucune composante n'a changé (conservation du moment)"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "vx = v₀cosα = constante (MRU). vy passe de v₀sinα (lancement) à 0 (sommet) : c'est la composante qui s'annule.",
+      explanation: "MRU horizontal : ax = 0 → vx = v₀cosα = cste. MRUA vertical : ay = −g → vy = v₀sinα − gt. Au sommet : vy = 0.",
+      memo: "vx = cste (MRU). vy varie (MRUA). Au sommet : vy = 0.",
+      trap: "On pourrait croire que vx diminue à cause de la gravité. Mais la gravité est VERTICALE uniquement.",
+      technique: "Décomposer en x (MRU) et y (MRUA) indépendamment.",
+      bacLink: "Ch.10/12 — Décomposition du mouvement, vx et vy"
+    })
+  },
   {
     id: 'ch10_1', chapter: 10, type: 1,
     question: "Le vecteur vitesse est toujours :",

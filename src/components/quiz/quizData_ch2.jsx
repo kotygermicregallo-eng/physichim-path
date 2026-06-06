@@ -532,6 +532,67 @@ export const quizCh2 = [
       bacLink: "Ch.2 — Interprétation de K"
     })
   },
+  // ── Questions graphiques Ch.2 ───────────────────────────────────────────
+  {
+    id: 'ch2_g1', type: 11, chapter: 2,
+    question: "Sur ce graphe d'avancement x(t), le palier final est à x_eq < x_max. Quel est le taux d'avancement τ si x_max = 1 mol et x_eq ≈ 0,6 mol ?",
+    graphData: { type: 'equilibrium_advance', xMax: 1, tau: 0.6, xLabel: 't (s)', yLabel: 'x (mol)' },
+    options: [
+      "τ = x_eq/x_max = 0,6/1 = 0,6 (60%)",
+      "τ = 1 car la réaction est terminée",
+      "τ = x_max/x_eq = 1/0,6 ≈ 1,67",
+      "τ = 0 car il reste des réactifs"
+    ],
+    correctIndex: 0,
+    correction: buildCorrection({
+      answer: "τ = x_eq/x_max = 0,6 : la réaction a atteint 60% de l'avancement maximal possible.",
+      explanation: "τ = x_f/x_max. La ligne x_eq (palier) est en dessous de x_max → réaction d'équilibre, pas totale.",
+      memo: "Palier avant x_max → τ < 1 → équilibre. Palier = x_max → τ = 1 → totale.",
+      trap: "τ = 1 serait une réaction totale. Ici le palier est inférieur à x_max.",
+      technique: "Lire x_eq sur le palier, x_max sur la ligne pointillée, calculer τ = x_eq/x_max.",
+      bacLink: "Ch.2 — Taux d'avancement, graphe x(t)"
+    })
+  },
+  {
+    id: 'ch2_g2', type: 11, chapter: 2,
+    question: "Même graphe x(t) : si on augmentait la constante K(T) d'un facteur 10, comment le graphe serait-il modifié ?",
+    graphData: { type: 'equilibrium_advance', xMax: 1, tau: 0.6, xLabel: 't (s)', yLabel: 'x (mol)' },
+    options: [
+      "La pente initiale augmente seulement",
+      "Le palier x_eq se rapprocherait de x_max (τ plus grand)",
+      "La courbe serait identique car K ne change pas la cinétique",
+      "x_max augmenterait"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "K plus grand → équilibre plus déplacé vers les produits → x_eq plus proche de x_max → τ augmente.",
+      explanation: "K grand → τ grand → x_eq/x_max proche de 1. Si K > 10⁴, la réaction est quasi-totale et le palier rejoint x_max.",
+      memo: "K grand → palier haut (proche x_max). K petit → palier bas.",
+      trap: "K ne modifie pas x_max (déterminé par les quantités initiales), mais modifie x_eq.",
+      technique: "Raisonnement : K↑ → plus de produits à l'équilibre → x_eq↑ → τ↑.",
+      bacLink: "Ch.2 — K et taux d'avancement"
+    })
+  },
+  {
+    id: 'ch2_g3', type: 11, chapter: 2,
+    question: "Toujours sur le graphe x(t) : la pente de la courbe en t=0 correspond à :",
+    graphData: { type: 'equilibrium_advance', xMax: 1, tau: 0.6, xLabel: 't (s)', yLabel: 'x (mol)' },
+    options: [
+      "La valeur de K(T)",
+      "La vitesse initiale de la réaction (dx/dt en t=0)",
+      "Le taux d'avancement final τ",
+      "L'avancement maximal x_max"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "Pente en t=0 = dx/dt|₀ = vitesse initiale de la réaction.",
+      explanation: "La dérivée de x(t) en t=0 donne la vitesse de réaction initiale. Ajouter un catalyseur augmenterait cette pente sans changer le palier x_eq.",
+      memo: "Pente tangente = dx/dt = vitesse. Palier = état d'équilibre.",
+      trap: "Augmenter la vitesse (catalyseur) change la pente initiale mais PAS x_eq ni τ.",
+      technique: "Tracer tangente en t=0 → pente = vitesse initiale.",
+      bacLink: "Ch.2 — Vitesse initiale, graphe cinétique"
+    })
+  },
   {
     id: 'ch2_q30', type: 7, chapter: 2,
     question: "BAC 2025 TYPE : Une pile Cu/Cu²⁺//Fe³⁺/Fe²⁺ a K = 3,5×10¹². Décrire qualitativement ce qui se passe à l'anode et à la cathode, et justifier que c'est une pile (pas un électrolyseur).",

@@ -543,6 +543,67 @@ export const quizCh1 = [
       bacLink: "Ch.1 — Détermination de l'ordre"
     })
   },
+  // ── Questions graphiques Ch.1 ───────────────────────────────────────────
+  {
+    id: 'ch1_g1', type: 11, chapter: 1,
+    question: "Sur ce graphe de ln[A] en fonction du temps, la droite a une pente de −0,05 s⁻¹. Quelle est la valeur de k et de t½ ?",
+    graphData: { type: 'ln_decay', A0: 1, k: 0.05, xLabel: 't (s)', yLabel: 'ln[A]' },
+    options: [
+      "k = 0,05 s⁻¹ et t½ = ln2/0,05 ≈ 13,9 s",
+      "k = −0,05 s⁻¹ et t½ = 20 s",
+      "k = 0,05 s⁻¹ et t½ = 1/0,05 = 20 s",
+      "k = 0,05 s⁻¹ et t½ = 0,05/ln2 ≈ 0,072 s"
+    ],
+    correctIndex: 0,
+    correction: buildCorrection({
+      answer: "k = |pente| = 0,05 s⁻¹. t½ = ln2/k = 0,693/0,05 ≈ 13,9 s",
+      explanation: "Pente de ln[A] vs t = −k → k = 0,05 s⁻¹. Puis t½ = ln(2)/k ≈ 13,9 s. Ne pas confondre t½ et τ = 1/k = 20 s.",
+      memo: "Pente = −k. t½ = 0,693/k ≠ 1/k.",
+      trap: "τ = 1/k = 20 s ≠ t½ = ln2/k ≈ 13,9 s. Les deux diffèrent d'un facteur ln2.",
+      technique: "Pente graphe ln[A] = −k → k positif = valeur absolue.",
+      bacLink: "Ch.1 — Lecture graphique ln[A] vs t"
+    })
+  },
+  {
+    id: 'ch1_g2', type: 11, chapter: 1,
+    question: "Sur ce graphe de [A](t), identifier graphiquement le temps de demi-réaction t½. Que vaut [A] au point de t½ ?",
+    graphData: { type: 'exponential_decay', A0: 0.8, k: 0.08, xLabel: 't (s)', yLabel: '[A] (mol/L)' },
+    options: [
+      "[A](t½) = 0 mol/L",
+      "[A](t½) = [A]₀/2 = 0,4 mol/L — lecture à mi-hauteur",
+      "[A](t½) = [A]₀ × e⁻¹ ≈ 0,29 mol/L",
+      "[A](t½) = [A]₀ × 0,63 ≈ 0,50 mol/L"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "[A](t½) = [A]₀/2 = 0,4 mol/L — on repère la mi-hauteur sur l'axe y, puis on lit t½ sur l'axe t.",
+      explanation: "Méthode graphique : 1) Repérer [A]₀/2 sur l'axe y. 2) Tracer horizontale jusqu'à la courbe. 3) Descendre verticalement sur l'axe t → t½.",
+      memo: "t½ = lecture graphique à mi-hauteur de [A]₀.",
+      trap: "[A]₀×e⁻¹ correspond au temps caractéristique τ = 1/k, pas à t½.",
+      technique: "Construire les pointillés : horizontal à [A]₀/2 puis vertical → t½.",
+      bacLink: "Ch.1 — Lecture graphique t½"
+    })
+  },
+  {
+    id: 'ch1_g3', type: 11, chapter: 1,
+    question: "Sur ce graphe [A](t), la tangente à l'origine a une certaine pente. Qu'est-ce qu'elle représente physiquement ?",
+    graphData: { type: 'exponential_decay', A0: 1.0, k: 0.1, xLabel: 't (s)', yLabel: '[A] (mol/L)' },
+    options: [
+      "La constante k",
+      "−v₀ : la vitesse initiale de disparition du réactif (valeur absolue = v₀)",
+      "Le temps de demi-réaction t½",
+      "L'avancement final x_f"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "La pente de la tangente en t=0 vaut d[A]/dt|₀ = −k[A]₀ = −v₀ (négative). Sa valeur absolue = vitesse initiale v₀.",
+      explanation: "La tangente à l'origine d'une courbe [A](t) donne la vitesse instantanée en t=0. Pour l'ordre 1 : pente = −k[A]₀.",
+      memo: "Pente tangente à l'origine = −v₀ (négative car [A] décroît).",
+      trap: "La pente est négative (réactif qui disparaît). v₀ = |pente| = k[A]₀.",
+      technique: "Tracer la tangente en t=0, lire Δy/Δx = −v₀.",
+      bacLink: "Ch.1 — Vitesse initiale, tangente à l'origine"
+    })
+  },
   {
     id: 'ch1_q30', type: 7, chapter: 1,
     question: "BAC 2025 TYPE : On donne le graphe de ln([H₂O₂]) vs t, qui est une droite de pente −4,5×10⁻³ s⁻¹. Donner k, t½ et [H₂O₂](100s) si [H₂O₂]₀ = 0,3 mol/L.",

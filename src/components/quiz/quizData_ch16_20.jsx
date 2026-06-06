@@ -142,6 +142,68 @@ export const quizCh16 = [
       bacLink: "Analogie thermique-électrique"
     })
   },
+,
+  // ── Questions graphiques Ch.16 ────────────────────────────────────────
+  {
+    id: 'ch16_g1', type: 11, chapter: 16,
+    question: "Sur cette courbe de refroidissement T(t), lire graphiquement la constante de temps τ à partir de la tangente à l'origine.",
+    graphData: { type: 'cooling_curve', T0: 80, Text: 20, tau: 15 },
+    options: [
+      "τ = abscisse où T = T_ext (jamais atteint)",
+      "τ = abscisse où la tangente à l'origine coupe l'asymptote T_ext",
+      "τ = temps pour que T diminue de moitié",
+      "τ = T₀ − T_ext = 60°C"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "Méthode : tracer la tangente en t=0 → elle coupe l'asymptote T_ext à t = τ.",
+      explanation: "T(t) = T_ext + (T₀−T_ext)e^(−t/τ). La tangente en t=0 a une pente −(T₀−T_ext)/τ. Elle coupe T_ext exactement en t = τ.",
+      memo: "Tangente(t=0) ∩ asymptote T_ext = point à t = τ.",
+      trap: "τ ≠ temps pour atteindre T_ext (asymptote jamais atteinte).",
+      technique: "Tracer tangente, prolonger jusqu'à T_ext, lire l'abscisse.",
+      bacLink: "Ch.16 — Lecture graphique de τ"
+    })
+  },
+  {
+    id: 'ch16_g2', type: 11, chapter: 16,
+    question: "Sur la courbe de refroidissement T(t), à t = τ, quelle est la valeur de T ? (T₀ = 80°C, T_ext = 20°C)",
+    graphData: { type: 'cooling_curve', T0: 80, Text: 20, tau: 15 },
+    options: [
+      "T(τ) = (T₀ + T_ext)/2 = 50°C",
+      "T(τ) = T_ext + (T₀−T_ext) × e⁻¹ = 20 + 60×0,368 ≈ 42°C",
+      "T(τ) = T_ext = 20°C",
+      "T(τ) = T₀/e = 80/e ≈ 29°C"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "T(τ) = T_ext + (T₀−T_ext)×e⁻¹ = 20 + 60×0,368 ≈ 42,1°C.",
+      explanation: "À t = τ : T = T_ext + (T₀−T_ext)×e⁻¹. e⁻¹ ≈ 0,368. Donc T(τ) = 20 + 60×0,368 ≈ 42°C. Ce n'est pas la mi-hauteur.",
+      memo: "T(τ) ≈ T_ext + 0,368×(T₀−T_ext). Ce n'est pas (T₀+T_ext)/2.",
+      trap: "e⁻¹ ≈ 0,368, pas 0,5. La mi-hauteur correspond à ln(2)×τ.",
+      technique: "T(τ) = T_ext + (T₀−T_ext)/e ≈ T_ext + 0,368×(T₀−T_ext).",
+      bacLink: "Ch.16 — Calcul T à t = τ"
+    })
+  },
+  {
+    id: 'ch16_g3', type: 11, chapter: 16,
+    question: "Sur la courbe de refroidissement, si on double τ (meilleure isolation), que se passe-t-il graphiquement ?",
+    graphData: { type: 'cooling_curve', T0: 80, Text: 20, tau: 15 },
+    options: [
+      "La courbe descend plus vite",
+      "La courbe descend plus lentement (refroidissement plus lent, meilleure isolation)",
+      "T₀ augmente",
+      "T_ext diminue"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "τ plus grand → décroissance plus lente → objet reste chaud plus longtemps → meilleure isolation.",
+      explanation: "τ = C/(hS). Si τ double : soit C double (objet plus massif), soit h diminue de moitié (meilleur isolant). La courbe est plus aplatie, le refroidissement prend plus de temps.",
+      memo: "τ grand → refroidissement lent. τ petit → refroidissement rapide.",
+      trap: "T₀ et T_ext ne changent pas — ils sont fixés par les conditions initiales et l'environnement.",
+      technique: "T(t) = T_ext + (T₀−T_ext)e^(−t/τ). τ grand → exponentielle plus lente.",
+      bacLink: "Ch.16 — Effet de τ sur la courbe"
+    })
+  },
 ];
 
 // ─── CHAPITRE 17 : Phénomènes ondulatoires ───────────────────────────────────
@@ -284,6 +346,68 @@ export const quizCh17 = [
       trap: "Ne pas confondre avec I = 1 W/m² (seuil de douleur, L = 120 dB).",
       technique: "L = 10log(I/10⁻¹²). I = I₀ × 10^(L/10).",
       bacLink: "Niveau sonore — seuil de référence"
+    })
+  },
+,
+  // ── Questions graphiques Ch.17 ────────────────────────────────────────
+  {
+    id: 'ch17_g1', type: 11, chapter: 17,
+    question: "Sur cette figure de diffraction par une fente, la tache centrale est plus large que les taches secondaires. Comment évolue sa largeur si on RÉDUIT la largeur a de la fente de moitié ?",
+    graphData: { type: 'diffraction_pattern', a_um: 0.1, lambda_nm: 500 },
+    options: [
+      "La tache centrale est divisée par 2",
+      "La tache centrale est multipliée par 2 (L = 2Dλ/a : si a↓, L↑)",
+      "La tache centrale ne change pas",
+      "La tache centrale disparaît"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "L = 2Dλ/a. Si a est divisé par 2 → L est multiplié par 2. Fente plus étroite → diffraction plus étalée.",
+      explanation: "L = 2Dλ/a : a au dénominateur. Fente étroite → plus de diffraction → tache centrale plus large. Fente large → peu de diffraction → faisceau quasi-rectiligne.",
+      memo: "a↓ → θ = λ/a↑ → tache plus large. a↑ → tache plus étroite.",
+      trap: "Contre-intuitif : la fente plus petite donne une tache PLUS grande.",
+      technique: "L = 2Dθ = 2Dλ/a.",
+      bacLink: "Ch.17 — Diffraction : L = 2Dλ/a"
+    })
+  },
+  {
+    id: 'ch17_g2', type: 11, chapter: 17,
+    question: "Sur cette figure de franges d'interférence (trous de Young), si on augmente λ (lumière rouge au lieu de verte), les franges sont :",
+    graphData: { type: 'young_fringes', n_fringes: 7, i_mm: 2 },
+    options: [
+      "Plus serrées car λ est plus grand",
+      "Plus espacées car i = λD/b : λ↑ → i↑",
+      "Identiques car la couleur ne change pas i",
+      "Disparaissent car les interférences ne fonctionnent plus"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "i = λD/b. Si λ augmente (rouge > vert), alors i augmente → franges plus espacées.",
+      explanation: "Lumière rouge (λ ≈ 650 nm) → i plus grand que lumière verte (λ ≈ 550 nm). Les franges s'écartent.",
+      memo: "λ↑ → i↑ (franges plus espacées). λ rouge > λ verte → i_rouge > i_verte.",
+      trap: "Une longueur d'onde plus grande donne des franges PLUS écartées, pas plus serrées.",
+      technique: "i = λD/b. Comparer pour λ_vert ≈ 550 nm vs λ_rouge ≈ 650 nm.",
+      bacLink: "Ch.17 — Interfrange et longueur d'onde"
+    })
+  },
+  {
+    id: 'ch17_g3', type: 11, chapter: 17,
+    question: "Sur la figure de franges, comment mesurer l'interfrange i à partir du schéma ?",
+    graphData: { type: 'young_fringes', n_fringes: 9, i_mm: 3 },
+    options: [
+      "Mesurer la largeur d'une seule frange brillante",
+      "Mesurer la distance entre le centre de deux franges brillantes successives",
+      "Mesurer la distance entre le centre de la frange centrale et le bord du dispositif",
+      "Mesurer la largeur de la frange sombre"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "i = distance entre centres de deux franges brillantes successives (ou deux sombres successives).",
+      explanation: "Pour plus de précision : mesurer la distance entre N franges et diviser par N. Ex : 5 interfranges = 10 mm → i = 2 mm.",
+      memo: "i = distance entre deux maxima (ou deux minima) successifs.",
+      trap: "La largeur d'UNE frange brillante ≠ i. L'interfrange va du centre d'une brillante au centre de la suivante.",
+      technique: "Mesure sur N interfranges pour réduire l'erreur : i = L_N/N.",
+      bacLink: "Ch.17 — Mesure de l'interfrange"
     })
   },
 ];
@@ -430,6 +554,68 @@ export const quizCh18 = [
       bacLink: "Rôle de l'oculaire — loupe"
     })
   },
+,
+  // ── Questions graphiques Ch.18 ────────────────────────────────────────
+  {
+    id: 'ch18_g1', type: 11, chapter: 18,
+    question: "Sur ce schéma d'orbite elliptique de Kepler, où la planète va-t-elle le plus vite ?",
+    graphData: { type: 'kepler_orbit' },
+    options: [
+      "À l'aphélie (plus loin de l'astre central)",
+      "Au périhélie (plus proche de l'astre central)",
+      "À mi-parcours de l'ellipse",
+      "La vitesse est constante sur toute l'orbite"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "Au périhélie : la planète est plus proche → gravitation plus forte → vitesse plus grande (2ème loi de Kepler : aires égales).",
+      explanation: "2ème loi de Kepler : le rayon vecteur balaye des aires égales en temps égaux. Près du Soleil, le rayon est court → la planète doit aller plus vite pour balayer la même aire.",
+      memo: "Périhélie → plus proche → plus rapide. Aphélie → plus loin → plus lent.",
+      trap: "La vitesse n'est constante QUE pour une orbite circulaire (MCU).",
+      technique: "Les zones colorées de même surface sur le schéma correspondent au même ΔT.",
+      bacLink: "Ch.13 — 2ème loi de Kepler, loi des aires"
+    })
+  },
+  {
+    id: 'ch18_g2', type: 11, chapter: 18,
+    question: "Sur le schéma d'orbite, identifier le demi-grand axe a et son rôle dans la 3ème loi de Kepler.",
+    graphData: { type: 'kepler_orbit' },
+    options: [
+      "a = rayon de l'orbite circulaire (orbite non elliptique)",
+      "a = demi-grand axe de l'ellipse, utilisé dans T²/a³ = 4π²/(GM)",
+      "a = distance périhélie-aphélie",
+      "a = altitude maximale du satellite"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "a = demi-grand axe de l'ellipse. C'est ce 'a' qui intervient dans la 3ème loi : T²/a³ = 4π²/(GM).",
+      explanation: "Pour une ellipse : a = demi-grand axe. La 3ème loi utilise a, pas le rayon (valable seulement pour les orbites circulaires où a = r).",
+      memo: "3ème loi : T²/a³ = cste. a = demi-grand axe (= r pour orbite circulaire).",
+      trap: "Pour orbite circulaire : a = r. Pour ellipse : a ≠ r. Le problème utilise souvent les deux.",
+      technique: "Si orbite circulaire : a = r → T²/r³ = 4π²/(GM).",
+      bacLink: "Ch.13 — 3ème loi de Kepler, demi-grand axe"
+    })
+  },
+  {
+    id: 'ch18_g3', type: 11, chapter: 18,
+    question: "Sur le schéma d'orbite, les zones hachurées représentent des aires balayées en des durées égales Δt. Qu'est-ce que cela implique pour la vitesse ?",
+    graphData: { type: 'kepler_orbit' },
+    options: [
+      "La vitesse est constante car les durées sont égales",
+      "La vitesse varie : plus grande au périhélie (rayon court), plus faible à l'aphélie",
+      "La durée de révolution est proportionnelle à la vitesse",
+      "Les aires sont différentes car la vitesse varie"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "Aires égales en temps égaux → quand r est petit (périhélie), v doit être grande pour balayer la même aire. Quand r est grand (aphélie), v est faible.",
+      explanation: "Conservation du moment cinétique : r × v = constante (orbite). Si r ↓ → v ↑ pour conserver r×v.",
+      memo: "2ème loi : r × v = cste → périhélie : r petite → v grande.",
+      trap: "Les aires sont ÉGALES (c'est la loi). Les vitesses sont DIFFÉRENTES.",
+      technique: "Raisonner sur L = m×r×v = constante (moment cinétique conservé).",
+      bacLink: "Ch.13 — Loi des aires, conservation moment cinétique"
+    })
+  },
 ];
 
 // ─── CHAPITRE 19 : Interaction lumière-matière ───────────────────────────────
@@ -574,10 +760,133 @@ export const quizCh19 = [
       bacLink: "Effet photoélectrique — révolution quantique"
     })
   },
+,
+  // ── Questions graphiques Ch.19 ────────────────────────────────────────
+  {
+    id: 'ch19_g1', type: 11, chapter: 19,
+    question: "Sur ce diagramme des niveaux d'énergie de l'hydrogène, quelle transition correspond à l'émission d'un photon ?",
+    graphData: { type: 'energy_levels' },
+    options: [
+      "Absorption : n=1 → n=2 (montée de niveau)",
+      "Émission : n=3 → n=2 (descente de niveau, photon émis)",
+      "Les deux transitions émettent un photon",
+      "Aucune transition n'émet de photon"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "Émission : n=3 → n=2. La descente d'un niveau supérieur vers un niveau inférieur libère un photon d'énergie hν = E₃ − E₂.",
+      explanation: "Absorption : niveau bas → niveau haut (photon absorbé). Émission : niveau haut → niveau bas (photon émis). hν = ΔE = E_supérieur − E_inférieur.",
+      memo: "Descente → émission. Montée → absorption. hν = ΔE entre niveaux.",
+      trap: "On ABSORBE un photon pour monter en énergie. On ÉMET pour descendre.",
+      technique: "Sens de la flèche : montante = absorption. Descendante = émission.",
+      bacLink: "Ch.19 — Transitions énergétiques, émission/absorption"
+    })
+  },
+  {
+    id: 'ch19_g2', type: 11, chapter: 19,
+    question: "Sur le diagramme des niveaux d'hydrogène, l'énergie de n=1 est −13,6 eV. Quelle est l'énergie minimale (ionisation) d'un photon pour arracher l'électron ?",
+    graphData: { type: 'energy_levels' },
+    options: [
+      "13,6 eV (énergie pour passer de n=1 à n=∞, soit E=0)",
+      "3,4 eV (énergie pour passer de n=1 à n=2)",
+      "1,51 eV (énergie de n=3)",
+      "0 eV car l'électron est libre"
+    ],
+    correctIndex: 0,
+    correction: buildCorrection({
+      answer: "Ionisation = passer de n=1 (−13,6 eV) à n=∞ (0 eV). Énergie minimale = 13,6 eV (photon UV).",
+      explanation: "Énergie d'ionisation = 0 − (−13,6) = 13,6 eV. Le photon doit avoir hν ≥ 13,6 eV pour ioniser l'atome d'hydrogène depuis son état fondamental.",
+      memo: "Ionisation H depuis n=1 : 13,6 eV. C'est le travail d'extraction de l'hydrogène.",
+      trap: "13,6 eV est l'énergie DE LIAISON (valeur absolue), pas une énergie négative.",
+      technique: "ΔE = E_final − E_initial = 0 − (−13,6) = +13,6 eV.",
+      bacLink: "Ch.19 — Énergie d'ionisation de l'hydrogène"
+    })
+  },
+  {
+    id: 'ch19_g3', type: 11, chapter: 19,
+    question: "Sur le diagramme, une transition n=4 → n=2 libère un photon. À quelle série spectrale appartient-elle et dans quel domaine du spectre ?",
+    graphData: { type: 'energy_levels' },
+    options: [
+      "Série de Lyman (UV) — transition vers n=1",
+      "Série de Balmer (visible) — transitions vers n=2, domaine visible",
+      "Série de Paschen (IR) — transitions vers n=3",
+      "Série de Brackett (micro-ondes)"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "Série de Balmer : toutes les transitions vers n=2. n=4→n=2 est dans le visible (rouge-violet).",
+      explanation: "Lyman : → n=1 (UV). Balmer : → n=2 (visible). Paschen : → n=3 (IR). La transition n=4→n=2 est dans le bleu visible.",
+      memo: "Balmer → n=2 → visible. C'est la série la plus connue du spectre de l'hydrogène.",
+      trap: "Ne pas confondre : la série dépend du niveau FINAL (destination), pas du niveau initial.",
+      technique: "Identifier le niveau d'arrivée → Lyman(n=1), Balmer(n=2), Paschen(n=3).",
+      bacLink: "Ch.19 — Séries spectrales de l'hydrogène"
+    })
+  },
 ];
 
 // ─── CHAPITRE 20 : Dynamique électrique (circuit RC) ─────────────────────────
 export const quizCh20 = [
+  // ── Questions graphiques Ch.20 ────────────────────────────────────────
+  {
+    id: 'ch20_g1', type: 11, chapter: 20,
+    question: "Sur cette courbe de CHARGE du condensateur, lire graphiquement τ à partir de la tangente à l'origine.",
+    graphData: { type: 'rc_charge', E: 10, tau: 1 },
+    options: [
+      "τ = abscisse où u_C = E/2 = 5 V",
+      "τ = abscisse où la tangente à l'origine coupe l'asymptote E",
+      "τ = abscisse où u_C ≈ 0,63E ≈ 6,3 V (les méthodes B et C donnent le même résultat)",
+      "τ = valeur de E"
+    ],
+    correctIndex: 2,
+    correction: buildCorrection({
+      answer: "Les méthodes B (tangente ∩ asymptote) et C (lecture à 0,63E) donnent exactement le même τ — ce sont deux façons de lire la même grandeur.",
+      explanation: "La tangente à l'origine coupe l'asymptote E en t = τ. À t = τ, u_C = E(1−e⁻¹) ≈ 0,632E. Ces deux méthodes sont équivalentes.",
+      memo: "τ : tangente origine ∩ asymptote = point à 0,63E. Deux méthodes, même résultat.",
+      trap: "u_C = E/2 correspond à t = τ×ln2 ≈ 0,693τ, pas à τ.",
+      technique: "Tracer la tangente en t=0 (pente = E/τ), chercher l'intersection avec y = E.",
+      bacLink: "Ch.20 — Détermination graphique de τ (charge)"
+    })
+  },
+  {
+    id: 'ch20_g2', type: 11, chapter: 20,
+    question: "Sur cette courbe de DÉCHARGE, identifier graphiquement τ et la valeur de u_C à t = τ.",
+    graphData: { type: 'rc_discharge', E: 10, tau: 1 },
+    options: [
+      "τ = abscisse où u_C = 0 V",
+      "τ = abscisse où la tangente à l'origine coupe l'axe t, et u_C(τ) ≈ 0,37E = 3,7 V",
+      "τ = abscisse où u_C = E/2 = 5 V",
+      "τ = abscisse où u_C = E = 10 V"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "τ = abscisse où la tangente origine coupe y=0, et u_C(τ) = E×e⁻¹ ≈ 0,37E = 3,7 V.",
+      explanation: "Décharge : u_C = E×e^(−t/τ). Tangente en t=0 : pente = −E/τ. Elle coupe y=0 en t=τ. À t=τ : u_C = E×e⁻¹ ≈ 0,368×E.",
+      memo: "Décharge, τ : tangente ∩ axe t = τ. u_C(τ) ≈ 0,37E.",
+      trap: "Charge : 0,63E à t=τ. Décharge : 0,37E à t=τ. Ne pas inverser.",
+      technique: "e⁻¹ ≈ 0,368 → 37% de E restant à t=τ.",
+      bacLink: "Ch.20 — Détermination graphique de τ (décharge)"
+    })
+  },
+  {
+    id: 'ch20_g3', type: 11, chapter: 20,
+    question: "En comparant les courbes de charge et décharge : si on double R (R→2R avec même C), comment le graphe évolue-t-il ?",
+    graphData: { type: 'rc_charge', E: 10, tau: 1 },
+    options: [
+      "La courbe est identique car E ne change pas",
+      "τ = RC double → la courbe monte plus lentement, τ est plus grand",
+      "La valeur finale E change",
+      "La courbe monte plus vite car R augmente le courant"
+    ],
+    correctIndex: 1,
+    correction: buildCorrection({
+      answer: "τ = RC. Si R double → τ double → la courbe s'étale horizontalement, la charge prend plus de temps.",
+      explanation: "τ = RC : plus R est grand, plus le courant initial i=E/R est faible, plus la charge est lente. La valeur finale E reste identique (dépend de la tension du générateur).",
+      memo: "R↑ → τ = RC↑ → charge/décharge plus lente. E final inchangé.",
+      trap: "Augmenter R ne change pas la valeur finale E (on atteint toujours E en régime permanent).",
+      technique: "i(0) = E/R : si R double, courant initial divisé par 2 → charge 2x plus lente.",
+      bacLink: "Ch.20 — Influence de R sur la constante de temps"
+    })
+  },
   {
     id: 'ch20_1', chapter: 20, type: 1,
     question: "La constante de temps d'un circuit RC est :",
