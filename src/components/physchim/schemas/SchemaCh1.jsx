@@ -1,6 +1,4 @@
 import React from 'react';
-
-import React from 'react';
 import Math from '../Math';
 
 const F = ({ e }) => <Math expr={e} />;
