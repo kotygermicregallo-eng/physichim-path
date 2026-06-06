@@ -67,9 +67,10 @@ export default function QuizSection() {
     } else {
       pool = ALL_QUIZ_DATA[selectedChapter] || [];
     }
+    const validPool = pool.filter(q => q && q.type !== undefined);
     const filter = MODE_FILTER[selectedMode];
-    const filtered = pool.filter(filter);
-    return filtered.length > 0 ? filtered : pool;
+    const filtered = validPool.filter(filter);
+    return filtered.length > 0 ? filtered : validPool;
   };
 
   const pool = buildPool();
