@@ -1,5 +1,6 @@
 // CorrectionPanel — 6-layer correction display
 import React, { useState } from 'react';
+import MathText from './MathText';
 
 const LAYERS = [
   { key: 'answer', icon: '✅', label: 'Réponse', color: '#34d399' },
@@ -33,7 +34,7 @@ export default function CorrectionPanel({ correction, isCorrect }) {
       {/* Answer always visible */}
       <div className="px-4 py-3" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <div className="text-xs font-semibold mb-1" style={{ color: '#34d399' }}>✅ Réponse correcte :</div>
-        <div className="text-sm" style={{ color: '#e7dcc8' }}>{correction.answer}</div>
+        <div className="text-sm" style={{ color: '#e7dcc8' }}><MathText text={correction.answer} /></div>
       </div>
 
       {/* Collapsible layers */}
@@ -58,7 +59,7 @@ export default function CorrectionPanel({ correction, isCorrect }) {
               {isOpen && (
                 <div className="px-4 pb-3" style={{ background: `${layer.color}05` }}>
                   <div className="text-sm leading-relaxed" style={{ color: '#cbd5e1', borderLeft: `2px solid ${layer.color}`, paddingLeft: '0.75rem' }}>
-                    {content}
+                    <MathText text={content} />
                   </div>
                 </div>
               )}

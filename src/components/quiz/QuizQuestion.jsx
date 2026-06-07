@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { QUESTION_TYPES } from './quizEngine';
 import CorrectionPanel from './CorrectionPanel';
 import QuizGraph from './QuizGraph';
+import MathText from './MathText';
 
 export default function QuizQuestion({ question, onAnswer, showCorrection }) {
   const [selected, setSelected] = useState(null);
@@ -40,7 +41,7 @@ export default function QuizQuestion({ question, onAnswer, showCorrection }) {
         </div>
 
         <p className="text-sm md:text-base leading-relaxed" style={{ color: '#e7dcc8' }}>
-          {question.question}
+          <MathText text={question.question} />
         </p>
 
         {/* Graph if present */}
@@ -110,7 +111,7 @@ export default function QuizQuestion({ question, onAnswer, showCorrection }) {
                   style={{ border: `1px solid ${borderColor}`, background: bgColor, color: textColor, cursor: answered ? 'default' : 'pointer' }}
                 >
                   <span className="font-mono mr-2 opacity-50" style={{ fontSize: '0.7rem' }}>{['A', 'B', 'C', 'D'][idx]})</span>
-                  {opt}
+                  <MathText text={opt} />
                   {answered && idx === question.correctIndex && <span className="float-right">✓</span>}
                   {answered && idx === selected && idx !== question.correctIndex && <span className="float-right">✗</span>}
                 </button>
