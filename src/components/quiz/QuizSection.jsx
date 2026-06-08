@@ -55,17 +55,42 @@ const MODE_FILTER = {
 };
 
 export default function QuizSection() {
-  const [selectedChapter, setSelectedChapter] = useState(null); // null = all chapters
+  // null = all chapters, Set of ids = multi-selection
+  const [selectedChapters, setSelectedChapters] = useState(null); // null = tous
   const [selectedMode, setSelectedMode] = useState('all');
   const [sessionActive, setSessionActive] = useState(false);
+
+  const availableChapters = chapters.filter(c => ALL_QUIZ_DATA[c.id]);
+
+  const toggleChapter = (id) => {
+    if (selectedChapters === null) {
+      // Was "all" → switch to single selection
+      setSelectedChapters(new Set([id]));
+    } else {
+      const next = new Set(selectedChapters);
+      if (next.has(id)) {
+        next.delete(id);
+        if (next.size === 0) setSelectedChapters(null); // back to all
+        else setSelectedChapters(next);
+      } else {
+        next.add(id);
+        setSelectedChapters(next);
+      }
+    }
+  };
+
+  const selectAll = () => setSelectedChapters(null);
 
   // Build question pool
   const buildPool = () => {
     let pool = [];
-    if (selectedChapter === null) {
+    if (selectedChapters === null) {
       Object.values(ALL_QUIZ_DATA).forEach(arr => pool.push(...arr));
     } else {
-      pool = ALL_QUIZ_DATA[selectedChapter] || [];
+      selectedChapters.forEach(id => {
+        const arr = ALL_QUIZ_DATA[id];
+        if (arr) pool.push(...arr);
+      });
     }
     const validPool = pool.filter(q => q && q.type !== undefined);
     const filter = MODE_FILTER[selectedMode];
@@ -74,7 +99,6 @@ export default function QuizSection() {
   };
 
   const pool = buildPool();
-  const availableChapters = chapters.filter(c => ALL_QUIZ_DATA[c.id]);
 
   if (sessionActive) {
     return <QuizSession questions={pool} onExit={() => setSessionActive(false)} />;
@@ -109,21 +133,39 @@ export default function QuizSection() {
 
       {/* Step 1: Chapter selection */}
       <div className="mb-6">
-        <h3 className="text-sm font-semibold mb-3" style={{ color: '#78716c', fontFamily: 'JetBrains Mono, monospace', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          1. Choisir le chapitre
-        </h3>
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-sm font-semibold" style={{ color: '#78716c', fontFamily: 'JetBrains Mono, monospace', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            1. Choisir les chapitres
+          </h3>
+          <div className="flex items-center gap-2">
+            {selectedChapters !== null && (
+              <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'rgba(200,144,47,0.15)', color: '#c8902f', border: '1px solid rgba(200,144,47,0.3)', fontFamily: 'JetBrains Mono' }}>
+                {selectedChapters.size} sélectionné{selectedChapters.size > 1 ? 's' : ''}
+              </span>
+            )}
+            {selectedChapters !== null && (
+              <button
+                onClick={selectAll}
+                className="text-xs px-2 py-0.5 rounded-lg transition-all"
+                style={{ color: '#64748b', border: '1px solid rgba(100,116,139,0.2)', background: 'rgba(100,116,139,0.06)' }}
+              >
+                Tout sélectionner
+              </button>
+            )}
+          </div>
+        </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
           {/* All chapters */}
           <button
-            onClick={() => setSelectedChapter(null)}
+            onClick={selectAll}
             className="px-3 py-3 rounded-xl text-left transition-all"
             style={{
-              border: selectedChapter === null ? '1px solid rgba(200,144,47,0.5)' : '1px solid rgba(255,255,255,0.08)',
-              background: selectedChapter === null ? 'rgba(200,144,47,0.12)' : 'rgba(255,255,255,0.02)',
+              border: selectedChapters === null ? '1px solid rgba(200,144,47,0.5)' : '1px solid rgba(255,255,255,0.08)',
+              background: selectedChapters === null ? 'rgba(200,144,47,0.12)' : 'rgba(255,255,255,0.02)',
             }}
           >
             <div className="text-lg mb-1">📚</div>
-            <div className="text-xs font-semibold" style={{ color: selectedChapter === null ? '#c8902f' : '#78716c', fontFamily: 'JetBrains Mono, monospace' }}>Tous chapitres</div>
+            <div className="text-xs font-semibold" style={{ color: selectedChapters === null ? '#c8902f' : '#78716c', fontFamily: 'JetBrains Mono, monospace' }}>Tous chapitres</div>
             <div className="text-xs mt-0.5" style={{ color: '#475569' }}>
               {Object.values(ALL_QUIZ_DATA).reduce((s, a) => s + a.length, 0)} questions
             </div>
@@ -131,11 +173,11 @@ export default function QuizSection() {
 
           {chapters.map(ch => {
             const hasData = !!ALL_QUIZ_DATA[ch.id];
-            const isSelected = selectedChapter === ch.id;
+            const isSelected = selectedChapters !== null && selectedChapters.has(ch.id);
             return (
               <button
                 key={ch.id}
-                onClick={() => hasData && setSelectedChapter(ch.id)}
+                onClick={() => hasData && toggleChapter(ch.id)}
                 className="px-3 py-3 rounded-xl text-left transition-all relative"
                 style={{
                   border: isSelected ? `1px solid ${ch.color}60` : hasData ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(255,255,255,0.04)',
@@ -144,8 +186,11 @@ export default function QuizSection() {
                   cursor: hasData ? 'pointer' : 'default',
                 }}
               >
+                {isSelected && (
+                  <div className="absolute top-2 right-2 w-4 h-4 rounded-full flex items-center justify-center text-xs" style={{ background: ch.color, color: '#0e1418' }}>✓</div>
+                )}
                 <div className="text-lg mb-1">{ch.icon}</div>
-                <div className="text-xs font-semibold truncate" style={{ color: isSelected ? ch.color : hasData ? '#94a3b8' : '#334155', fontFamily: 'JetBrains Mono, monospace' }}>
+                <div className="text-xs font-semibold truncate pr-5" style={{ color: isSelected ? ch.color : hasData ? '#94a3b8' : '#334155', fontFamily: 'JetBrains Mono, monospace' }}>
                   Ch. {ch.id} — {ch.title.split(' ').slice(0, 3).join(' ')}
                 </div>
                 <div className="text-xs mt-0.5" style={{ color: hasData ? '#475569' : '#1e293b' }}>
@@ -190,7 +235,12 @@ export default function QuizSection() {
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
             <div className="text-sm font-semibold" style={{ color: '#e7dcc8' }}>
-              {selectedChapter === null ? '📚 Tous les chapitres' : `Ch. ${selectedChapter} — ${chapters.find(c => c.id === selectedChapter)?.title}`}
+              {selectedChapters === null
+                ? '📚 Tous les chapitres'
+                : selectedChapters.size === 1
+                  ? `Ch. ${[...selectedChapters][0]} — ${chapters.find(c => c.id === [...selectedChapters][0])?.title}`
+                  : `📚 ${selectedChapters.size} chapitres sélectionnés`
+              }
             </div>
             <div className="text-xs mt-1" style={{ color: '#64748b', fontFamily: 'JetBrains Mono, monospace' }}>
               {pool.length} question{pool.length > 1 ? 's' : ''} disponible{pool.length > 1 ? 's' : ''} · Mode : {MODES.find(m => m.id === selectedMode)?.label}
