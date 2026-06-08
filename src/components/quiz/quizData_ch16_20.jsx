@@ -6,7 +6,7 @@ export const quizCh16 = [
     id: 'ch16_1', chapter: 16, type: 1,
     question: "La loi de refroidissement de Newton (en régime conducto-convectif) s'écrit :",
     options: ["φ = hS(T − T_ext)", "φ = hS(T_ext − T)", "φ = e/(λS)", "φ = mcΔT"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "φ = hS(T_ext − T)",
       explanation: "Le flux thermique reçu par le système est φ = hS(T_ext − T). Si T > T_ext, φ < 0 (l'objet perd de l'énergie).",
@@ -20,7 +20,7 @@ export const quizCh16 = [
     id: 'ch16_2', chapter: 16, type: 4,
     question: "Un objet se refroidit selon T(t) = T_ext + (T₀ − T_ext)e^(−t/τ). Si T₀ = 80°C, T_ext = 20°C, τ = 10 min, quelle est T à t = 10 min ?",
     options: ["62°C", "42,1°C", "50°C", "20°C"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "42,1°C",
       explanation: "T(τ) = 20 + (80−20)e⁻¹ = 20 + 60 × 0,368 = 20 + 22,1 = 42,1°C.",
@@ -34,7 +34,7 @@ export const quizCh16 = [
     id: 'ch16_3', chapter: 16, type: 2,
     question: "Le transfert thermique se fait spontanément du corps froid vers le corps chaud.",
     options: ["Vrai", "Faux"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "Faux",
       explanation: "Spontanément, la chaleur passe toujours du corps CHAUD vers le corps FROID. C'est le 2ème principe de la thermodynamique.",
@@ -48,7 +48,7 @@ export const quizCh16 = [
     id: 'ch16_4', chapter: 16, type: 1,
     question: "La résistance thermique d'une paroi d'épaisseur e, conductivité λ et surface S est :",
     options: ["R_th = λS/e", "R_th = e/(λS)", "R_th = eλ/S", "R_th = e/(λ)"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "R_th = e/(λS)",
       explanation: "R_th = e/(λS) en K/W. Analogie avec R électrique = ρL/S.",
@@ -62,7 +62,7 @@ export const quizCh16 = [
     id: 'ch16_5', chapter: 16, type: 19,
     question: "Comment déterminer graphiquement la constante de temps τ de refroidissement ?",
     options: ["Lecture de la valeur maximale", "La tangente à l'origine de T(t) coupe l'asymptote T_ext en t = τ", "La valeur de T à t = 5 min", "En cherchant T = T_ext/2"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "La tangente à l'origine de T(t) coupe l'asymptote T_ext en t = τ",
       explanation: "Méthode graphique standard : tracer la tangente en t = 0 à la courbe T(t). Elle intercepte l'asymptote horizontale T_ext à t = τ.",
@@ -76,7 +76,7 @@ export const quizCh16 = [
     id: 'ch16_6', chapter: 16, type: 16,
     question: "Quels sont les trois modes de transfert thermique ?",
     options: ["Conduction, convection, diffusion", "Conduction, convection, rayonnement", "Advection, conduction, rayonnement", "Convection, rayonnement, induction"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "Conduction, convection, rayonnement",
       explanation: "Conduction (solide-solide), convection (solide-fluide en mouvement), rayonnement (photons, sans milieu matériel).",
@@ -90,7 +90,7 @@ export const quizCh16 = [
     id: 'ch16_7', chapter: 16, type: 4,
     question: "τ = C/(hS). Un objet a C = 500 J/K, h = 20 W/(m²·K), S = 0,05 m². Quelle est τ ?",
     options: ["500 s", "250 s", "1000 s", "2 s"],
-    correct: 0,
+    correctIndex: 0,
     correction: buildCorrection({
       answer: "500 s",
       explanation: "τ = C/(hS) = 500/(20 × 0,05) = 500/1 = 500 s.",
@@ -104,7 +104,7 @@ export const quizCh16 = [
     id: 'ch16_8', chapter: 16, type: 5,
     question: "Augmenter l'épaisseur d'isolant d'un mur diminue le flux thermique qui le traverse.",
     options: ["Vrai", "Faux"],
-    correct: 0,
+    correctIndex: 0,
     correction: buildCorrection({
       answer: "Vrai",
       explanation: "R_th = e/(λS) : si e ↑ → R_th ↑ → φ = ΔT/R_th ↓. Plus l'isolant est épais, moins de chaleur passe.",
@@ -118,7 +118,7 @@ export const quizCh16 = [
     id: 'ch16_9', chapter: 16, type: 7,
     question: "La pente de la courbe T(t) en t=0 vaut dT/dt|₀. Qu'est-ce que cela donne pour τ ?",
     options: ["τ = T₀/(−dT/dt|₀)", "τ = (T₀−T_ext)/(−dT/dt|₀)", "τ = T_ext·(dT/dt|₀)", "τ = (dT/dt|₀)/T₀"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "τ = (T₀−T_ext)/(−dT/dt|₀)",
       explanation: "T(t) = T_ext + (T₀−T_ext)e^(−t/τ). dT/dt|₀ = −(T₀−T_ext)/τ → τ = (T₀−T_ext)/(−dT/dt|₀).",
@@ -132,7 +132,7 @@ export const quizCh16 = [
     id: 'ch16_10', chapter: 16, type: 1,
     question: "L'analogie thermique-électrique associe le flux thermique φ à :",
     options: ["La tension U", "L'intensité I", "La résistance R", "La charge Q"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "L'intensité I",
       explanation: "Analogie : φ (W) ↔ I (A), ΔT (K) ↔ U (V), R_th (K/W) ↔ R (Ω). Loi d'Ohm thermique : ΔT = R_th × φ.",
@@ -212,7 +212,7 @@ export const quizCh17 = [
     id: 'ch17_1', chapter: 17, type: 1,
     question: "L'interfrange dans le dispositif des trous de Young est :",
     options: ["i = λb/D", "i = λD/b", "i = bD/λ", "i = D/(λb)"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "i = λD/b",
       explanation: "L'interfrange i = λD/b, où λ = longueur d'onde, D = distance fentes-écran, b = séparation des fentes.",
@@ -226,7 +226,7 @@ export const quizCh17 = [
     id: 'ch17_2', chapter: 17, type: 4,
     question: "Trous de Young : λ = 600 nm, D = 2 m, b = 0,3 mm. Quelle est l'interfrange i ?",
     options: ["4 mm", "2 mm", "6 mm", "1 mm"],
-    correct: 0,
+    correctIndex: 0,
     correction: buildCorrection({
       answer: "4 mm",
       explanation: "i = λD/b = (600×10⁻⁹ × 2)/(0,3×10⁻³) = 1,2×10⁻⁶/3×10⁻⁴ = 4×10⁻³ m = 4 mm.",
@@ -240,7 +240,7 @@ export const quizCh17 = [
     id: 'ch17_3', chapter: 17, type: 2,
     question: "Les interférences constructives se produisent quand la différence de marche δ = nλ.",
     options: ["Vrai", "Faux"],
-    correct: 0,
+    correctIndex: 0,
     correction: buildCorrection({
       answer: "Vrai",
       explanation: "δ = nλ (n entier) → les ondes arrivent en phase → interférences constructives (frange brillante).",
@@ -254,7 +254,7 @@ export const quizCh17 = [
     id: 'ch17_4', chapter: 17, type: 1,
     question: "La diffraction est observable quand :",
     options: ["λ >> a (longueur d'onde très grande devant l'obstacle)", "λ ≈ a (longueur d'onde comparable à la taille de l'obstacle)", "λ << a", "Pour toutes les valeurs de λ"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "λ ≈ a",
       explanation: "La diffraction est maximale quand λ ≈ a. Si λ << a, la lumière passe presque en ligne droite.",
@@ -268,7 +268,7 @@ export const quizCh17 = [
     id: 'ch17_5', chapter: 17, type: 4,
     question: "Le niveau sonore passe de L₁ = 60 dB à L₂ = 90 dB. Par combien l'intensité a-t-elle été multipliée ?",
     options: ["30", "3", "1000", "100"],
-    correct: 2,
+    correctIndex: 2,
     correction: buildCorrection({
       answer: "1000",
       explanation: "ΔL = 90 − 60 = 30 dB = 10log(I₂/I₁) → log(I₂/I₁) = 3 → I₂/I₁ = 10³ = 1000.",
@@ -282,7 +282,7 @@ export const quizCh17 = [
     id: 'ch17_6', chapter: 17, type: 5,
     question: "En lumière blanche, toutes les franges d'interférence sont blanches.",
     options: ["Vrai", "Faux"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "Faux",
       explanation: "Seule la frange centrale (δ = 0 pour toutes λ) est blanche. Les autres franges sont irisées car chaque λ donne son propre interfrange.",
@@ -296,7 +296,7 @@ export const quizCh17 = [
     id: 'ch17_7', chapter: 17, type: 7,
     question: "Une fente de largeur a = 0,1 mm est éclairée par λ = 500 nm. À D = 3 m, quelle est la largeur de la tache centrale ?",
     options: ["3 mm", "30 mm", "15 mm", "6 mm"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "30 mm",
       explanation: "Largeur tache centrale L = 2Dλ/a = 2 × 3 × 500×10⁻⁹ / (0,1×10⁻³) = 3×10⁻³/10⁻⁴ = 30×10⁻³ m = 30 mm.",
@@ -310,7 +310,7 @@ export const quizCh17 = [
     id: 'ch17_8', chapter: 17, type: 16,
     question: "Qu'est-ce que l'effet Doppler ?",
     options: ["La déviation de la lumière par un obstacle", "La variation de fréquence perçue due au mouvement relatif source-observateur", "Les interférences entre deux sources", "L'atténuation du son avec la distance"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "La variation de fréquence perçue due au mouvement relatif source-observateur",
       explanation: "Si source et observateur se rapprochent → f perçue > f émise. S'ils s'éloignent → f perçue < f émise.",
@@ -324,7 +324,7 @@ export const quizCh17 = [
     id: 'ch17_9', chapter: 17, type: 19,
     question: "Pourquoi augmenter la séparation b entre les fentes diminue-t-elle l'interfrange i ?",
     options: ["Parce que les fentes sont plus éloignées donc les ondes interfèrent moins", "Parce que i = λD/b : b au dénominateur, si b ↑ → i ↓", "Parce que la longueur d'onde change", "Parce que D change"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "Parce que i = λD/b : b au dénominateur, si b ↑ → i ↓",
       explanation: "i = λD/b. Si b double, i est divisé par 2. Les franges se resserrent quand les fentes s'écartent.",
@@ -338,7 +338,7 @@ export const quizCh17 = [
     id: 'ch17_10', chapter: 17, type: 1,
     question: "L'intensité I₀ de référence pour le niveau sonore est :",
     options: ["1 W/m²", "10⁻¹² W/m²", "10⁻⁶ W/m²", "10⁻³ W/m²"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "10⁻¹² W/m²",
       explanation: "I₀ = 10⁻¹² W/m² est le seuil d'audibilité humain à 1000 Hz. L(dB) = 10log(I/I₀).",
@@ -418,7 +418,7 @@ export const quizCh18 = [
     id: 'ch18_1', chapter: 18, type: 1,
     question: "En réglage afocal, le grossissement d'une lunette est :",
     options: ["G = f₂'/f₁'", "G = f₁'/f₂'", "G = f₁' + f₂'", "G = f₁' × f₂'"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "G = f₁'/f₂'",
       explanation: "G = f₁'/f₂' où f₁' est la focale de l'objectif (grande) et f₂' est la focale de l'oculaire (petite).",
@@ -432,7 +432,7 @@ export const quizCh18 = [
     id: 'ch18_2', chapter: 18, type: 4,
     question: "Lunette afocale : f₁' = 90 cm, f₂' = 3 cm. Quel est le grossissement et la longueur de la lunette ?",
     options: ["G = 30, L = 93 cm", "G = 3, L = 87 cm", "G = 30, L = 87 cm", "G = 0,033, L = 93 cm"],
-    correct: 0,
+    correctIndex: 0,
     correction: buildCorrection({
       answer: "G = 30, L = 93 cm",
       explanation: "G = f₁'/f₂' = 90/3 = 30. L = f₁' + f₂' = 90 + 3 = 93 cm.",
@@ -446,7 +446,7 @@ export const quizCh18 = [
     id: 'ch18_3', chapter: 18, type: 2,
     question: "En réglage afocal, l'image intermédiaire formée par l'objectif se trouve dans le plan focal image de l'oculaire.",
     options: ["Vrai", "Faux"],
-    correct: 0,
+    correctIndex: 0,
     correction: buildCorrection({
       answer: "Vrai",
       explanation: "Condition afocale : F₁' ≡ F₂. L'image intermédiaire A₁B₁ est dans le plan focal image de L₁ ET dans le plan focal objet de L₂.",
@@ -460,7 +460,7 @@ export const quizCh18 = [
     id: 'ch18_4', chapter: 18, type: 1,
     question: "La relation de conjugaison pour une lentille mince convergente est :",
     options: ["1/OA' − 1/OA = 1/f'", "1/OA' + 1/OA = 1/f'", "OA' − OA = f'", "1/OA × OA' = f'"],
-    correct: 0,
+    correctIndex: 0,
     correction: buildCorrection({
       answer: "1/OA' − 1/OA = 1/f'",
       explanation: "1/OA' − 1/OA = 1/f' (relations algébriques avec O centre de la lentille). À respecter avec les signes.",
@@ -474,7 +474,7 @@ export const quizCh18 = [
     id: 'ch18_5', chapter: 18, type: 5,
     question: "Pour augmenter le grossissement d'une lunette, on doit augmenter la focale de l'oculaire.",
     options: ["Vrai", "Faux"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "Faux",
       explanation: "G = f₁'/f₂'. Pour augmenter G : DIMINUER f₂' (oculaire de plus courte focale = loupe plus puissante).",
@@ -488,7 +488,7 @@ export const quizCh18 = [
     id: 'ch18_6', chapter: 18, type: 16,
     question: "Qu'est-ce qu'un système optique afocal ?",
     options: ["Un système sans lentille", "Un système qui reçoit un faisceau de rayons parallèles et en sort un faisceau de rayons parallèles", "Un système à focale nulle", "Un système monoculaire"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "Un système qui reçoit un faisceau de rayons parallèles et en sort un faisceau de rayons parallèles",
       explanation: "Afocal = objet à l'infini donne image à l'infini. L'œil au repos (non accommodé) peut observer confortablement.",
@@ -502,7 +502,7 @@ export const quizCh18 = [
     id: 'ch18_7', chapter: 18, type: 7,
     question: "Un objet réel est placé à 30 cm d'une lentille convergente de focale f' = 10 cm. Où est l'image ?",
     options: ["À 15 cm", "À 30 cm", "À 10 cm", "À −15 cm"],
-    correct: 0,
+    correctIndex: 0,
     correction: buildCorrection({
       answer: "À 15 cm de l'autre côté",
       explanation: "1/OA' − 1/OA = 1/f'. OA = −30 cm (objet réel). 1/OA' = 1/10 + 1/(−30) = 1/10 − 1/30 = 2/30 → OA' = 15 cm.",
@@ -516,7 +516,7 @@ export const quizCh18 = [
     id: 'ch18_8', chapter: 18, type: 19,
     question: "Pourquoi l'objectif d'une lunette astronomique a-t-il une grande focale ?",
     options: ["Pour grossir directement l'image", "Pour collecter plus de lumière et former une image intermédiaire grande et lumineuse", "Pour réduire la longueur de la lunette", "Pour avoir un plus grand champ de vue"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "Pour collecter plus de lumière et former une image intermédiaire grande et lumineuse",
       explanation: "Grande f₁' → grand diamètre → collecte plus de lumière. Aussi : image intermédiaire plus grande (meilleur détail).",
@@ -530,7 +530,7 @@ export const quizCh18 = [
     id: 'ch18_9', chapter: 18, type: 1,
     question: "La longueur d'une lunette astronomique en réglage afocal est :",
     options: ["f₁' − f₂'", "f₁' × f₂'", "f₁' + f₂'", "f₁'/f₂'"],
-    correct: 2,
+    correctIndex: 2,
     correction: buildCorrection({
       answer: "f₁' + f₂'",
       explanation: "En réglage afocal, les foyers F₁' et F₂ sont confondus → L = OF₁' + F₂O₂ = f₁' + f₂'.",
@@ -544,7 +544,7 @@ export const quizCh18 = [
     id: 'ch18_10', chapter: 18, type: 2,
     question: "L'oculaire d'une lunette astronomique fonctionne comme une loupe.",
     options: ["Vrai", "Faux"],
-    correct: 0,
+    correctIndex: 0,
     correction: buildCorrection({
       answer: "Vrai",
       explanation: "L'oculaire est une loupe qui grossit l'image intermédiaire A₁B₁ formée par l'objectif.",
@@ -554,69 +554,8 @@ export const quizCh18 = [
       bacLink: "Rôle de l'oculaire — loupe"
     })
   },
-,
-  // ── Questions graphiques Ch.18 ────────────────────────────────────────
-  {
-    id: 'ch18_g1', type: 11, chapter: 18,
-    question: "Sur ce schéma d'orbite elliptique de Kepler, où la planète va-t-elle le plus vite ?",
-    graphData: { type: 'kepler_orbit' },
-    options: [
-      "À l'aphélie (plus loin de l'astre central)",
-      "Au périhélie (plus proche de l'astre central)",
-      "À mi-parcours de l'ellipse",
-      "La vitesse est constante sur toute l'orbite"
-    ],
-    correctIndex: 1,
-    correction: buildCorrection({
-      answer: "Au périhélie : la planète est plus proche → gravitation plus forte → vitesse plus grande (2ème loi de Kepler : aires égales).",
-      explanation: "2ème loi de Kepler : le rayon vecteur balaye des aires égales en temps égaux. Près du Soleil, le rayon est court → la planète doit aller plus vite pour balayer la même aire.",
-      memo: "Périhélie → plus proche → plus rapide. Aphélie → plus loin → plus lent.",
-      trap: "La vitesse n'est constante QUE pour une orbite circulaire (MCU).",
-      technique: "Les zones colorées de même surface sur le schéma correspondent au même ΔT.",
-      bacLink: "Ch.13 — 2ème loi de Kepler, loi des aires"
-    })
-  },
-  {
-    id: 'ch18_g2', type: 11, chapter: 18,
-    question: "Sur le schéma d'orbite, identifier le demi-grand axe a et son rôle dans la 3ème loi de Kepler.",
-    graphData: { type: 'kepler_orbit' },
-    options: [
-      "a = rayon de l'orbite circulaire (orbite non elliptique)",
-      "a = demi-grand axe de l'ellipse, utilisé dans T²/a³ = 4π²/(GM)",
-      "a = distance périhélie-aphélie",
-      "a = altitude maximale du satellite"
-    ],
-    correctIndex: 1,
-    correction: buildCorrection({
-      answer: "a = demi-grand axe de l'ellipse. C'est ce 'a' qui intervient dans la 3ème loi : T²/a³ = 4π²/(GM).",
-      explanation: "Pour une ellipse : a = demi-grand axe. La 3ème loi utilise a, pas le rayon (valable seulement pour les orbites circulaires où a = r).",
-      memo: "3ème loi : T²/a³ = cste. a = demi-grand axe (= r pour orbite circulaire).",
-      trap: "Pour orbite circulaire : a = r. Pour ellipse : a ≠ r. Le problème utilise souvent les deux.",
-      technique: "Si orbite circulaire : a = r → T²/r³ = 4π²/(GM).",
-      bacLink: "Ch.13 — 3ème loi de Kepler, demi-grand axe"
-    })
-  },
-  {
-    id: 'ch18_g3', type: 11, chapter: 18,
-    question: "Sur le schéma d'orbite, les zones hachurées représentent des aires balayées en des durées égales Δt. Qu'est-ce que cela implique pour la vitesse ?",
-    graphData: { type: 'kepler_orbit' },
-    options: [
-      "La vitesse est constante car les durées sont égales",
-      "La vitesse varie : plus grande au périhélie (rayon court), plus faible à l'aphélie",
-      "La durée de révolution est proportionnelle à la vitesse",
-      "Les aires sont différentes car la vitesse varie"
-    ],
-    correctIndex: 1,
-    correction: buildCorrection({
-      answer: "Aires égales en temps égaux → quand r est petit (périhélie), v doit être grande pour balayer la même aire. Quand r est grand (aphélie), v est faible.",
-      explanation: "Conservation du moment cinétique : r × v = constante (orbite). Si r ↓ → v ↑ pour conserver r×v.",
-      memo: "2ème loi : r × v = cste → périhélie : r petite → v grande.",
-      trap: "Les aires sont ÉGALES (c'est la loi). Les vitesses sont DIFFÉRENTES.",
-      technique: "Raisonner sur L = m×r×v = constante (moment cinétique conservé).",
-      bacLink: "Ch.13 — Loi des aires, conservation moment cinétique"
-    })
-  },
 ];
+
 
 // ─── CHAPITRE 19 : Interaction lumière-matière ───────────────────────────────
 export const quizCh19 = [
@@ -624,7 +563,7 @@ export const quizCh19 = [
     id: 'ch19_1', chapter: 19, type: 1,
     question: "L'énergie d'un photon est :",
     options: ["E = h/λ", "E = hν = hc/λ", "E = mc²", "E = hν²"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "E = hν = hc/λ",
       explanation: "E = hν = hc/λ avec h = 6,626×10⁻³⁴ J·s, ν la fréquence, λ la longueur d'onde.",
@@ -638,7 +577,7 @@ export const quizCh19 = [
     id: 'ch19_2', chapter: 19, type: 4,
     question: "Quelle est l'énergie (en eV) d'un photon de λ = 500 nm ? (h = 6,63×10⁻³⁴ J·s, c = 3×10⁸ m/s)",
     options: ["2,5 eV", "3,1 eV", "1,2 eV", "4,0 eV"],
-    correct: 0,
+    correctIndex: 0,
     correction: buildCorrection({
       answer: "2,5 eV",
       explanation: "E = hc/λ = (6,63×10⁻³⁴ × 3×10⁸)/(500×10⁻⁹) = 1,989×10⁻²⁵/5×10⁻⁷ = 3,98×10⁻¹⁹ J. En eV : 3,98×10⁻¹⁹/1,6×10⁻¹⁹ ≈ 2,49 eV ≈ 2,5 eV.",
@@ -652,7 +591,7 @@ export const quizCh19 = [
     id: 'ch19_3', chapter: 19, type: 2,
     question: "L'effet photoélectrique : doubler l'intensité lumineuse sans changer λ double l'énergie cinétique des électrons.",
     options: ["Vrai", "Faux"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "Faux",
       explanation: "E_c = hν − W_e dépend uniquement de la fréquence ν, pas de l'intensité. Doubler l'intensité double le nombre d'électrons émis, pas leur énergie.",
@@ -666,7 +605,7 @@ export const quizCh19 = [
     id: 'ch19_4', chapter: 19, type: 1,
     question: "La condition pour qu'il y ait effet photoélectrique est :",
     options: ["L'intensité doit être forte", "hν ≥ W_e (énergie du photon ≥ travail d'extraction)", "λ doit être dans le visible", "La durée d'exposition doit être longue"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "hν ≥ W_e",
       explanation: "hν ≥ W_e = hν_s. Si la fréquence est inférieure au seuil ν_s, aucun électron n'est émis quelle que soit l'intensité.",
@@ -680,7 +619,7 @@ export const quizCh19 = [
     id: 'ch19_5', chapter: 19, type: 4,
     question: "W_e = 2,0 eV (1 eV = 1,6×10⁻¹⁹ J, h = 6,63×10⁻³⁴ J·s, c = 3×10⁸ m/s). Quelle est la longueur d'onde seuil λ_s ?",
     options: ["620 nm", "310 nm", "248 nm", "496 nm"],
-    correct: 0,
+    correctIndex: 0,
     correction: buildCorrection({
       answer: "620 nm",
       explanation: "W_e = hc/λ_s → λ_s = hc/W_e = (6,63×10⁻³⁴ × 3×10⁸)/(2×1,6×10⁻¹⁹) = 1,989×10⁻²⁵/3,2×10⁻¹⁹ ≈ 6,21×10⁻⁷ m = 621 nm ≈ 620 nm.",
@@ -694,7 +633,7 @@ export const quizCh19 = [
     id: 'ch19_6', chapter: 19, type: 16,
     question: "Quelle est la différence entre effet photoélectrique et effet photovoltaïque ?",
     options: ["Ils sont identiques", "Photoélectrique : métal → e⁻ libre. Photovoltaïque : semi-conducteur → courant électrique", "Photovoltaïque : métal → e⁻. Photoélectrique : semi-conducteur", "L'un est quantique, l'autre non"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "Photoélectrique : métal → e⁻ libre. Photovoltaïque : semi-conducteur → courant électrique",
       explanation: "Photoélectrique : photon arrache un e⁻ d'un métal (e⁻ libre dans le vide). Photovoltaïque : photon crée une paire e⁻/trou dans un semi-conducteur → courant.",
@@ -708,7 +647,7 @@ export const quizCh19 = [
     id: 'ch19_7', chapter: 19, type: 5,
     question: "Plus la longueur d'onde est grande, plus le photon est énergétique.",
     options: ["Vrai", "Faux"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "Faux",
       explanation: "E = hc/λ : si λ ↑ → E ↓. Les photons UV (λ petite) sont plus énergétiques que les infrarouges (λ grande).",
@@ -722,7 +661,7 @@ export const quizCh19 = [
     id: 'ch19_8', chapter: 19, type: 7,
     question: "Un photon de λ = 200 nm frappe un métal de W_e = 4,5 eV. Quelle est l'énergie cinétique de l'électron émis ? (h = 6,63×10⁻³⁴, c = 3×10⁸, 1eV = 1,6×10⁻¹⁹ J)",
     options: ["≈ 1,7 eV", "≈ 3,1 eV", "≈ 6,2 eV", "≈ 0,8 eV"],
-    correct: 0,
+    correctIndex: 0,
     correction: buildCorrection({
       answer: "≈ 1,7 eV",
       explanation: "E_photon = hc/λ = (6,63e-34×3e8)/(200e-9) = 9,94e-19 J = 6,21 eV. E_c = E_photon − W_e = 6,21 − 4,5 = 1,71 eV ≈ 1,7 eV.",
@@ -736,7 +675,7 @@ export const quizCh19 = [
     id: 'ch19_9', chapter: 19, type: 1,
     question: "Le rendement d'une cellule photovoltaïque est défini par :",
     options: ["η = P_l/P_él", "η = P_él/P_l = P_él/(ε·S)", "η = λ/λ_s", "η = hν/W_e"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "η = P_él/P_l = P_él/(ε·S)",
       explanation: "η = P_électrique / P_lumineuse = P_él / (ε × S) où ε est l'éclairement en W/m² et S la surface.",
@@ -750,7 +689,7 @@ export const quizCh19 = [
     id: 'ch19_10', chapter: 19, type: 19,
     question: "Pourquoi la physique classique ne peut-elle pas expliquer l'effet photoélectrique ?",
     options: ["Parce que la lumière n'est pas une onde", "Parce que classiquement, l'énergie dépend de l'intensité : une lumière faible ne pourrait jamais éjecter un électron", "Parce que les électrons ne répondent pas aux ondes", "Parce que les métaux absorbent toute la lumière"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "Parce que classiquement, l'énergie dépend de l'intensité : une lumière faible ne pourrait jamais éjecter un électron",
       explanation: "Classiquement : E ∝ I (intensité). Avec une lumière UV faible et longue durée, on devrait accumuler assez d'énergie. Or, c'est faux : seule ν compte. Einstein (1905) : quantification en photons.",
@@ -891,7 +830,7 @@ export const quizCh20 = [
     id: 'ch20_1', chapter: 20, type: 1,
     question: "La constante de temps d'un circuit RC est :",
     options: ["τ = R/C", "τ = RC", "τ = √(RC)", "τ = 1/(RC)"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "τ = RC",
       explanation: "τ = RC avec R en ohms (Ω) et C en farads (F). τ est en secondes (s).",
@@ -905,7 +844,7 @@ export const quizCh20 = [
     id: 'ch20_2', chapter: 20, type: 1,
     question: "Lors de la charge d'un condensateur (u_C(0) = 0), la tension est :",
     options: ["u_C(t) = E·e^(−t/τ)", "u_C(t) = E(1 − e^(−t/τ))", "u_C(t) = E·(1 + e^(−t/τ))", "u_C(t) = E·t/τ"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "u_C(t) = E(1 − e^(−t/τ))",
       explanation: "Charge : u_C part de 0 et tend vers E. Solution : u_C(t) = E(1 − e^(−t/τ)).",
@@ -919,7 +858,7 @@ export const quizCh20 = [
     id: 'ch20_3', chapter: 20, type: 4,
     question: "R = 10 kΩ, C = 100 μF. Quelle est la constante de temps τ ?",
     options: ["0,1 s", "1 s", "10 s", "0,01 s"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "1 s",
       explanation: "τ = RC = 10×10³ × 100×10⁻⁶ = 10⁴ × 10⁻⁴ = 1 s.",
@@ -933,7 +872,7 @@ export const quizCh20 = [
     id: 'ch20_4', chapter: 20, type: 2,
     question: "À t = 5τ, on considère que le condensateur est pratiquement chargé.",
     options: ["Vrai", "Faux"],
-    correct: 0,
+    correctIndex: 0,
     correction: buildCorrection({
       answer: "Vrai",
       explanation: "À t = 5τ : u_C = E(1 − e⁻⁵) = E(1 − 0,0067) ≈ 0,993E soit 99,3% de E. Par convention, régime permanent atteint.",
@@ -947,7 +886,7 @@ export const quizCh20 = [
     id: 'ch20_5', chapter: 20, type: 5,
     question: "À t = 0 (condensateur déchargé, fermeture du circuit), le condensateur se comporte comme un circuit ouvert.",
     options: ["Vrai", "Faux"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "Faux",
       explanation: "À t = 0⁺ (condensateur déchargé), u_C = 0, ce qui est équivalent à un court-circuit. Le courant initial est maximal : i(0) = E/R.",
@@ -961,7 +900,7 @@ export const quizCh20 = [
     id: 'ch20_6', chapter: 20, type: 4,
     question: "À t = τ lors d'une charge de 0 à E = 10 V, quelle est la valeur de u_C ?",
     options: ["6,32 V", "3,68 V", "5 V", "10 V"],
-    correct: 0,
+    correctIndex: 0,
     correction: buildCorrection({
       answer: "6,32 V",
       explanation: "u_C(τ) = E(1 − e⁻¹) = 10 × (1 − 0,368) = 10 × 0,632 = 6,32 V.",
@@ -975,7 +914,7 @@ export const quizCh20 = [
     id: 'ch20_7', chapter: 20, type: 16,
     question: "Comment déterminer graphiquement τ à partir de la courbe u_C(t) de charge ?",
     options: ["Lire t quand u_C = E/2", "Tracer la tangente en t=0, lire l'abscisse de son intersection avec u_C = E", "Lire t quand u_C = 0,9E", "Calculer la pente maximale"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "Tracer la tangente en t=0, lire l'abscisse de son intersection avec u_C = E",
       explanation: "La tangente à l'origine a une pente E/τ. Elle coupe l'asymptote u_C = E exactement en t = τ.",
@@ -989,7 +928,7 @@ export const quizCh20 = [
     id: 'ch20_8', chapter: 20, type: 7,
     question: "L'équation différentielle du circuit RC en charge est :",
     options: ["RC·du_C/dt + u_C = 0", "RC·du_C/dt + u_C = E", "du_C/dt + RC·u_C = E", "RC·du_C/dt = E"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "RC·du_C/dt + u_C = E",
       explanation: "Loi des mailles : u_R + u_C = E → Ri + u_C = E → RC·du_C/dt + u_C = E.",
@@ -1003,7 +942,7 @@ export const quizCh20 = [
     id: 'ch20_9', chapter: 20, type: 19,
     question: "Pourquoi le courant diminue-t-il lors de la charge d'un condensateur ?",
     options: ["Parce que R diminue", "Parce que u_C augmente, donc u_R = E − u_C diminue, donc i = u_R/R diminue", "Parce que E diminue", "Parce que la capacité C change"],
-    correct: 1,
+    correctIndex: 1,
     correction: buildCorrection({
       answer: "Parce que u_C augmente, donc u_R = E − u_C diminue, donc i = u_R/R diminue",
       explanation: "Loi des mailles : E = u_R + u_C → u_R = E − u_C. Comme u_C ↑, u_R ↓ → i = u_R/R ↓.",
@@ -1017,7 +956,7 @@ export const quizCh20 = [
     id: 'ch20_10', chapter: 20, type: 1,
     question: "En régime permanent continu, un condensateur se comporte comme :",
     options: ["Un résistor de valeur C", "Un court-circuit (i = E/R)", "Un interrupteur ouvert (i = 0)", "Une source de tension"],
-    correct: 2,
+    correctIndex: 2,
     correction: buildCorrection({
       answer: "Un interrupteur ouvert (i = 0)",
       explanation: "En régime permanent, du_C/dt = 0 → i = C·du_C/dt = 0. Plus aucun courant ne circule : le condensateur est « plein ».",
