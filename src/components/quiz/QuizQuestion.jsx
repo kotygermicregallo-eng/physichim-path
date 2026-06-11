@@ -28,7 +28,7 @@ export default function QuizQuestion({ question, onAnswer, showCorrection }) {
   const isOpen = question.isOpen;
 
   return (
-    <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(34,211,238,0.12)' }}>
+    <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(79,209,197,0.12)' }}>
       {/* Question header */}
       <div className="px-5 pt-5 pb-3">
         <div className="flex items-center gap-2 mb-3">
@@ -62,7 +62,7 @@ export default function QuizQuestion({ question, onAnswer, showCorrection }) {
               rows={4}
               style={{
                 background: 'rgba(255,255,255,0.04)',
-                border: '1px solid rgba(34,211,238,0.2)',
+                border: '1px solid rgba(79,209,197,0.2)',
                 color: '#e2e8f0',
                 outline: 'none',
                 fontFamily: 'Inter, sans-serif'
@@ -72,7 +72,7 @@ export default function QuizQuestion({ question, onAnswer, showCorrection }) {
               <button
                 onClick={handleOpenSubmit}
                 className="text-sm px-4 py-2 rounded-xl font-medium transition-all"
-                style={{ background: 'linear-gradient(135deg, #22d3ee, #a855f7)', color: '#ffffff' }}
+                style={{ background: 'linear-gradient(135deg, #4fd1c5, #ee7f9d)', color: '#ffffff' }}
               >
                 Voir la correction →
               </button>
@@ -97,9 +97,9 @@ export default function QuizQuestion({ question, onAnswer, showCorrection }) {
                   textColor = '#f87171';
                 }
               } else if (selected === idx) {
-                borderColor = 'rgba(34,211,238,0.5)';
-                bgColor = 'rgba(34,211,238,0.08)';
-                textColor = '#22d3ee';
+                borderColor = 'rgba(79,209,197,0.5)';
+                bgColor = 'rgba(79,209,197,0.08)';
+                textColor = '#4fd1c5';
               }
 
               return (

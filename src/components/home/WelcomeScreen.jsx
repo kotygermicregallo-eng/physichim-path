@@ -6,12 +6,12 @@ import Atom3D from '../three/Atom3D';
 const totalFormulas = chapters.reduce((s, c) => s + c.formulas.length, 0);
 
 const SECTIONS = [
-  { id: 'cours', icon: '📚', title: 'Cours', desc: 'Fiches complètes des 20 chapitres : définitions, formules, démos, schémas', color: '#22d3ee' },
-  { id: 'exercices', icon: '✏️', title: 'Exercices', desc: "Base d'exercices corrigés classés par chapitre et difficulté", color: '#a855f7' },
-  { id: 'quiz', icon: '🧠', title: 'Quiz', desc: '600+ questions, 21 types, corrections détaillées en 6 couches', color: '#f472b6' },
+  { id: 'cours', icon: '📚', title: 'Cours', desc: 'Fiches complètes des 20 chapitres : définitions, formules, démos, schémas', color: '#4fd1c5' },
+  { id: 'exercices', icon: '✏️', title: 'Exercices', desc: "Base d'exercices corrigés classés par chapitre et difficulté", color: '#ee7f9d' },
+  { id: 'quiz', icon: '🧠', title: 'Quiz', desc: '600+ questions, 21 types, corrections détaillées en 6 couches', color: '#e8b44a' },
   { id: 'flashcards', icon: '🃏', title: 'Cartes', desc: 'Flashcards 3D pour mémoriser toutes les formules du programme', color: '#34d399' },
   { id: 'bac', icon: '🎯', title: 'Bac', desc: 'Entraînement type Bac : exercices chronométrés style annales', color: '#fbbf24' },
-  { id: 'sujets', icon: '📄', title: 'Sujets', desc: 'Sujets complets de Bac avec corrigés intégraux', color: '#67e8f9' },
+  { id: 'sujets', icon: '📄', title: 'Sujets', desc: 'Sujets complets de Bac avec corrigés intégraux', color: '#9ee8de' },
 ];
 
 export default function WelcomeScreen({ onSelect, onResume }) {
@@ -55,8 +55,8 @@ export default function WelcomeScreen({ onSelect, onResume }) {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3 + i * 0.15 }}
                 className="glass rounded-2xl px-5 py-3 text-center"
-                style={{ border: '1px solid rgba(34,211,238,0.2)' }}>
-                <div className="text-xl md:text-2xl font-bold neon-text" style={{ color: '#22d3ee', fontFamily: 'Orbitron, sans-serif' }}>{s.n}</div>
+                style={{ border: '1px solid rgba(79,209,197,0.2)' }}>
+                <div className="text-xl md:text-2xl font-bold neon-text" style={{ color: '#4fd1c5', fontFamily: 'Orbitron, sans-serif' }}>{s.n}</div>
                 <div className="text-xs" style={{ color: '#64748b', fontFamily: 'JetBrains Mono, monospace' }}>{s.label}</div>
               </motion.div>
             ))}
@@ -74,7 +74,7 @@ export default function WelcomeScreen({ onSelect, onResume }) {
             onClick={() => last && onResume(last)}
             disabled={!last}
             className="glass glass-hover rounded-2xl p-4 text-left flex items-center gap-4 transition-all"
-            style={{ border: '1px solid rgba(34,211,238,0.2)', cursor: last ? 'pointer' : 'default', opacity: last ? 1 : 0.55 }}>
+            style={{ border: '1px solid rgba(79,209,197,0.2)', cursor: last ? 'pointer' : 'default', opacity: last ? 1 : 0.55 }}>
             <span className="text-2xl shrink-0">🚀</span>
             <div className="min-w-0">
               <div className="text-sm font-semibold" style={{ color: '#e2e8f0' }}>
@@ -86,16 +86,16 @@ export default function WelcomeScreen({ onSelect, onResume }) {
                   : 'Ta dernière position sera mémorisée ici'}
               </div>
             </div>
-            {last && <span className="ml-auto text-lg shrink-0" style={{ color: '#22d3ee' }}>→</span>}
+            {last && <span className="ml-auto text-lg shrink-0" style={{ color: '#4fd1c5' }}>→</span>}
           </button>
 
           {/* Progression */}
-          <div className="glass rounded-2xl p-4" style={{ border: '1px solid rgba(168,85,247,0.2)' }}>
+          <div className="glass rounded-2xl p-4" style={{ border: '1px solid rgba(238,127,157,0.2)' }}>
             <div className="flex items-center justify-between mb-2">
               <div className="text-sm font-semibold flex items-center gap-2" style={{ color: '#e2e8f0' }}>
                 <span className="text-2xl">📊</span> Progression Bac
               </div>
-              <span className="text-xs font-bold" style={{ color: '#a855f7', fontFamily: 'Orbitron, sans-serif' }}>{progress}%</span>
+              <span className="text-xs font-bold" style={{ color: '#ee7f9d', fontFamily: 'Orbitron, sans-serif' }}>{progress}%</span>
             </div>
             <div className="h-2 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.06)' }}>
               <motion.div
@@ -103,7 +103,7 @@ export default function WelcomeScreen({ onSelect, onResume }) {
                 animate={{ width: `${progress}%` }}
                 transition={{ delay: 0.8, duration: 0.8 }}
                 className="h-full rounded-full"
-                style={{ background: 'linear-gradient(90deg, #22d3ee, #a855f7)', boxShadow: '0 0 12px rgba(34,211,238,0.5)' }} />
+                style={{ background: 'linear-gradient(90deg, #4fd1c5, #ee7f9d)', boxShadow: '0 0 12px rgba(79,209,197,0.5)' }} />
             </div>
             <div className="text-xs mt-2" style={{ color: '#64748b', fontFamily: 'JetBrains Mono, monospace' }}>
               {visited.length} / {chapters.length} chapitres consultés
@@ -145,7 +145,7 @@ export default function WelcomeScreen({ onSelect, onResume }) {
       </div>
 
       {/* Footer */}
-      <footer className="text-center py-6 px-4" style={{ color: '#475569', fontSize: '0.75rem', borderTop: '1px solid rgba(34,211,238,0.1)', fontFamily: 'JetBrains Mono, monospace' }}>
+      <footer className="text-center py-6 px-4" style={{ color: '#475569', fontSize: '0.75rem', borderTop: '1px solid rgba(79,209,197,0.1)', fontFamily: 'JetBrains Mono, monospace' }}>
         <p>Révision interactive Physique-Chimie Spécialité Terminale · Cours · Quiz · Flashcards · Annales Bac</p>
       </footer>
     </div>

@@ -83,7 +83,7 @@ function FormulaCard({ formula }) {
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div className="flex-1">
           <div className="text-xs mb-2" style={{ color: '#94a3b8' }}>{formula.name}</div>
-          <div className="text-base" style={{ color: '#38bdf8' }}>
+          <div className="text-base" style={{ color: '#4fd1c5' }}>
             <InlineMath text={formula.expr} />
           </div>
         </div>
@@ -145,7 +145,7 @@ export default function ChapterContent({ chapter }) {
           {chapter.demonstrations.map((d, i) => (
             <div key={i} className="demo-block">
               <div className="flex gap-3">
-                <span className="text-xs font-bold shrink-0 mt-0.5" style={{ color: '#f472b6', fontFamily: 'JetBrains Mono, monospace' }}>D{i + 1}</span>
+                <span className="text-xs font-bold shrink-0 mt-0.5" style={{ color: '#ee7f9d', fontFamily: 'JetBrains Mono, monospace' }}>D{i + 1}</span>
                 <p className="text-sm" style={{ color: '#cbd5e1' }}><InlineMath text={d} /></p>
               </div>
             </div>
@@ -172,7 +172,7 @@ export default function ChapterContent({ chapter }) {
         {/* Schéma enrichi bilan (si disponible) */}
         {RICH_SCHEMAS[chapter.id] && (
           <div className="mb-4">
-            <div className="text-xs font-semibold mb-2 px-1" style={{ color: '#22d3ee', fontFamily: 'JetBrains Mono, monospace' }}>
+            <div className="text-xs font-semibold mb-2 px-1" style={{ color: '#4fd1c5', fontFamily: 'JetBrains Mono, monospace' }}>
               📖 Schéma bilan — essentiel
             </div>
             {React.createElement(RICH_SCHEMAS[chapter.id])}

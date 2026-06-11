@@ -5,8 +5,8 @@ function build(THREE) {
   const group = new THREE.Group();
 
   // Nucleus: cluster of protons/neutrons
-  const protonMat = new THREE.MeshStandardMaterial({ color: 0x22d3ee, emissive: 0x0e7490, emissiveIntensity: 0.7 });
-  const neutronMat = new THREE.MeshStandardMaterial({ color: 0xa855f7, emissive: 0x6b21a8, emissiveIntensity: 0.5 });
+  const protonMat = new THREE.MeshStandardMaterial({ color: 0xe8e4dc, roughness: 0.35, metalness: 0.1 });
+  const neutronMat = new THREE.MeshStandardMaterial({ color: 0xcfc8bd, roughness: 0.4, metalness: 0.1 });
   const positions = [
     [0, 0, 0], [0.5, 0.2, 0.1], [-0.4, 0.3, -0.2], [0.2, -0.45, 0.3],
     [-0.3, -0.3, 0.35], [0.35, 0.1, -0.45], [-0.15, 0.5, 0.25], [0.1, -0.2, -0.5],
@@ -19,9 +19,10 @@ function build(THREE) {
 
   // Orbits + electrons
   const electrons = [];
-  const orbitMat = new THREE.LineBasicMaterial({ color: 0x22d3ee, transparent: true, opacity: 0.3 });
-  const eMat = new THREE.MeshStandardMaterial({ color: 0xf472b6, emissive: 0xbe185d, emissiveIntensity: 1.2 });
+  const ringColors = [0xee7f9d, 0xe8b44a, 0x4fd1c5]; // rose, or, teal — comme le logo
   [[0.5, 0.3], [Math.PI / 3, -0.5], [-Math.PI / 3, 1.2]].forEach(([rx, rz], i) => {
+    const orbitMat = new THREE.LineBasicMaterial({ color: ringColors[i], transparent: true, opacity: 0.55 });
+    const eMat = new THREE.MeshStandardMaterial({ color: ringColors[i], emissive: ringColors[i], emissiveIntensity: 0.8 });
     const r = 2.8 + i * 0.35;
     const pts = new THREE.EllipseCurve(0, 0, r, r * 0.55).getPoints(90).map(p => new THREE.Vector3(p.x, p.y, 0));
     const orbit = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts), orbitMat);

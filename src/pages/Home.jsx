@@ -65,20 +65,20 @@ export default function Home() {
   return (
     <div className="min-h-screen relative" style={{ zIndex: 1 }}>
       {/* Header */}
-      <header style={{ background: 'rgba(5,8,15,0.85)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(34,211,238,0.15)', position: 'sticky', top: 0, zIndex: 50, boxShadow: '0 4px 30px rgba(34,211,238,0.05)' }}>
+      <header style={{ background: 'rgba(10,12,34,0.85)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(79,209,197,0.15)', position: 'sticky', top: 0, zIndex: 50, boxShadow: '0 4px 30px rgba(79,209,197,0.05)' }}>
         <div className="max-w-screen-2xl mx-auto px-4 py-3 flex items-center justify-between gap-3 flex-wrap">
           <div className="flex items-center gap-3">
             <button
               className="md:hidden p-2 rounded-lg glass"
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              style={{ color: '#22d3ee' }}>
+              style={{ color: '#4fd1c5' }}>
               ☰
             </button>
             <button
               onClick={() => setActiveTab(null)}
               className="px-3 py-2 rounded-lg text-sm transition-all glass glass-hover"
               title="Retour à l'accueil"
-              style={{ color: '#22d3ee', border: '1px solid rgba(34,211,238,0.25)' }}>
+              style={{ color: '#4fd1c5', border: '1px solid rgba(79,209,197,0.25)' }}>
               ⌂
             </button>
             <div>
@@ -92,7 +92,7 @@ export default function Home() {
           </div>
 
           {/* Tab selector */}
-          <div className="flex gap-1 p-1 rounded-xl flex-wrap" style={{ background: 'rgba(5,8,15,0.8)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <div className="flex gap-1 p-1 rounded-xl flex-wrap" style={{ background: 'rgba(10,12,34,0.8)', border: '1px solid rgba(79,209,197,0.18)' }}>
             {TABS.map((tab) =>
               <button
                 key={tab.id}
@@ -105,7 +105,7 @@ export default function Home() {
           </div>
 
           <div className="hidden lg:flex items-center gap-2">
-            <span className="text-xs px-2 py-1 rounded-full animate-pulse-glow" style={{ background: 'rgba(34,211,238,0.08)', color: '#22d3ee', border: '1px solid rgba(34,211,238,0.3)', fontFamily: 'JetBrains Mono, monospace' }}>
+            <span className="text-xs px-2 py-1 rounded-full animate-pulse-glow" style={{ background: 'rgba(79,209,197,0.08)', color: '#4fd1c5', border: '1px solid rgba(79,209,197,0.3)', fontFamily: 'JetBrains Mono, monospace' }}>
               20 chapitres · {totalFormulas} formules · 600+ questions
             </span>
           </div>
@@ -140,9 +140,9 @@ export default function Home() {
             style={{
               width: '280px',
               minWidth: '280px',
-              background: 'rgba(5,8,15,0.7)',
+              background: 'rgba(10,12,34,0.7)',
               backdropFilter: 'blur(12px)',
-              borderRight: '1px solid rgba(34,211,238,0.1)',
+              borderRight: '1px solid rgba(79,209,197,0.1)',
               height: 'calc(100vh - 65px)',
               overflowY: 'auto',
               position: 'sticky',
@@ -166,15 +166,15 @@ export default function Home() {
                     onClick={() => { setActiveChapter(ch); setSidebarOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                     className={`chapter-nav-item w-full text-left px-3 py-2.5 rounded-xl flex items-start gap-2.5`}
                     style={{
-                      border: activeChapter.id === ch.id ? `1px solid rgba(34,211,238,0.4)` : '1px solid transparent',
-                      background: activeChapter.id === ch.id ? 'linear-gradient(135deg, rgba(34,211,238,0.12), rgba(168,85,247,0.08))' : 'transparent',
-                      boxShadow: activeChapter.id === ch.id ? '0 0 16px rgba(34,211,238,0.08)' : 'none'
+                      border: activeChapter.id === ch.id ? `1px solid rgba(79,209,197,0.4)` : '1px solid transparent',
+                      background: activeChapter.id === ch.id ? 'linear-gradient(135deg, rgba(79,209,197,0.12), rgba(238,127,157,0.08))' : 'transparent',
+                      boxShadow: activeChapter.id === ch.id ? '0 0 16px rgba(79,209,197,0.08)' : 'none'
                     }}>
                     <span className="text-base shrink-0 mt-0.5">{ch.icon}</span>
                     <div className="min-w-0">
                       <div
                         className="text-xs font-semibold truncate"
-                        style={{ color: activeChapter.id === ch.id ? '#22d3ee' : '#64748b', fontFamily: 'JetBrains Mono, monospace' }}>
+                        style={{ color: activeChapter.id === ch.id ? '#4fd1c5' : '#64748b', fontFamily: 'JetBrains Mono, monospace' }}>
                         Ch. {ch.id}
                       </div>
                       <div
@@ -199,7 +199,7 @@ export default function Home() {
           {/* Main content */}
           <main className="flex-1 min-w-0 px-4 md:px-8 py-8 opacity-100">
             {/* Chapter header */}
-            <div className="glass rounded-2xl p-6 mb-8 animate-fade-in" style={{ border: `1px solid rgba(34,211,238,0.18)` }}>
+            <div className="glass rounded-2xl p-6 mb-8 animate-fade-in" style={{ border: `1px solid rgba(79,209,197,0.18)` }}>
               <div className="flex items-start gap-4">
                 <div
                   className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0 animate-float"
@@ -214,10 +214,10 @@ export default function Home() {
                     {activeChapter.title}
                   </h2>
                   <div className="flex gap-2 mt-2 flex-wrap">
-                    <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'rgba(34,211,238,0.08)', color: '#22d3ee', border: '1px solid rgba(34,211,238,0.25)', fontFamily: 'JetBrains Mono, monospace' }}>
+                    <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'rgba(79,209,197,0.08)', color: '#4fd1c5', border: '1px solid rgba(79,209,197,0.25)', fontFamily: 'JetBrains Mono, monospace' }}>
                       {activeChapter.formulas.length} formules
                     </span>
-                    <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'rgba(168,85,247,0.08)', color: '#a855f7', border: '1px solid rgba(168,85,247,0.25)', fontFamily: 'JetBrains Mono, monospace' }}>
+                    <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'rgba(238,127,157,0.08)', color: '#ee7f9d', border: '1px solid rgba(238,127,157,0.25)', fontFamily: 'JetBrains Mono, monospace' }}>
                       {activeChapter.demonstrations.length} démos
                     </span>
                   </div>
@@ -231,9 +231,9 @@ export default function Home() {
                   disabled={activeChapter.id === 1}
                   className="text-xs px-3 py-1.5 rounded-lg transition-all"
                   style={{
-                    background: activeChapter.id === 1 ? 'rgba(255,255,255,0.02)' : 'rgba(34,211,238,0.06)',
+                    background: activeChapter.id === 1 ? 'rgba(255,255,255,0.02)' : 'rgba(79,209,197,0.06)',
                     color: activeChapter.id === 1 ? '#334155' : '#94a3b8',
-                    border: '1px solid rgba(34,211,238,0.12)',
+                    border: '1px solid rgba(79,209,197,0.12)',
                     cursor: activeChapter.id === 1 ? 'not-allowed' : 'pointer'
                   }}>
                   ← Précédent
@@ -243,9 +243,9 @@ export default function Home() {
                   disabled={activeChapter.id === 20}
                   className="text-xs px-3 py-1.5 rounded-lg transition-all"
                   style={{
-                    background: activeChapter.id === 20 ? 'rgba(255,255,255,0.02)' : 'rgba(34,211,238,0.06)',
+                    background: activeChapter.id === 20 ? 'rgba(255,255,255,0.02)' : 'rgba(79,209,197,0.06)',
                     color: activeChapter.id === 20 ? '#334155' : '#94a3b8',
-                    border: '1px solid rgba(34,211,238,0.12)',
+                    border: '1px solid rgba(79,209,197,0.12)',
                     cursor: activeChapter.id === 20 ? 'not-allowed' : 'pointer'
                   }}>
                   Suivant →
@@ -263,7 +263,7 @@ export default function Home() {
       <BackToTop />
 
       {/* Footer */}
-      <footer className="text-center py-8 px-4" style={{ color: '#475569', fontSize: '0.75rem', borderTop: '1px solid rgba(34,211,238,0.1)', marginTop: '4rem', fontFamily: 'JetBrains Mono, monospace' }}>
+      <footer className="text-center py-8 px-4" style={{ color: '#475569', fontSize: '0.75rem', borderTop: '1px solid rgba(79,209,197,0.1)', marginTop: '4rem', fontFamily: 'JetBrains Mono, monospace' }}>
         <p className="gradient-text font-bold mb-1" style={{ fontFamily: 'Orbitron, sans-serif', fontSize: '0.8rem' }}>⚛ PHYSCHIM·X</p>
         <p>Révision interactive Physique-Chimie Spécialité Terminale · Cours · Quiz · Flashcards · Annales Bac</p>
       </footer>

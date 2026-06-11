@@ -19,10 +19,10 @@ export default function ThreeScene({ build, height = 300, camera: camPos = [0, 3
     mount.appendChild(renderer.domElement);
 
     scene.add(new THREE.AmbientLight(0xffffff, 0.7));
-    const d1 = new THREE.DirectionalLight(0x67e8f9, 1.3);
+    const d1 = new THREE.DirectionalLight(0x9ee8de, 1.3);
     d1.position.set(5, 8, 6);
     scene.add(d1);
-    const d2 = new THREE.DirectionalLight(0xa855f7, 0.9);
+    const d2 = new THREE.DirectionalLight(0xee7f9d, 0.9);
     d2.position.set(-6, -4, -5);
     scene.add(d2);
 
