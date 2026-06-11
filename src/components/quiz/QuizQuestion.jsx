@@ -28,7 +28,7 @@ export default function QuizQuestion({ question, onAnswer, showCorrection }) {
   const isOpen = question.isOpen;
 
   return (
-    <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(200,144,47,0.12)' }}>
+    <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(34,211,238,0.12)' }}>
       {/* Question header */}
       <div className="px-5 pt-5 pb-3">
         <div className="flex items-center gap-2 mb-3">
@@ -40,7 +40,7 @@ export default function QuizQuestion({ question, onAnswer, showCorrection }) {
           </span>
         </div>
 
-        <p className="text-sm md:text-base leading-relaxed" style={{ color: '#e7dcc8' }}>
+        <p className="text-sm md:text-base leading-relaxed" style={{ color: '#e2e8f0' }}>
           <MathText text={question.question} />
         </p>
 
@@ -62,8 +62,8 @@ export default function QuizQuestion({ question, onAnswer, showCorrection }) {
               rows={4}
               style={{
                 background: 'rgba(255,255,255,0.04)',
-                border: '1px solid rgba(200,144,47,0.2)',
-                color: '#e7dcc8',
+                border: '1px solid rgba(34,211,238,0.2)',
+                color: '#e2e8f0',
                 outline: 'none',
                 fontFamily: 'Inter, sans-serif'
               }}
@@ -72,7 +72,7 @@ export default function QuizQuestion({ question, onAnswer, showCorrection }) {
               <button
                 onClick={handleOpenSubmit}
                 className="text-sm px-4 py-2 rounded-xl font-medium transition-all"
-                style={{ background: 'linear-gradient(135deg, #c8902f, #8b1e2d)', color: '#f3ead7' }}
+                style={{ background: 'linear-gradient(135deg, #22d3ee, #a855f7)', color: '#ffffff' }}
               >
                 Voir la correction →
               </button>
@@ -97,9 +97,9 @@ export default function QuizQuestion({ question, onAnswer, showCorrection }) {
                   textColor = '#f87171';
                 }
               } else if (selected === idx) {
-                borderColor = 'rgba(200,144,47,0.5)';
-                bgColor = 'rgba(200,144,47,0.08)';
-                textColor = '#c8902f';
+                borderColor = 'rgba(34,211,238,0.5)';
+                bgColor = 'rgba(34,211,238,0.08)';
+                textColor = '#22d3ee';
               }
 
               return (

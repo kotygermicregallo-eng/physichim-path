@@ -144,7 +144,7 @@ export default function ChapterContent({ chapter }) {
         {/* Schéma enrichi bilan (si disponible) */}
         {RICH_SCHEMAS[chapter.id] && (
           <div className="mb-4">
-            <div className="text-xs font-semibold mb-2 px-1" style={{ color: '#c8902f', fontFamily: 'JetBrains Mono, monospace' }}>
+            <div className="text-xs font-semibold mb-2 px-1" style={{ color: '#22d3ee', fontFamily: 'JetBrains Mono, monospace' }}>
               📖 Schéma bilan — essentiel
             </div>
             {React.createElement(RICH_SCHEMAS[chapter.id])}

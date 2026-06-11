@@ -18,7 +18,7 @@ function ExerciseCard({ ex }) {
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs px-2.5 py-1 rounded-lg font-medium transition-all hover:opacity-80"
-            style={{ background: 'rgba(200,144,47,0.15)', color: '#c8902f', border: '1px solid rgba(200,144,47,0.3)' }}
+            style={{ background: 'rgba(34,211,238,0.15)', color: '#22d3ee', border: '1px solid rgba(34,211,238,0.3)' }}
           >
             📄 Sujet
           </a>

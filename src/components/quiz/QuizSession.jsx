@@ -38,14 +38,14 @@ export default function QuizSession({ questions, onExit }) {
   if (sessionComplete) {
     return (
       <div className="max-w-2xl mx-auto py-8 px-4">
-        <div className="glass rounded-3xl p-8 text-center" style={{ border: '1px solid rgba(200,144,47,0.25)' }}>
+        <div className="glass rounded-3xl p-8 text-center" style={{ border: '1px solid rgba(34,211,238,0.25)' }}>
           <div className="text-5xl mb-4">
             {pct >= 80 ? '🏆' : pct >= 60 ? '⭐' : '📚'}
           </div>
-          <h2 className="text-2xl font-bold mb-2 gradient-text" style={{ fontFamily: 'Fraunces, serif' }}>
+          <h2 className="text-2xl font-bold mb-2 gradient-text" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
             Session terminée !
           </h2>
-          <div className="text-5xl font-bold my-4" style={{ color: pct >= 80 ? '#34d399' : pct >= 60 ? '#fbbf24' : '#f87171', fontFamily: 'Fraunces, serif' }}>
+          <div className="text-5xl font-bold my-4" style={{ color: pct >= 80 ? '#34d399' : pct >= 60 ? '#fbbf24' : '#f87171', fontFamily: 'Space Grotesk, sans-serif' }}>
             {pct}%
           </div>
           <div className="flex justify-center gap-6 text-sm mb-6">
@@ -64,7 +64,7 @@ export default function QuizSession({ questions, onExit }) {
               </div>
             )}
             <div className="text-center">
-              <div className="text-xl font-bold" style={{ color: '#c8902f' }}>{total}</div>
+              <div className="text-xl font-bold" style={{ color: '#22d3ee' }}>{total}</div>
               <div style={{ color: '#64748b' }}>Total</div>
             </div>
           </div>
@@ -73,7 +73,7 @@ export default function QuizSession({ questions, onExit }) {
           <div className="rounded-xl p-3 mb-6 text-sm" style={{
             background: pct >= 80 ? 'rgba(52,211,153,0.08)' : pct >= 60 ? 'rgba(251,191,36,0.08)' : 'rgba(248,113,113,0.08)',
             border: `1px solid ${pct >= 80 ? 'rgba(52,211,153,0.3)' : pct >= 60 ? 'rgba(251,191,36,0.3)' : 'rgba(248,113,113,0.3)'}`,
-            color: '#e7dcc8'
+            color: '#e2e8f0'
           }}>
             {pct >= 80 ? '🎯 Excellent ! Niveau Bac+. Maîtrise solide du chapitre.' : pct >= 60 ? '📈 Bon niveau. Revoir les erreurs et refaire le quiz.' : '📚 Revoir le cours, puis refaire le quiz. Les corrections sont tes meilleures alliées !'}
           </div>
@@ -82,7 +82,7 @@ export default function QuizSession({ questions, onExit }) {
             <button
               onClick={() => { setCurrentIdx(0); setAnswers([]); setScore(0); setSessionComplete(false); }}
               className="px-5 py-2.5 rounded-xl text-sm font-medium transition-all"
-              style={{ background: 'linear-gradient(135deg, #c8902f, #8b1e2d)', color: '#f3ead7' }}
+              style={{ background: 'linear-gradient(135deg, #22d3ee, #a855f7)', color: '#ffffff' }}
             >
               🔄 Recommencer
             </button>
@@ -115,7 +115,7 @@ export default function QuizSession({ questions, onExit }) {
         <div className="flex-1 h-2 rounded-full" style={{ background: 'rgba(255,255,255,0.08)' }}>
           <div
             className="h-2 rounded-full transition-all duration-500"
-            style={{ width: `${(currentIdx / total) * 100}%`, background: 'linear-gradient(90deg, #c8902f, #8b1e2d)' }}
+            style={{ width: `${(currentIdx / total) * 100}%`, background: 'linear-gradient(90deg, #22d3ee, #a855f7)' }}
           />
         </div>
         <span className="text-xs font-mono shrink-0" style={{ color: '#64748b' }}>
@@ -140,7 +140,7 @@ export default function QuizSession({ questions, onExit }) {
           <button
             onClick={handleNext}
             className="px-6 py-2.5 rounded-xl text-sm font-semibold transition-all"
-            style={{ background: 'linear-gradient(135deg, #c8902f, #8b1e2d)', color: '#f3ead7' }}
+            style={{ background: 'linear-gradient(135deg, #22d3ee, #a855f7)', color: '#ffffff' }}
           >
             {currentIdx < total - 1 ? 'Question suivante →' : 'Voir les résultats 🏆'}
           </button>

@@ -46,7 +46,7 @@ function ExerciseRow({ ex }) {
       <div className="flex gap-2 shrink-0">
         <a href={ex.url_sujet} target="_blank" rel="noopener noreferrer"
           className="text-xs px-2.5 py-1 rounded-lg font-medium hover:opacity-80 transition-opacity"
-          style={{ background: 'rgba(200,144,47,0.15)', color: '#c8902f', border: '1px solid rgba(200,144,47,0.3)' }}>
+          style={{ background: 'rgba(34,211,238,0.15)', color: '#22d3ee', border: '1px solid rgba(34,211,238,0.3)' }}>
           📄 Sujet
         </a>
         {ex.url_corrige && (
@@ -70,8 +70,8 @@ export default function BacEntrainement() {
   return (
     <div className="space-y-4">
       {/* Header */}
-      <div className="glass rounded-2xl p-6 mb-6" style={{ border: '1px solid rgba(200,144,47,0.18)' }}>
-        <h2 className="text-2xl font-bold mb-2" style={{ color: '#e7dcc8', fontFamily: 'Fraunces, serif' }}>
+      <div className="glass rounded-2xl p-6 mb-6" style={{ border: '1px solid rgba(34,211,238,0.18)' }}>
+        <h2 className="text-2xl font-bold mb-2" style={{ color: '#e2e8f0', fontFamily: 'Space Grotesk, sans-serif' }}>
           🎯 Bac Entraînement
         </h2>
         <p className="text-sm" style={{ color: '#94a3b8' }}>
@@ -86,9 +86,9 @@ export default function BacEntrainement() {
               onClick={() => setFilterNiveau(n)}
               className="text-xs px-3 py-1.5 rounded-lg font-medium transition-all"
               style={{
-                background: filterNiveau === n ? 'rgba(200,144,47,0.2)' : 'rgba(255,255,255,0.05)',
-                color: filterNiveau === n ? '#c8902f' : '#64748b',
-                border: filterNiveau === n ? '1px solid rgba(200,144,47,0.4)' : '1px solid rgba(255,255,255,0.08)',
+                background: filterNiveau === n ? 'rgba(34,211,238,0.2)' : 'rgba(255,255,255,0.05)',
+                color: filterNiveau === n ? '#22d3ee' : '#64748b',
+                border: filterNiveau === n ? '1px solid rgba(34,211,238,0.4)' : '1px solid rgba(255,255,255,0.08)',
                 fontFamily: 'JetBrains Mono, monospace'
               }}
             >
@@ -107,8 +107,8 @@ export default function BacEntrainement() {
           <div
             key={ch.id}
             style={{
-              background: isOpen ? 'rgba(200,144,47,0.06)' : 'rgba(255,255,255,0.03)',
-              border: `1px solid ${isOpen ? 'rgba(200,144,47,0.28)' : 'rgba(255,255,255,0.08)'}`,
+              background: isOpen ? 'rgba(34,211,238,0.06)' : 'rgba(255,255,255,0.03)',
+              border: `1px solid ${isOpen ? 'rgba(34,211,238,0.28)' : 'rgba(255,255,255,0.08)'}`,
               borderRadius: '0.875rem',
               overflow: 'hidden',
               transition: 'all 0.2s ease'
@@ -121,7 +121,7 @@ export default function BacEntrainement() {
               <div className="flex items-center gap-3 min-w-0">
                 <span className="text-xl shrink-0">{chapterIcons[ch.id] || '📚'}</span>
                 <div className="min-w-0">
-                  <div className="text-sm font-semibold truncate" style={{ color: isOpen ? '#c8902f' : '#e2e8f0' }}>
+                  <div className="text-sm font-semibold truncate" style={{ color: isOpen ? '#22d3ee' : '#e2e8f0' }}>
                     {ch.titre}
                   </div>
                   <div className="text-xs mt-0.5" style={{ color: '#475569', fontFamily: 'JetBrains Mono, monospace' }}>

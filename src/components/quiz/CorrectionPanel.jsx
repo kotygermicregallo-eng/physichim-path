@@ -8,7 +8,7 @@ const LAYERS = [
   { key: 'memo', icon: '🧠', label: 'Astuce mémo', color: '#a78bfa' },
   { key: 'trap', icon: '🪤', label: 'Piège à éviter', color: '#f87171' },
   { key: 'technique', icon: '⚙️', label: 'Technique de résolution', color: '#fbbf24' },
-  { key: 'bacLink', icon: '🎓', label: 'Tag programme Bac', color: '#c8902f' },
+  { key: 'bacLink', icon: '🎓', label: 'Tag programme Bac', color: '#22d3ee' },
 ];
 
 export default function CorrectionPanel({ correction, isCorrect }) {

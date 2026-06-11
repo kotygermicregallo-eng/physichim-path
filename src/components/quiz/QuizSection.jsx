@@ -107,8 +107,8 @@ export default function QuizSection() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Header */}
-      <div className="glass rounded-2xl p-6 mb-6" style={{ border: '1px solid rgba(200,144,47,0.2)' }}>
-        <h2 className="text-2xl font-bold mb-1 gradient-text" style={{ fontFamily: 'Fraunces, serif' }}>
+      <div className="glass rounded-2xl p-6 mb-6" style={{ border: '1px solid rgba(34,211,238,0.2)' }}>
+        <h2 className="text-2xl font-bold mb-1 gradient-text" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
           🧠 Quiz Entraînement Bac
         </h2>
         <p className="text-sm mb-2" style={{ color: '#94a3b8' }}>
@@ -139,7 +139,7 @@ export default function QuizSection() {
           </h3>
           <div className="flex items-center gap-2">
             {selectedChapters !== null && (
-              <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'rgba(200,144,47,0.15)', color: '#c8902f', border: '1px solid rgba(200,144,47,0.3)', fontFamily: 'JetBrains Mono' }}>
+              <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'rgba(34,211,238,0.15)', color: '#22d3ee', border: '1px solid rgba(34,211,238,0.3)', fontFamily: 'JetBrains Mono' }}>
                 {selectedChapters.size} sélectionné{selectedChapters.size > 1 ? 's' : ''}
               </span>
             )}
@@ -160,12 +160,12 @@ export default function QuizSection() {
             onClick={selectAll}
             className="px-3 py-3 rounded-xl text-left transition-all"
             style={{
-              border: selectedChapters === null ? '1px solid rgba(200,144,47,0.5)' : '1px solid rgba(255,255,255,0.08)',
-              background: selectedChapters === null ? 'rgba(200,144,47,0.12)' : 'rgba(255,255,255,0.02)',
+              border: selectedChapters === null ? '1px solid rgba(34,211,238,0.5)' : '1px solid rgba(255,255,255,0.08)',
+              background: selectedChapters === null ? 'rgba(34,211,238,0.12)' : 'rgba(255,255,255,0.02)',
             }}
           >
             <div className="text-lg mb-1">📚</div>
-            <div className="text-xs font-semibold" style={{ color: selectedChapters === null ? '#c8902f' : '#78716c', fontFamily: 'JetBrains Mono, monospace' }}>Tous chapitres</div>
+            <div className="text-xs font-semibold" style={{ color: selectedChapters === null ? '#22d3ee' : '#78716c', fontFamily: 'JetBrains Mono, monospace' }}>Tous chapitres</div>
             <div className="text-xs mt-0.5" style={{ color: '#475569' }}>
               {Object.values(ALL_QUIZ_DATA).reduce((s, a) => s + a.length, 0)} questions
             </div>
@@ -214,13 +214,13 @@ export default function QuizSection() {
               onClick={() => setSelectedMode(mode.id)}
               className="px-4 py-3 rounded-xl text-left transition-all flex items-start gap-3"
               style={{
-                border: selectedMode === mode.id ? '1px solid rgba(200,144,47,0.45)' : '1px solid rgba(255,255,255,0.08)',
-                background: selectedMode === mode.id ? 'rgba(200,144,47,0.1)' : 'rgba(255,255,255,0.02)',
+                border: selectedMode === mode.id ? '1px solid rgba(34,211,238,0.45)' : '1px solid rgba(255,255,255,0.08)',
+                background: selectedMode === mode.id ? 'rgba(34,211,238,0.1)' : 'rgba(255,255,255,0.02)',
               }}
             >
               <div className="text-lg shrink-0">{mode.label.split(' ')[0]}</div>
               <div>
-                <div className="text-xs font-semibold" style={{ color: selectedMode === mode.id ? '#c8902f' : '#e2e8f0' }}>
+                <div className="text-xs font-semibold" style={{ color: selectedMode === mode.id ? '#22d3ee' : '#e2e8f0' }}>
                   {mode.label.split(' ').slice(1).join(' ')}
                 </div>
                 <div className="text-xs mt-0.5" style={{ color: '#475569' }}>{mode.desc}</div>
@@ -231,10 +231,10 @@ export default function QuizSection() {
       </div>
 
       {/* Step 3: Launch */}
-      <div className="glass rounded-2xl p-5" style={{ border: '1px solid rgba(200,144,47,0.18)' }}>
+      <div className="glass rounded-2xl p-5" style={{ border: '1px solid rgba(34,211,238,0.18)' }}>
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
-            <div className="text-sm font-semibold" style={{ color: '#e7dcc8' }}>
+            <div className="text-sm font-semibold" style={{ color: '#e2e8f0' }}>
               {selectedChapters === null
                 ? '📚 Tous les chapitres'
                 : selectedChapters.size === 1
@@ -251,8 +251,8 @@ export default function QuizSection() {
             disabled={pool.length === 0}
             className="px-6 py-3 rounded-xl font-semibold text-sm transition-all"
             style={{
-              background: pool.length > 0 ? 'linear-gradient(135deg, #c8902f, #8b1e2d)' : 'rgba(255,255,255,0.06)',
-              color: pool.length > 0 ? '#f3ead7' : '#475569',
+              background: pool.length > 0 ? 'linear-gradient(135deg, #22d3ee, #a855f7)' : 'rgba(255,255,255,0.06)',
+              color: pool.length > 0 ? '#ffffff' : '#475569',
               cursor: pool.length > 0 ? 'pointer' : 'not-allowed'
             }}
           >

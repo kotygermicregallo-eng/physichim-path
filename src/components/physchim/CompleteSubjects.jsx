@@ -40,8 +40,8 @@ export default function CompleteSubjects() {
   return (
     <div className="space-y-4">
       {/* Header */}
-      <div className="glass rounded-2xl p-6 mb-6" style={{ border: '1px solid rgba(200,144,47,0.18)' }}>
-        <h2 className="text-2xl font-bold mb-2" style={{ color: '#e7dcc8', fontFamily: 'Fraunces, serif' }}>
+      <div className="glass rounded-2xl p-6 mb-6" style={{ border: '1px solid rgba(34,211,238,0.18)' }}>
+        <h2 className="text-2xl font-bold mb-2" style={{ color: '#e2e8f0', fontFamily: 'Space Grotesk, sans-serif' }}>
           📄 Sujets Complets
         </h2>
         <p className="text-sm mb-4" style={{ color: '#94a3b8' }}>
@@ -54,9 +54,9 @@ export default function CompleteSubjects() {
             onClick={() => setFilterAnnee('all')}
             className="text-xs px-3 py-1.5 rounded-lg font-medium transition-all"
             style={{
-              background: filterAnnee === 'all' ? 'rgba(200,144,47,0.2)' : 'rgba(255,255,255,0.05)',
-              color: filterAnnee === 'all' ? '#c8902f' : '#64748b',
-              border: filterAnnee === 'all' ? '1px solid rgba(200,144,47,0.4)' : '1px solid rgba(255,255,255,0.08)',
+              background: filterAnnee === 'all' ? 'rgba(34,211,238,0.2)' : 'rgba(255,255,255,0.05)',
+              color: filterAnnee === 'all' ? '#22d3ee' : '#64748b',
+              border: filterAnnee === 'all' ? '1px solid rgba(34,211,238,0.4)' : '1px solid rgba(255,255,255,0.08)',
               fontFamily: 'JetBrains Mono, monospace'
             }}
           >
@@ -68,9 +68,9 @@ export default function CompleteSubjects() {
               onClick={() => setFilterAnnee(a)}
               className="text-xs px-3 py-1.5 rounded-lg font-medium transition-all"
               style={{
-                background: filterAnnee === a ? 'rgba(200,144,47,0.2)' : 'rgba(255,255,255,0.05)',
-                color: filterAnnee === a ? '#c8902f' : '#64748b',
-                border: filterAnnee === a ? '1px solid rgba(200,144,47,0.4)' : '1px solid rgba(255,255,255,0.08)',
+                background: filterAnnee === a ? 'rgba(34,211,238,0.2)' : 'rgba(255,255,255,0.05)',
+                color: filterAnnee === a ? '#22d3ee' : '#64748b',
+                border: filterAnnee === a ? '1px solid rgba(34,211,238,0.4)' : '1px solid rgba(255,255,255,0.08)',
                 fontFamily: 'JetBrains Mono, monospace'
               }}
             >
@@ -87,8 +87,8 @@ export default function CompleteSubjects() {
           <div
             key={idx}
             style={{
-              background: isOpen ? 'rgba(200,144,47,0.06)' : 'rgba(255,255,255,0.03)',
-              border: `1px solid ${isOpen ? 'rgba(200,144,47,0.28)' : 'rgba(255,255,255,0.08)'}`,
+              background: isOpen ? 'rgba(34,211,238,0.06)' : 'rgba(255,255,255,0.03)',
+              border: `1px solid ${isOpen ? 'rgba(34,211,238,0.28)' : 'rgba(255,255,255,0.08)'}`,
               borderRadius: '0.875rem',
               overflow: 'hidden',
               transition: 'all 0.2s ease'
@@ -99,11 +99,11 @@ export default function CompleteSubjects() {
               onClick={() => setOpenSubject(isOpen ? null : idx)}
             >
               <div className="flex items-center gap-3 min-w-0">
-                <div className="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold" style={{ background: 'rgba(200,144,47,0.12)', color: '#c8902f', border: '1px solid rgba(200,144,47,0.25)', fontFamily: 'JetBrains Mono, monospace' }}>
+                <div className="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold" style={{ background: 'rgba(34,211,238,0.12)', color: '#22d3ee', border: '1px solid rgba(34,211,238,0.25)', fontFamily: 'JetBrains Mono, monospace' }}>
                   {subj.annee.toString().slice(-2)}
                 </div>
                 <div className="min-w-0">
-                  <div className="text-sm font-semibold" style={{ color: isOpen ? '#c8902f' : '#e2e8f0' }}>
+                  <div className="text-sm font-semibold" style={{ color: isOpen ? '#22d3ee' : '#e2e8f0' }}>
                     {subj.session}
                   </div>
                   <div className="text-xs mt-0.5" style={{ color: '#475569', fontFamily: 'JetBrains Mono, monospace' }}>
@@ -118,7 +118,7 @@ export default function CompleteSubjects() {
                   rel="noopener noreferrer"
                   onClick={e => e.stopPropagation()}
                   className="text-xs px-2.5 py-1 rounded-lg font-medium hover:opacity-80 transition-opacity"
-                  style={{ background: 'rgba(200,144,47,0.15)', color: '#c8902f', border: '1px solid rgba(200,144,47,0.3)' }}
+                  style={{ background: 'rgba(34,211,238,0.15)', color: '#22d3ee', border: '1px solid rgba(34,211,238,0.3)' }}
                 >
                   📄 Sujet
                 </a>
@@ -146,7 +146,7 @@ export default function CompleteSubjects() {
                 <div className="space-y-2">
                   {subj.exercices.map((ex, i) => (
                     <div key={i} className="flex items-start gap-3 py-2 px-3 rounded-lg" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                      <span className="shrink-0 mt-0.5 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center" style={{ background: 'rgba(200,144,47,0.1)', color: '#c8902f', border: '1px solid rgba(200,144,47,0.25)' }}>
+                      <span className="shrink-0 mt-0.5 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center" style={{ background: 'rgba(34,211,238,0.1)', color: '#22d3ee', border: '1px solid rgba(34,211,238,0.25)' }}>
                         {i + 1}
                       </span>
                       <div className="flex-1 min-w-0">
