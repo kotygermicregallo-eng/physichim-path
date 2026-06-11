@@ -6,6 +6,7 @@ import CompleteSubjects from '../components/physchim/CompleteSubjects';
 import BacEntrainement from '../components/physchim/BacEntrainement';
 import QuizSection from '../components/quiz/QuizSection';
 import Flashcards from '../components/quiz/Flashcards';
+import WelcomeScreen from '../components/home/WelcomeScreen';
 
 const TABS = [
   { id: 'cours', label: '📚 Cours', desc: 'Fiches complètes' },
@@ -35,9 +36,31 @@ function BackToTop() {
 }
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('cours');
+  const [activeTab, setActiveTab] = useState(null);
   const [activeChapter, setActiveChapter] = useState(chapters[0]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Mémorise la dernière position + chapitres consultés
+  useEffect(() => {
+    if (!activeTab) return;
+    localStorage.setItem('px_last', JSON.stringify({ tab: activeTab, chapterId: activeChapter.id }));
+    if (activeTab === 'cours') {
+      const visited = JSON.parse(localStorage.getItem('px_visited') || '[]');
+      if (!visited.includes(activeChapter.id)) {
+        localStorage.setItem('px_visited', JSON.stringify([...visited, activeChapter.id]));
+      }
+    }
+  }, [activeTab, activeChapter]);
+
+  const handleResume = (last) => {
+    const ch = chapters.find((c) => c.id === last.chapterId);
+    if (ch) setActiveChapter(ch);
+    setActiveTab(last.tab);
+  };
+
+  if (!activeTab) {
+    return <WelcomeScreen onSelect={setActiveTab} onResume={handleResume} />;
+  }
 
   return (
     <div className="min-h-screen relative" style={{ zIndex: 1 }}>
@@ -50,6 +73,13 @@ export default function Home() {
               onClick={() => setSidebarOpen(!sidebarOpen)}
               style={{ color: '#22d3ee' }}>
               ☰
+            </button>
+            <button
+              onClick={() => setActiveTab(null)}
+              className="px-3 py-2 rounded-lg text-sm transition-all glass glass-hover"
+              title="Retour à l'accueil"
+              style={{ color: '#22d3ee', border: '1px solid rgba(34,211,238,0.25)' }}>
+              ⌂
             </button>
             <div>
               <h1 className="text-lg md:text-2xl font-bold gradient-text" style={{ fontFamily: 'Orbitron, sans-serif', letterSpacing: '0.04em' }}>
