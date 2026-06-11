@@ -1,5 +1,23 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import Math from '../physchim/Math';
+
+// Transforme les segments $...$ et $$...$$ d'un texte en composants KaTeX
+function mathify(children) {
+  return React.Children.map(children, (child) => {
+    if (typeof child !== 'string') return child;
+    const parts = child.split(/(\$\$[^$]+\$\$|\$[^$\n]+\$)/g);
+    return parts.map((p, i) => {
+      if (p.startsWith('$$') && p.endsWith('$$') && p.length > 4) {
+        return <Math key={i} expr={p.slice(2, -2)} display />;
+      }
+      if (p.startsWith('$') && p.endsWith('$') && p.length > 2) {
+        return <Math key={i} expr={p.slice(1, -1)} />;
+      }
+      return p;
+    });
+  });
+}
 
 export default function AgentBubble({ message }) {
   const isUser = message.role === 'user';
@@ -24,7 +42,13 @@ export default function AgentBubble({ message }) {
           <ReactMarkdown
             className="prose prose-sm prose-invert max-w-none [&>*:first-child]:mt-0 [&>*:last-child]:mb-0"
             components={{
-              p: ({ children }) => <p className="my-1.5">{children}</p>,
+              p: ({ children }) => <p className="my-1.5">{mathify(children)}</p>,
+              li: ({ children }) => <li className="my-0.5">{mathify(children)}</li>,
+              strong: ({ children }) => <strong>{mathify(children)}</strong>,
+              em: ({ children }) => <em>{mathify(children)}</em>,
+              h1: ({ children }) => <h1 className="text-base font-semibold my-2">{mathify(children)}</h1>,
+              h2: ({ children }) => <h2 className="text-base font-semibold my-2">{mathify(children)}</h2>,
+              h3: ({ children }) => <h3 className="text-sm font-semibold my-2">{mathify(children)}</h3>,
               ul: ({ children }) => <ul className="my-1.5 ml-4 list-disc">{children}</ul>,
               ol: ({ children }) => <ol className="my-1.5 ml-4 list-decimal">{children}</ol>,
               code: ({ children }) => <code className="px-1 py-0.5 rounded text-xs" style={{ background: 'rgba(79,209,197,0.12)', color: '#4fd1c5' }}>{children}</code>,
