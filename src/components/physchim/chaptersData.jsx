@@ -71,33 +71,7 @@ export const chapters = [
       "Si $Q_r = K(T)$ → équilibre atteint, la réaction n'évolue plus.",
       "Pile Daniell : anode (oxydation) = borne −, cathode (réduction) = borne +.",
     ],
-    schemas: [
-      {
-        type: 'mermaid',
-        caption: 'Critère d\'évolution spontanée',
-        chart: `graph LR
-    A["Qr calculé\nà l'état initial"] --> B{"Comparer\nQr et K(T)"}
-    B -->|"Qr < K(T)"| C["Sens direct →\nFormation des produits"]
-    B -->|"Qr = K(T)"| D["Équilibre atteint\nPas d'évolution"]
-    B -->|"Qr > K(T)"| E["Sens indirect ←\nFormation des réactifs"]
-    style C fill:#1a3a2a,stroke:#34d399,color:#34d399
-    style D fill:#1e293b,stroke:#fbbf24,color:#fbbf24
-    style E fill:#3a1a1a,stroke:#f87171,color:#f87171`,
-      },
-      {
-        type: 'mermaid',
-        caption: 'Fonctionnement d\'une pile électrochimique (Pile Daniell)',
-        chart: `graph LR
-    A["Anode Zn\n(oxydation)\nborne −"] -->|"e⁻ dans le fil"| B["Cathode Cu\n(réduction)\nborne +"]
-    A -->|"Zn → Zn²⁺ + 2e⁻"| A
-    B -->|"Cu²⁺ + 2e⁻ → Cu"| B
-    C["Pont salin\n(ions K⁺ / NO₃⁻)"] -.->|"neutralité électrique"| A
-    C -.-> B
-    style A fill:#1e3a5f,stroke:#38bdf8,color:#e2e8f0
-    style B fill:#1a3a2a,stroke:#34d399,color:#e2e8f0
-    style C fill:#1e293b,stroke:#a78bfa,color:#a78bfa`,
-      },
-    ],
+    schemas: [],
     tips: [
       "Si $K(T) > 10^4$ : réaction totale dans le sens direct. Si $K < 10^{-4}$ : totale dans le sens indirect.",
       "Le pont salin assure la neutralité électrique des solutions (ions spectateurs).",
@@ -108,7 +82,9 @@ export const chapters = [
       "Anode = oxydation = borne − de la pile. Cathode = réduction = borne +.",
       "Taux d'avancement $\\tau = x_f/x_{\\max}$ ; $\\tau = 1$ si totale.",
     ],
-    extras: [],
+    extras: [
+      { title: "Méthode — Prévoir le sens d'évolution spontanée", content: "1. Calculer Qr à l'état initial : Qr = ∏a(produits)^ν / ∏a(réactifs)^ν\n2. Comparer Qr à K(T) :\n   • Qr < K(T)  →  sens direct →  (formation des produits)\n   • Qr = K(T)  →  équilibre atteint, pas d'évolution\n   • Qr > K(T)  →  sens indirect ←  (formation des réactifs)\n3. Le système évolue jusqu'à atteindre Qr,éq = K(T)." },
+    ],
   },
   {
     id: 3,
@@ -181,14 +157,6 @@ export const chapters = [
     ],
     schemas: [
       {
-        type: 'mermaid',
-        caption: 'Diagramme de prédominance d\'un couple AH/A⁻',
-        chart: `graph LR
-    A["pH < pKA\n[AH] > [A⁻]\nForme acide prédomine"] -- "pH = pKA\n[AH] = [A⁻]" --> B["pH > pKA\n[A⁻] > [AH]\nForme basique prédomine"]
-    style A fill:#3a1a1a,stroke:#f87171,color:#fca5a5
-    style B fill:#1a3a2a,stroke:#34d399,color:#6ee7b7`,
-      },
-      {
         type: 'table',
         caption: 'Acide fort vs Acide faible',
         headers: ['Caractéristique', 'Acide fort', 'Acide faible'],
@@ -211,7 +179,9 @@ export const chapters = [
       "Prédominance : $\\text{pH} < pK_A$ → AH prédomine ; $\\text{pH} > pK_A$ → A⁻ prédomine.",
       "$pK_e = 14$ à 25°C : $[\\text{H}_3\\text{O}^+][\\text{HO}^-] = 10^{-14}$ mol²·L⁻².",
     ],
-    extras: [],
+    extras: [
+      { title: "Théorème — Diagramme de prédominance d'un couple AH/A⁻", content: "Pour un couple AH/A⁻ de constante pKA :\n• pH < pKA  →  [AH] > [A⁻]  →  la forme ACIDE prédomine\n• pH = pKA  →  [AH] = [A⁻]  →  demi-équivalence\n• pH > pKA  →  [A⁻] > [AH]  →  la forme BASIQUE prédomine\nSe retrouve avec Henderson-Hasselbalch : pH = pKA + log([A⁻]/[AH])." },
+    ],
   },
   {
     id: 5,
@@ -231,18 +201,6 @@ export const chapters = [
       "Titrage pH-métrique : courbe en S avec saut de pH à l'équivalence. Méthode des tangentes ou dérivée.",
     ],
     schemas: [
-      {
-        type: 'mermaid',
-        caption: 'Protocole d\'un titrage',
-        chart: `graph TD
-    A["Préparer la burette\navec la solution titrante cB connue"] --> B["Verser un volume VA\nde solution titrée cA inconnue"]
-    B --> C["Ajouter goutte à goutte\nen mesurant σ ou pH"]
-    C --> D["Détecter l'équivalence\nVE versé"]
-    D --> E["Calculer cA\ncA·VA/a = cB·VE/b"]
-    style A fill:#1e293b,stroke:#fbbf24,color:#e2e8f0
-    style D fill:#3a2a00,stroke:#fbbf24,color:#fbbf24
-    style E fill:#1a3a2a,stroke:#34d399,color:#34d399`,
-      },
       {
         type: 'table',
         caption: 'Conductivités molaires ioniques à 25°C (en mS·m²·mol⁻¹)',
@@ -276,7 +234,9 @@ export const chapters = [
       "Loi de Kohlrausch : $\\sigma = \\sum_i \\lambda_i [X_i]$.",
       "Conductivité ≠ Conductance : $\\sigma = G \\cdot l/S$.",
     ],
-    extras: [],
+    extras: [
+      { title: "Méthode — Protocole d'un titrage", content: "1. Remplir la burette graduée avec la solution titrante (cB connue)\n2. Prélever un volume VA précis de solution titrée (pipette jaugée)\n3. Ajouter goutte à goutte en mesurant σ (conductimétrie) ou pH (pH-métrie)\n4. Repérer l'équivalence : volume VE versé\n   • conductimétrie : intersection des deux demi-droites\n   • pH-métrie : saut de pH (méthode des tangentes ou de la dérivée)\n5. Exploiter : cA·VA/a = cB·VE/b  →  cA = b·cB·VE/(a·VA)" },
+    ],
   },
   {
     id: 6,
@@ -293,20 +253,6 @@ export const chapters = [
       "Augmenter le rendement : mettre un réactif en excès OU éliminer un produit au fur et à mesure.",
     ],
     schemas: [
-      {
-        type: 'mermaid',
-        caption: 'Stratégie d\'optimisation d\'une synthèse organique',
-        chart: `graph TD
-    A["Choisir la réaction\net les réactifs"] --> B["Optimiser la VITESSE\n(T°, concentration, catalyseur)"]
-    A --> C["Optimiser le RENDEMENT\n(excès réactif, élimination produit)"]
-    B --> D["Réaliser la synthèse\n(montage adapté)"]
-    C --> D
-    D --> E["Purifier le produit brut\n(distillation, recristallisation...)"]
-    E --> F["Identifier et caractériser\n(CCM, IR, RMN)"]
-    style A fill:#1e293b,stroke:#38bdf8,color:#e2e8f0
-    style D fill:#1e3a5f,stroke:#38bdf8,color:#38bdf8
-    style F fill:#1a3a2a,stroke:#34d399,color:#34d399`,
-      },
       {
         type: 'table',
         caption: 'Principales familles fonctionnelles organiques',
@@ -333,7 +279,9 @@ export const chapters = [
       "Optimisation vitesse : température, concentration, catalyseur.",
       "Optimisation rendement : excès réactif ou élimination produit.",
     ],
-    extras: [],
+    extras: [
+      { title: "Méthode — Stratégie d'une synthèse organique", content: "1. Choisir la réaction et les réactifs\n2. Optimiser la VITESSE : température, concentration, catalyseur\n3. Optimiser le RENDEMENT : réactif en excès, élimination d'un produit\n4. Réaliser la synthèse (montage adapté : chauffage à reflux...)\n5. Purifier le produit brut (distillation, recristallisation, lavage)\n6. Identifier et caractériser (CCM, banc Köfler, IR, RMN)" },
+    ],
   },
   {
     id: 7,
@@ -350,21 +298,6 @@ export const chapters = [
       "Catalyseur : apparaît comme réactif d'un AE, puis comme produit d'un autre (restitué).",
     ],
     schemas: [
-      {
-        type: 'mermaid',
-        caption: 'Structure d\'un mécanisme réactionnel',
-        chart: `graph TD
-    R["Réactifs"] -->|"Acte élémentaire 1\n(choc efficace)"| IR1["Intermédiaire\nréactionnel 1"]
-    IR1 -->|"Acte élémentaire 2"| IR2["Intermédiaire\nréactionnel 2"]
-    IR2 -->|"Acte élémentaire 3"| P["Produits"]
-    Cat["Catalyseur\n(introduit au début)"] -->|"Consommé AE1"| IR1
-    IR2 -->|"Restitué AE3"| Cat
-    style R fill:#1e293b,stroke:#a78bfa,color:#e2e8f0
-    style P fill:#1e293b,stroke:#34d399,color:#e2e8f0
-    style Cat fill:#3a2a00,stroke:#fbbf24,color:#fbbf24
-    style IR1 fill:#1e3a5f,stroke:#a78bfa,color:#a78bfa
-    style IR2 fill:#1e3a5f,stroke:#a78bfa,color:#a78bfa`,
-      },
       {
         type: 'table',
         caption: 'Sites donneurs et accepteurs',
@@ -417,16 +350,6 @@ export const chapters = [
           ['Désexcitation γ', 'photon γ', 'inchangé', 'inchangé', 'Noyau fils excité → fondamental'],
         ],
       },
-      {
-        type: 'mermaid',
-        caption: 'Datation au Carbone 14',
-        chart: `graph LR
-    A["Organisme vivant\ntaux ¹⁴C constant\n(échanges avec atm.)"] -->|"mort"| B["Taux ¹⁴C décroît\nN(t) = N₀ e^{−λt}"]
-    B --> C["Mesure de l'activité A\n(ou taux ¹⁴C actuel)"]
-    C --> D["Calcul de t\nt = −ln(A/A₀)/λ"]
-    style A fill:#1a3a2a,stroke:#34d399,color:#e2e8f0
-    style D fill:#3a2a00,stroke:#fbbf24,color:#fbbf24`,
-      },
     ],
     tips: [
       "t₁/₂ du carbone 14 ≈ 5730 ans → utile pour datation 0–50 000 ans.",
@@ -438,7 +361,9 @@ export const chapters = [
       "$t_{1/2} = \\ln 2 / \\lambda$ : temps pour que la moitié des noyaux se désintègre.",
       "Lois de conservation : A et Z conservés dans toute réaction nucléaire.",
     ],
-    extras: [],
+    extras: [
+      { title: "Méthode — Datation au carbone 14", content: "1. Organisme vivant : taux de ¹⁴C constant (échanges permanents avec l'atmosphère)\n2. À la mort : les échanges cessent, le taux décroît selon N(t) = N₀·e^(−λt)\n3. Mesurer l'activité actuelle A (ou le taux de ¹⁴C restant)\n4. Calculer l'âge : t = −ln(A/A₀)/λ = t₁/₂ · ln(A₀/A)/ln 2\nRappel : t₁/₂(¹⁴C) ≈ 5730 ans → datation fiable de 0 à 50 000 ans." },
+    ],
   },
   {
     id: 9,
@@ -454,20 +379,6 @@ export const chapters = [
       "Électrolyse de la pile Daniell inversée : en appliquant une tension extérieure, Cu se redépose sur la cathode et Zn se dissout à l'anode, mais maintenant c'est le générateur qui fournit les électrons.",
     ],
     schemas: [
-      {
-        type: 'mermaid',
-        caption: 'Comparaison Pile vs Électrolyse',
-        chart: `graph LR
-    subgraph Pile["🔋 Pile (spontanée)"]
-      P_A["Anode − (oxydation)"] -->|"e⁻ spontanés"| P_C["Cathode + (réduction)"]
-    end
-    subgraph Elec["⚡ Électrolyse (forcée)"]
-      E_G["Générateur"] -->|"impose e⁻"| E_C["Cathode − (réduction)"]
-      E_A["Anode + (oxydation)"] --> E_G
-    end
-    style P_A fill:#1e3a5f,stroke:#38bdf8,color:#e2e8f0
-    style E_G fill:#3a2a00,stroke:#fbbf24,color:#fbbf24`,
-      },
       {
         type: 'table',
         caption: 'Systèmes de stockage et conversion d\'énergie',
@@ -553,22 +464,7 @@ export const chapters = [
       "Plan incliné angle $\\alpha$ : axe $x$ (↗) → $ma_x = mg\\sin\\alpha - f$ ; axe $y$ (↑⊥) → $N = mg\\cos\\alpha$.",
       "Si ΣF = 0 → $a = 0$ → MRU ou immobile (cas particulier de la 2ème loi).",
     ],
-    schemas: [
-      {
-        type: 'mermaid',
-        caption: 'Méthode de résolution d\'un problème de mécanique',
-        chart: `graph TD
-    A["1. Définir le système\n(point matériel)"] --> B["2. Choisir le référentiel\ngaliléen + repère"]
-    B --> C["3. Bilan des forces extérieures\n(P, N, f, T, F...)"]
-    C --> D["4. Schéma des forces\n(diagramme corps libre)"]
-    D --> E["5. Appliquer PFD\nmΣa = ΣFext"]
-    E --> F["6. Projeter sur les axes\n(une équation par axe)"]
-    F --> G["7. Résoudre l'EDO\n(primitives + C.I.)"]
-    style A fill:#1e293b,stroke:#a78bfa,color:#e2e8f0
-    style E fill:#1e3a5f,stroke:#a78bfa,color:#a78bfa
-    style G fill:#1a3a2a,stroke:#34d399,color:#34d399`,
-      },
-    ],
+    schemas: [],
     tips: [
       "Toujours dessiner le diagramme corps libre AVANT d'écrire le PFD.",
       "Choisir les axes intelligemment : un axe selon la direction du mouvement.",
@@ -579,7 +475,9 @@ export const chapters = [
       "Immobile ou MRU → $\\sum\\vec{F} = \\vec{0}$ (principe d'inertie).",
       "Projeter sur chaque axe donne autant d'équations scalaires.",
     ],
-    extras: [],
+    extras: [
+      { title: "Méthode — Résolution d'un problème de mécanique (7 étapes)", content: "1. Définir le système (point matériel)\n2. Choisir le référentiel galiléen + repère (O, i⃗, j⃗)\n3. Faire le bilan des forces extérieures (P⃗, N⃗, f⃗, T⃗, F⃗...)\n4. Tracer le schéma des forces (diagramme corps libre)\n5. Appliquer le PFD : m·a⃗ = ΣF⃗ext\n6. Projeter sur les axes (une équation scalaire par axe)\n7. Résoudre l'équation différentielle (primitives + conditions initiales)" },
+    ],
   },
   {
     id: 12,
@@ -655,16 +553,6 @@ export const chapters = [
           ['3ème — Périodes', 'T²/a³ = cste pour tous les corps autour du même astre', 'T²/a³ = 4π²/(GM)'],
         ],
       },
-      {
-        type: 'mermaid',
-        caption: 'Calcul de l\'altitude d\'un satellite géostationnaire',
-        chart: `graph LR
-    A["T = 24 h\n= 86 400 s"] --> B["3ème loi de Kepler\nT²/r³ = 4π²/(GM_Terre)"]
-    B --> C["r³ = GMT²/(4π²)\nr ≈ 42 164 km"]
-    C --> D["Altitude h = r − R_Terre\nR_Terre ≈ 6 371 km\nh ≈ 35 786 km"]
-    style A fill:#1e293b,stroke:#fbbf24,color:#e2e8f0
-    style D fill:#3a2a00,stroke:#fbbf24,color:#fbbf24`,
-      },
     ],
     tips: [
       "$r$ = rayon de l'orbite = $R_{\\text{planète}}$ + altitude. Ne pas confondre avec le rayon de la planète.",
@@ -676,7 +564,9 @@ export const chapters = [
       "Orbite circulaire : $v = \\sqrt{GM/r}$ et $T^2 = 4\\pi^2 r^3/(GM)$.",
       "MCU car $dv/dt = 0$ (2ème loi de Kepler confirme aussi).",
     ],
-    extras: [],
+    extras: [
+      { title: "Méthode — Altitude d'un satellite géostationnaire", content: "1. T = 24 h = 86 400 s (même période que la rotation de la Terre)\n2. 3ème loi de Kepler : T²/r³ = 4π²/(G·M_Terre)\n3. Isoler r : r = ∛(G·M·T²/4π²) ≈ 42 164 km\n4. Altitude : h = r − R_Terre ≈ 42 164 − 6 371 ≈ 35 786 km\n⚠ Ne pas confondre r (rayon de l'orbite) et h (altitude) !" },
+    ],
   },
   {
     id: 14,
@@ -697,17 +587,6 @@ export const chapters = [
       "Torricelli : Bernoulli entre surface libre (A) et orifice (B) avec $s \\ll S$ → $v_B = \\sqrt{2gh}$.",
     ],
     schemas: [
-      {
-        type: 'mermaid',
-        caption: 'Loi de Bernoulli — conservation d\'énergie volumique',
-        chart: `graph LR
-    A["Énergie cinétique\n½ρv²"] --- B["+ Énergie potentielle\nρgz"]
-    B --- C["+ Énergie pressante\nP"]
-    C --> D["= Constante\nle long d'une\nligne de courant"]
-    E["Si v ↑\n(tube rétréci)"] -->|"Bernoulli"| F["P ↓\n(Effet Venturi)"]
-    style D fill:#1e3a5f,stroke:#38bdf8,color:#38bdf8
-    style F fill:#3a1a1a,stroke:#f472b6,color:#f472b6`,
-      },
       {
         type: 'table',
         caption: 'Résumé des formules de statique et dynamique des fluides',
@@ -795,17 +674,6 @@ export const chapters = [
     ],
     schemas: [
       {
-        type: 'mermaid',
-        caption: 'Les 3 modes de transfert thermique',
-        chart: `graph TD
-    A["Transfert thermique\n(source chaude → froide)"] --> B["Conduction\n(contact solide-solide)\nφ = (T₁−T₂)/Rth"]
-    A --> C["Convection\n(solide-fluide)\nφ = hS(Text−T)"]
-    A --> D["Rayonnement\n(photons)\n(hors programme BAC)"]
-    style B fill:#1e3a5f,stroke:#38bdf8,color:#e2e8f0
-    style C fill:#3a1a2a,stroke:#f472b6,color:#e2e8f0
-    style D fill:#1e293b,stroke:#475569,color:#64748b`,
-      },
-      {
         type: 'table',
         caption: 'Analogie thermique-électrique',
         headers: ['Électricité', 'Thermique'],
@@ -851,19 +719,6 @@ export const chapters = [
     ],
     schemas: [
       {
-        type: 'mermaid',
-        caption: 'Dispositif des trous de Young',
-        chart: `graph LR
-    S["Source\nmonochromatique\nλ"] --> F1["Trou S₁"]
-    S --> F2["Trou S₂\n(séparation b)"]
-    F1 -->|"δ = bx/D"| E["Écran à distance D\nfranges d'interférence"]
-    F2 --> E
-    I["Interfrange\ni = λD/b"] -.-> E
-    style S fill:#1e293b,stroke:#34d399,color:#e2e8f0
-    style E fill:#1e293b,stroke:#fbbf24,color:#e2e8f0
-    style I fill:#1a3a2a,stroke:#34d399,color:#34d399`,
-      },
-      {
         type: 'table',
         caption: 'Comparaison Diffraction / Interférences',
         headers: ['Phénomène', 'Cause', 'Formule', 'Conséquence si λ ↑'],
@@ -901,21 +756,7 @@ export const chapters = [
       "Condition afocale : $A_1B_1$ dans le plan focal image de L1 (objet à ∞) et dans le plan focal de L2 → image à ∞.",
       "$G = f_1'/f_2'$ : dans le triangle $O_1A_1B_1$ : $\\tan\\alpha = A_1B_1/f_1'$ ; dans $O_2A_1B_1$ : $\\tan\\alpha' = A_1B_1/f_2'$ → $G = \\alpha'/\\alpha = f_1'/f_2'$.",
     ],
-    schemas: [
-      {
-        type: 'mermaid',
-        caption: 'Trajet des rayons dans une lunette astronomique afocale',
-        chart: `graph LR
-    O["Objet à l'infini\n(rayons parallèles, angle α)"] --> L1["Objectif L₁\nfocale f'₁ (grande)"]
-    L1 -->|"image intermédiaire\nA₁B₁ dans F'₁ ≡ F₂"| Inter["Plan focal\n(F'₁ = F₂)"]
-    Inter --> L2["Oculaire L₂\nfocale f'₂ (petite)"]
-    L2 --> I["Image finale à l'infini\n(rayons parallèles, angle α')"]
-    G["G = f'₁/f'₂\nL = f'₁ + f'₂"] -.-> Inter
-    style O fill:#1e293b,stroke:#fbbf24,color:#e2e8f0
-    style Inter fill:#3a2a00,stroke:#fbbf24,color:#fbbf24
-    style I fill:#1e293b,stroke:#34d399,color:#e2e8f0`,
-      },
-    ],
+    schemas: [],
     tips: [
       "Pour augmenter $G$ : diminuer $f_2'$ (oculaire de plus courte focale) ou augmenter $f_1'$.",
       "Objectif = grande $f'$ (collecte lumière, grossissement 1). Oculaire = petite $f'$ (loupe).",
@@ -948,19 +789,6 @@ export const chapters = [
     ],
     schemas: [
       {
-        type: 'mermaid',
-        caption: 'Mécanisme de l\'effet photoélectrique',
-        chart: `graph TD
-    P["Photon\nhν"] --> C{"hν ≥ We ?"}
-    C -->|"OUI\nhν ≥ hνs"| E["Électron arraché\nEc = hν − We"]
-    C -->|"NON\nquelle que soit\nl'intensité"| N["Aucun électron\némis"]
-    E --> T["Tension d'arrêt\neUa = Ec,max"]
-    style P fill:#1e293b,stroke:#38bdf8,color:#e2e8f0
-    style C fill:#3a2a00,stroke:#fbbf24,color:#fbbf24
-    style E fill:#1a3a2a,stroke:#34d399,color:#34d399
-    style N fill:#3a1a1a,stroke:#f87171,color:#f87171`,
-      },
-      {
         type: 'table',
         caption: 'Comparaison Effet photoélectrique / Photovoltaïque / DEL',
         headers: ['Effet', 'Matériau', 'Conversion', 'Application'],
@@ -981,7 +809,9 @@ export const chapters = [
       "$E_c = h\\nu - W_e$ : énergie cinétique de l'électron arraché.",
       "DEL = inverse du photovoltaïque : énergie électrique → photon.",
     ],
-    extras: [],
+    extras: [
+      { title: "Méthode — Raisonnement sur l'effet photoélectrique", content: "1. Photon incident d'énergie E = hν = hc/λ\n2. Si hν ≥ We (= hνs) : un électron est arraché du métal\n   →  Ec = hν − We   (1 photon → 1 électron)\n3. Si hν < We : AUCUN électron émis, quelle que soit l'intensité\n4. Tension d'arrêt : e·Ua = Ec,max\nL'intensité lumineuse fixe le NOMBRE d'électrons (le courant), pas leur Ec." },
+    ],
   },
   {
     id: 20,
@@ -1013,17 +843,6 @@ export const chapters = [
           ['t = 5τ (régime permanent)', '≈ E', '≈ 0', 'Interrupteur ouvert'],
           ['t = τ (décharge)', '0,37 E', '−0,37 E/R', '—'],
         ],
-      },
-      {
-        type: 'mermaid',
-        caption: 'Circuit RC — charge et décharge',
-        chart: `graph LR
-    A["t = 0\nFermeture interrupteur\nuC(0) = 0"] -->|"Charge\nτ = RC"| B["t → ∞\nuC → E\ni → 0"]
-    C["uC(0) = E\nOuverture générateur"] -->|"Décharge\nτ = RC"| D["t → ∞\nuC → 0\ni → 0"]
-    E["Méthode tangente origine\nintersecte asymptote en t = τ"] -.-> B
-    style A fill:#1e3a5f,stroke:#a78bfa,color:#e2e8f0
-    style B fill:#1a3a2a,stroke:#34d399,color:#34d399
-    style D fill:#1e293b,stroke:#475569,color:#64748b`,
       },
     ],
     tips: [

@@ -1,69 +1,125 @@
 import React from 'react';
 
-// Circuit RC type Bac : générateur E, interrupteur 2 positions, R, C
+// Circuit RC complet : schéma électrique + courbes charge/décharge + formules (fusion schéma Bac + bilan)
+const C = { teal: '#4fd1c5', rose: '#ee7f9d', gold: '#e8b44a', green: '#34d399', txt: '#cbd5e1', mut: '#64748b', grid: 'rgba(79,209,197,0.08)' };
+
 export default function BacRC() {
-  const wire = { stroke: '#e2e8f0', strokeWidth: 2, fill: 'none' };
-  const label = { fill: '#22d3ee', fontSize: 13, fontFamily: 'JetBrains Mono, monospace' };
-  const small = { fill: '#94a3b8', fontSize: 11, fontFamily: 'JetBrains Mono, monospace' };
-
   return (
-    <svg viewBox="0 0 560 300" className="w-full" style={{ background: 'rgba(0,0,0,0.25)', borderRadius: '0.75rem' }}>
-      {/* ── Fils ── */}
-      <path d="M 80 240 L 80 160" {...wire} />
-      <path d="M 80 110 L 80 60 L 230 60" {...wire} />
-      <path d="M 290 60 L 480 60 L 480 110" {...wire} />
-      <path d="M 480 190 L 480 240 L 80 240" {...wire} />
-      {/* branche position 1 vers E */}
-      <path d="M 230 60 L 200 35" {...wire} stroke="#fbbf24" />
+    <div className="rounded-xl overflow-hidden" style={{ background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(79,209,197,0.15)' }}>
+      <svg viewBox="0 0 760 560" className="w-full h-auto" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+        <defs>
+          <marker id="rcArr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L7,3 L0,6 z" fill={C.gold} />
+          </marker>
+          <marker id="rcArrT" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L7,3 L0,6 z" fill={C.teal} />
+          </marker>
+        </defs>
 
-      {/* ── Générateur E (gauche) ── */}
-      <line x1="60" y1="160" x2="100" y2="160" stroke="#e2e8f0" strokeWidth="3" />
-      <line x1="70" y1="135" x2="90" y2="135" stroke="#e2e8f0" strokeWidth="2" />
-      <line x1="80" y1="160" x2="80" y2="135" stroke="none" />
-      <path d="M 80 135 L 80 110" {...wire} />
-      <path d="M 80 240 L 80 160" {...wire} />
-      <text x="38" y="152" {...label}>E</text>
-      <text x="104" y="133" {...small}>+</text>
-      <text x="104" y="168" {...small}>−</text>
+        {/* ───── Circuit (haut gauche) ───── */}
+        <text x="190" y="26" fill={C.teal} fontSize="13" fontWeight="bold" textAnchor="middle">Circuit RC (charge)</text>
+        {/* Fils */}
+        <path d="M60,60 H160 M220,60 H340 M340,60 V150 M340,205 V250 M340,250 H60 M60,250 V60" stroke={C.txt} strokeWidth="2" fill="none" />
+        {/* Générateur E */}
+        <line x1="45" y1="140" x2="75" y2="140" stroke={C.txt} strokeWidth="3" />
+        <line x1="52" y1="162" x2="68" y2="162" stroke={C.txt} strokeWidth="2" />
+        <path d="M60,60 V140 M60,162 V250" stroke={C.txt} strokeWidth="2" fill="none" />
+        <rect x="58" y="140" width="4" height="22" fill="rgba(0,0,0,0)" />
+        <text x="30" y="155" fill={C.gold} fontSize="13" fontWeight="bold">E</text>
+        <text x="84" y="140" fill={C.mut} fontSize="10">+</text>
+        <text x="84" y="170" fill={C.mut} fontSize="10">−</text>
+        {/* Interrupteur K */}
+        <circle cx="160" cy="60" r="3" fill={C.txt} />
+        <circle cx="220" cy="60" r="3" fill={C.txt} />
+        <line x1="160" y1="60" x2="212" y2="38" stroke={C.txt} strokeWidth="2" />
+        <text x="186" y="28" fill={C.rose} fontSize="12" fontWeight="bold">K (t = 0)</text>
+        {/* Résistance R */}
+        <rect x="260" y="48" width="60" height="24" fill="none" stroke={C.rose} strokeWidth="2" rx="3" />
+        <text x="290" y="64" fill={C.rose} fontSize="12" fontWeight="bold" textAnchor="middle">R</text>
+        {/* uR */}
+        <path d="M320,90 H260" stroke={C.rose} strokeWidth="1.5" markerEnd="url(#rcArr)" fill="none" />
+        <text x="290" y="106" fill={C.rose} fontSize="11" textAnchor="middle">u_R = R·i</text>
+        {/* Condensateur C */}
+        <line x1="320" y1="150" x2="360" y2="150" stroke={C.teal} strokeWidth="3" />
+        <line x1="320" y1="166" x2="360" y2="166" stroke={C.teal} strokeWidth="3" />
+        <text x="372" y="162" fill={C.teal} fontSize="13" fontWeight="bold">C</text>
+        {/* uC flèche */}
+        <path d="M392,196 V126" stroke={C.teal} strokeWidth="1.5" markerEnd="url(#rcArrT)" fill="none" />
+        <text x="402" y="164" fill={C.teal} fontSize="11">u_C</text>
+        {/* courant i */}
+        <path d="M120,52 H145" stroke={C.gold} strokeWidth="1.5" markerEnd="url(#rcArr)" />
+        <text x="125" y="44" fill={C.gold} fontSize="11">i(t)</text>
+        <text x="340" y="160" fill="none" fontSize="1">.</text>
+        <path d="M340,150 V166" stroke="none" />
+        <path d="M340,60 V150 M340,166 V250" stroke={C.txt} strokeWidth="2" fill="none" />
 
-      {/* ── Interrupteur K à 2 positions ── */}
-      <circle cx="230" cy="60" r="4" fill="#fbbf24" />
-      <circle cx="290" cy="60" r="4" fill="#fbbf24" />
-      <circle cx="200" cy="35" r="4" fill="#fbbf24" />
-      <line x1="230" y1="60" x2="285" y2="42" stroke="#fbbf24" strokeWidth="2.5" />
-      <text x="245" y="25" {...label} fill="#fbbf24">K</text>
-      <text x="175" y="28" {...small}>① charge</text>
-      <text x="296" y="45" {...small}>② décharge</text>
+        {/* ───── Lois (haut droite) ───── */}
+        <g fontSize="11.5">
+          <text x="470" y="56" fill={C.gold} fontWeight="bold" fontSize="12">Mise en équation (loi des mailles) :</text>
+          <text x="470" y="80" fill={C.txt}>E = u_R + u_C = R·i + u_C</text>
+          <text x="470" y="102" fill={C.txt}>i = C·du_C/dt   et   q = C·u_C</text>
+          <text x="470" y="128" fill={C.teal} fontWeight="bold">⇒  RC·du_C/dt + u_C = E</text>
+          <text x="470" y="156" fill={C.rose} fontWeight="bold">τ = RC   (constante de temps, en s)</text>
+          <text x="470" y="184" fill={C.txt}>Charge   : u_C(t) = E(1 − e^(−t/τ))</text>
+          <text x="470" y="204" fill={C.txt}>Décharge : u_C(t) = E·e^(−t/τ)</text>
+          <text x="470" y="230" fill={C.mut} fontSize="10.5">t = 0 : C déchargé ⇔ court-circuit (i = E/R)</text>
+          <text x="470" y="246" fill={C.mut} fontSize="10.5">t ≥ 5τ : régime permanent ⇔ interrupteur ouvert (i = 0)</text>
+        </g>
 
-      {/* ── Résistance R (haut droite) ── */}
-      <rect x="350" y="48" width="70" height="24" fill="none" stroke="#a855f7" strokeWidth="2" rx="2" />
-      <text x="375" y="40" {...label} fill="#a855f7">R</text>
+        {/* ───── Courbe de charge (bas gauche) ───── */}
+        <g transform="translate(50, 300)">
+          <text x="140" y="-4" fill={C.green} fontSize="12" fontWeight="bold" textAnchor="middle">Charge : u_C(t) = E(1 − e^(−t/τ))</text>
+          {/* axes */}
+          <line x1="0" y1="180" x2="300" y2="180" stroke={C.mut} strokeWidth="1.5" />
+          <line x1="0" y1="180" x2="0" y2="10" stroke={C.mut} strokeWidth="1.5" />
+          <text x="295" y="198" fill={C.mut} fontSize="10">t</text>
+          <text x="-14" y="16" fill={C.mut} fontSize="10">u_C</text>
+          {/* asymptote E */}
+          <line x1="0" y1="30" x2="300" y2="30" stroke={C.gold} strokeWidth="1" strokeDasharray="5,4" />
+          <text x="306" y="34" fill={C.gold} fontSize="11" fontWeight="bold">E</text>
+          {/* courbe exp */}
+          <path d="M0,180 C30,60 70,38 140,31.5 C200,30.3 260,30 300,30" stroke={C.green} strokeWidth="2.5" fill="none" />
+          {/* tangente à l'origine */}
+          <line x1="0" y1="180" x2="75" y2="30" stroke={C.rose} strokeWidth="1.5" strokeDasharray="4,3" />
+          <text x="80" y="20" fill={C.rose} fontSize="10">tangente à l'origine</text>
+          {/* τ */}
+          <line x1="75" y1="30" x2="75" y2="180" stroke={C.rose} strokeWidth="1" strokeDasharray="3,3" />
+          <text x="75" y="196" fill={C.rose} fontSize="11" fontWeight="bold" textAnchor="middle">τ</text>
+          {/* 0,63E */}
+          <line x1="0" y1="85" x2="75" y2="85" stroke={C.teal} strokeWidth="1" strokeDasharray="3,3" />
+          <circle cx="75" cy="85" r="3.5" fill={C.teal} />
+          <text x="-8" y="89" fill={C.teal} fontSize="10" textAnchor="end">0,63E</text>
+          {/* 5τ */}
+          <line x1="240" y1="30" x2="240" y2="180" stroke={C.mut} strokeWidth="1" strokeDasharray="2,4" />
+          <text x="240" y="196" fill={C.mut} fontSize="10" textAnchor="middle">5τ</text>
+        </g>
 
-      {/* ── Condensateur C (droite) ── */}
-      <line x1="455" y1="135" x2="505" y2="135" stroke="#22d3ee" strokeWidth="3" />
-      <line x1="455" y1="160" x2="505" y2="160" stroke="#22d3ee" strokeWidth="3" />
-      <path d="M 480 110 L 480 135 M 480 160 L 480 190" {...wire} />
-      <text x="515" y="152" {...label}>C</text>
+        {/* ───── Courbe de décharge (bas droite) ───── */}
+        <g transform="translate(420, 300)">
+          <text x="140" y="-4" fill={C.rose} fontSize="12" fontWeight="bold" textAnchor="middle">Décharge : u_C(t) = E·e^(−t/τ)</text>
+          <line x1="0" y1="180" x2="300" y2="180" stroke={C.mut} strokeWidth="1.5" />
+          <line x1="0" y1="180" x2="0" y2="10" stroke={C.mut} strokeWidth="1.5" />
+          <text x="295" y="198" fill={C.mut} fontSize="10">t</text>
+          <text x="-14" y="16" fill={C.mut} fontSize="10">u_C</text>
+          <line x1="0" y1="30" x2="12" y2="30" stroke={C.gold} strokeWidth="1.5" />
+          <text x="-8" y="34" fill={C.gold} fontSize="11" fontWeight="bold" textAnchor="end">E</text>
+          {/* courbe exp décroissante */}
+          <path d="M0,30 C30,150 70,170 140,177 C200,179 260,180 300,180" stroke={C.rose} strokeWidth="2.5" fill="none" />
+          {/* tangente origine */}
+          <line x1="0" y1="30" x2="75" y2="180" stroke={C.teal} strokeWidth="1.5" strokeDasharray="4,3" />
+          {/* τ */}
+          <line x1="75" y1="180" x2="75" y2="124" stroke={C.teal} strokeWidth="1" strokeDasharray="3,3" />
+          <text x="75" y="196" fill={C.teal} fontSize="11" fontWeight="bold" textAnchor="middle">τ</text>
+          <circle cx="75" cy="124" r="3.5" fill={C.teal} />
+          <line x1="0" y1="124" x2="75" y2="124" stroke={C.teal} strokeWidth="1" strokeDasharray="3,3" />
+          <text x="-8" y="128" fill={C.teal} fontSize="10" textAnchor="end">0,37E</text>
+        </g>
 
-      {/* tension uC */}
-      <path d="M 440 128 L 440 168" stroke="#34d399" strokeWidth="1.5" markerEnd="url(#arrG)" fill="none" />
-      <text x="400" y="152" {...small} fill="#34d399">u_C</text>
-
-      {/* ── Sens du courant i ── */}
-      <path d="M 150 52 L 180 52" stroke="#f472b6" strokeWidth="2" markerEnd="url(#arrP)" fill="none" />
-      <text x="150" y="44" {...small} fill="#f472b6">i</text>
-
-      <defs>
-        <marker id="arrP" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-          <path d="M0,0 L6,3 L0,6" fill="none" stroke="#f472b6" strokeWidth="1.5" />
-        </marker>
-        <marker id="arrG" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-          <path d="M0,0 L6,3 L0,6" fill="none" stroke="#34d399" strokeWidth="1.5" />
-        </marker>
-      </defs>
-
-      {/* Légende */}
-      <text x="80" y="282" {...small}>Position ① : charge → u_C(t) = E(1 − e^(−t/τ))   ·   Position ② : décharge → u_C(t) = E·e^(−t/τ)   ·   τ = RC</text>
-    </svg>
+        {/* Légende */}
+        <text x="380" y="540" fill={C.mut} fontSize="10.5" textAnchor="middle">
+          Lecture graphique de τ : la tangente à l'origine coupe l'asymptote en t = τ · À t = τ : 63 % (charge) / 37 % (décharge)
+        </text>
+      </svg>
+    </div>
   );
 }

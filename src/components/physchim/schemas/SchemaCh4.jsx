@@ -1,178 +1,61 @@
 import React from 'react';
-import Math from '../Math';
 
-const F = ({ e }) => <Math expr={e} />;
+// Force des acides/bases : diagramme de prédominance + courbes de distribution
+const C = { teal: '#4fd1c5', rose: '#ee7f9d', gold: '#e8b44a', green: '#34d399', txt: '#cbd5e1', mut: '#64748b' };
 
-// ─── Schéma Bilan Ch.4 : Force des acides et des bases ───────────────────────
 export default function SchemaCh4() {
   return (
-    <div className="space-y-5">
+    <div className="rounded-xl overflow-hidden" style={{ background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(79,209,197,0.15)' }}>
+      <svg viewBox="0 0 760 360" className="w-full h-auto" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+        <text x="380" y="26" fill={C.teal} fontSize="13" fontWeight="bold" textAnchor="middle">Diagramme de prédominance du couple AH / A⁻</text>
 
-      {/* ══ Bloc 1 : Produit ionique Ke ══════════════════════════════════════ */}
-      <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(56,189,248,0.05)', border: '1px solid rgba(56,189,248,0.22)' }}>
-        <div className="px-4 py-2.5" style={{ background: 'rgba(56,189,248,0.1)', borderBottom: '1px solid rgba(56,189,248,0.15)' }}>
-          <span style={{ color: '#38bdf8', fontSize: '0.8rem', fontWeight: 700, fontFamily: 'JetBrains Mono, monospace' }}>💧 PRODUIT IONIQUE DE L'EAU</span>
-        </div>
-        <div className="p-4 space-y-3">
-          <div className="rounded-xl px-4 py-3 text-center" style={{ background: 'rgba(56,189,248,0.07)', border: '1px solid rgba(56,189,248,0.2)' }}>
-            <div className="text-sm mb-2"><F e="2\,\text{H}_2\text{O}_{(\ell)} \rightleftharpoons \text{H}_3\text{O}^+_{(aq)} + \text{HO}^-_{(aq)}" /></div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div className="rounded-xl px-3 py-2.5" style={{ background: 'rgba(56,189,248,0.07)', border: '1px solid rgba(56,189,248,0.2)' }}>
-              <div className="text-xs font-semibold mb-1.5" style={{ color: '#38bdf8' }}>Produit ionique</div>
-              <div className="text-sm"><F e="K_e = \frac{[\text{H}_3\text{O}^+]_{\text{éq}}[\text{HO}^-]_{\text{éq}}}{(c^0)^2} = 10^{-pK_e}" /></div>
-            </div>
-            <div className="rounded-xl px-3 py-2.5" style={{ background: 'rgba(251,191,36,0.07)', border: '1px solid rgba(251,191,36,0.2)' }}>
-              <div className="text-xs font-semibold mb-1.5" style={{ color: '#fbbf24' }}>pKe à 25°C</div>
-              <div className="text-sm"><F e="pK_e = -\log(K_e) = 14{,}00" /></div>
-            </div>
-            <div className="rounded-xl px-3 py-2.5" style={{ background: 'rgba(52,211,153,0.07)', border: '1px solid rgba(52,211,153,0.2)' }}>
-              <div className="text-xs font-semibold mb-1.5" style={{ color: '#34d399' }}>Conséquence</div>
-              <div className="text-sm"><F e="pK_e = \text{pH} + \text{pOH} = 14" /></div>
-            </div>
-          </div>
-        </div>
-      </div>
+        {/* ── Axe de prédominance ── */}
+        <g transform="translate(80, 50)">
+          {/* zones */}
+          <rect x="0" y="0" width="300" height="44" rx="8" fill="rgba(238,127,157,0.1)" stroke={C.rose} strokeWidth="1.2" />
+          <rect x="300" y="0" width="300" height="44" rx="8" fill="rgba(79,209,197,0.1)" stroke={C.teal} strokeWidth="1.2" />
+          <text x="150" y="20" fill={C.rose} fontSize="12.5" fontWeight="bold" textAnchor="middle">AH prédomine</text>
+          <text x="150" y="36" fill={C.mut} fontSize="10" textAnchor="middle">[AH] &gt; [A⁻]</text>
+          <text x="450" y="20" fill={C.teal} fontSize="12.5" fontWeight="bold" textAnchor="middle">A⁻ prédomine</text>
+          <text x="450" y="36" fill={C.mut} fontSize="10" textAnchor="middle">[A⁻] &gt; [AH]</text>
+          {/* axe */}
+          <line x1="-20" y1="62" x2="630" y2="62" stroke={C.txt} strokeWidth="1.5" />
+          <path d="M630,62 l-8,-4 v8 z" fill={C.txt} />
+          <text x="640" y="66" fill={C.txt} fontSize="11">pH</text>
+          {/* pKa */}
+          <line x1="300" y1="-6" x2="300" y2="70" stroke={C.gold} strokeWidth="2" strokeDasharray="5,3" />
+          <text x="300" y="86" fill={C.gold} fontSize="12" fontWeight="bold" textAnchor="middle">pKA</text>
+          <text x="300" y="100" fill={C.gold} fontSize="10" textAnchor="middle">[AH] = [A⁻]</text>
+        </g>
 
-      {/* ══ Bloc 2 : Force des acides — Ka et pKa ═══════════════════════════ */}
-      <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(244,114,182,0.05)', border: '1px solid rgba(244,114,182,0.22)' }}>
-        <div className="px-4 py-2.5" style={{ background: 'rgba(244,114,182,0.1)', borderBottom: '1px solid rgba(244,114,182,0.15)' }}>
-          <span style={{ color: '#f472b6', fontSize: '0.8rem', fontWeight: 700, fontFamily: 'JetBrains Mono, monospace' }}>⚗️ FORCE DES ACIDES — CONSTANTE Ka</span>
-        </div>
-        <div className="p-4 space-y-3">
-          <div className="rounded-xl px-4 py-3 text-center" style={{ background: 'rgba(244,114,182,0.07)', border: '1px solid rgba(244,114,182,0.2)' }}>
-            <div className="text-sm"><F e="\text{AH}_{(aq)} + \text{H}_2\text{O}_{(\ell)} \rightleftharpoons \text{A}^-_{(aq)} + \text{H}_3\text{O}^+_{(aq)}" /></div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div className="rounded-xl px-3 py-2.5" style={{ background: 'rgba(244,114,182,0.07)', border: '1px solid rgba(244,114,182,0.2)' }}>
-              <div className="text-xs font-semibold mb-1.5" style={{ color: '#f472b6' }}>Constante d'acidité</div>
-              <div className="text-sm"><F e="K_A = \frac{[\text{A}^-]_{\text{éq}}[\text{H}_3\text{O}^+]_{\text{éq}}}{c^0\,[\text{AH}]_{\text{éq}}} = 10^{-pK_A}" /></div>
-            </div>
-            <div className="rounded-xl px-3 py-2.5" style={{ background: 'rgba(251,191,36,0.07)', border: '1px solid rgba(251,191,36,0.2)' }}>
-              <div className="text-xs font-semibold mb-1.5" style={{ color: '#fbbf24' }}>pKa</div>
-              <div className="text-sm"><F e="pK_A = -\log(K_A)" /></div>
-              <div className="text-xs mt-2" style={{ color: '#64748b' }}>Plus pKa petit → acide plus fort</div>
-            </div>
-          </div>
+        {/* ── Courbes de distribution % ── */}
+        <g transform="translate(80, 185)">
+          <text x="300" y="-10" fill={C.rose} fontSize="12" fontWeight="bold" textAnchor="middle">Pourcentages des espèces en fonction du pH</text>
+          <line x1="0" y1="120" x2="600" y2="120" stroke={C.mut} strokeWidth="1.5" />
+          <line x1="0" y1="120" x2="0" y2="0" stroke={C.mut} strokeWidth="1.5" />
+          <text x="-12" y="8" fill={C.mut} fontSize="10">%</text>
+          <text x="-30" y="14" fill={C.mut} fontSize="10">100</text>
+          <text x="-24" y="68" fill={C.mut} fontSize="10">50</text>
+          <text x="-18" y="124" fill={C.mut} fontSize="10">0</text>
+          <line x1="0" y1="10" x2="600" y2="10" stroke={C.mut} strokeWidth="0.8" strokeDasharray="2,4" />
+          <line x1="0" y1="65" x2="600" y2="65" stroke={C.mut} strokeWidth="0.8" strokeDasharray="2,4" />
+          {/* % AH : sigmoïde décroissante */}
+          <path d="M0,11 C150,12 240,18 300,65 C360,112 450,118 600,119" stroke={C.rose} strokeWidth="2.5" fill="none" />
+          {/* % A- : sigmoïde croissante */}
+          <path d="M0,119 C150,118 240,112 300,65 C360,18 450,12 600,11" stroke={C.teal} strokeWidth="2.5" fill="none" />
+          {/* croisement à pKa */}
+          <circle cx="300" cy="65" r="4.5" fill={C.gold} />
+          <line x1="300" y1="65" x2="300" y2="120" stroke={C.gold} strokeWidth="1.2" strokeDasharray="4,3" />
+          <text x="300" y="138" fill={C.gold} fontSize="11.5" fontWeight="bold" textAnchor="middle">pH = pKA → 50 % / 50 %</text>
+          <text x="80" y="30" fill={C.rose} fontSize="11" fontWeight="bold">% AH</text>
+          <text x="490" y="30" fill={C.teal} fontSize="11" fontWeight="bold">% A⁻</text>
+          <text x="606" y="124" fill={C.mut} fontSize="10">pH</text>
+        </g>
 
-          {/* Axe pKa — force des acides/bases */}
-          <div>
-            <div className="text-xs font-semibold mb-2" style={{ color: '#e2e8f0' }}>Axe des pKa — force de l'acide AH et de la base A⁻</div>
-            <svg viewBox="0 0 500 85" className="w-full" style={{ maxHeight: 85 }}>
-              <defs>
-                <marker id="aF4L" markerWidth="8" markerHeight="8" refX="2" refY="3" orient="auto">
-                  <path d="M8,0 L8,6 L0,3 z" fill="#f87171" />
-                </marker>
-                <marker id="aF4R" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                  <path d="M0,0 L0,6 L8,3 z" fill="#38bdf8" />
-                </marker>
-              </defs>
-              {/* Axe pKa */}
-              <line x1="30" y1="40" x2="470" y2="40" stroke="#475569" strokeWidth="1.5" />
-              {[1,2,3,4,5,6,7,8,9,10,11,12,13].map(i => (
-                <g key={i}>
-                  <line x1={30 + i*33.1} y1="35" x2={30 + i*33.1} y2="45" stroke="#475569" strokeWidth="1" />
-                  <text x={30 + i*33.1} y="58" fontSize="9" fill="#94a3b8" textAnchor="middle" fontFamily="JetBrains Mono">{i}</text>
-                </g>
-              ))}
-              <text x="22" y="44" fontSize="9" fill="#94a3b8" fontFamily="JetBrains Mono">pKa</text>
-
-              {/* Flèche force acide (vers gauche = fort) */}
-              <line x1="250" y1="25" x2="45" y2="25" stroke="#f87171" strokeWidth="2.5" markerEnd="url(#aF4L)" />
-              <text x="145" y="20" fontSize="9" fill="#f87171" textAnchor="middle" fontFamily="Inter" fontWeight="600">Force de l'acide AH →</text>
-
-              {/* Flèche force base (vers droite = fort) */}
-              <line x1="250" y1="72" x2="460" y2="72" stroke="#38bdf8" strokeWidth="2.5" markerEnd="url(#aF4R)" />
-              <text x="357" y="82" fontSize="9" fill="#38bdf8" textAnchor="middle" fontFamily="Inter" fontWeight="600">← Force de la base A⁻</text>
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      {/* ══ Bloc 3 : Acide fort vs Acide faible ═════════════════════════════ */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-2xl p-4" style={{ background: 'rgba(248,113,113,0.05)', border: '1px solid rgba(248,113,113,0.22)' }}>
-          <div className="text-xs font-semibold mb-3" style={{ color: '#f87171', fontFamily: 'JetBrains Mono, monospace' }}>🔴 ACIDE FORT (τ = 1)</div>
-          <div className="space-y-2.5">
-            <div className="rounded-lg px-3 py-2" style={{ background: 'rgba(248,113,113,0.07)', border: '1px solid rgba(248,113,113,0.2)' }}>
-              <div className="text-xs mb-1" style={{ color: '#94a3b8' }}>Dissociation totale :</div>
-              <div className="text-sm"><F e="[\text{H}_3\text{O}^+]_{\text{éq}} = c" /></div>
-            </div>
-            <div className="rounded-lg px-3 py-2" style={{ background: 'rgba(248,113,113,0.07)', border: '1px solid rgba(248,113,113,0.2)' }}>
-              <div className="text-xs mb-1" style={{ color: '#94a3b8' }}>pH :</div>
-              <div className="text-sm"><F e="\text{pH} = -\log\!\left(\dfrac{c}{c^0}\right)" /></div>
-            </div>
-          </div>
-        </div>
-
-        <div className="rounded-2xl p-4" style={{ background: 'rgba(251,191,36,0.05)', border: '1px solid rgba(251,191,36,0.22)' }}>
-          <div className="text-xs font-semibold mb-3" style={{ color: '#fbbf24', fontFamily: 'JetBrains Mono, monospace' }}>🟡 ACIDE FAIBLE (τ &lt; 1)</div>
-          <div className="space-y-2.5">
-            <div className="rounded-lg px-3 py-2" style={{ background: 'rgba(251,191,36,0.07)', border: '1px solid rgba(251,191,36,0.2)' }}>
-              <div className="text-xs mb-1" style={{ color: '#94a3b8' }}>Approximation si τ &lt; 5% :</div>
-              <div className="text-sm"><F e="[\text{H}_3\text{O}^+]_{\text{éq}} \approx \sqrt{K_A \cdot c}" /></div>
-            </div>
-            <div className="rounded-lg px-3 py-2" style={{ background: 'rgba(251,191,36,0.07)', border: '1px solid rgba(251,191,36,0.2)' }}>
-              <div className="text-xs mb-1" style={{ color: '#94a3b8' }}>pH :</div>
-              <div className="text-sm"><F e="\text{pH} \approx \dfrac{1}{2}(pK_A - \log c)" /></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ══ Bloc 4 : Henderson-Hasselbalch + Diagramme de prédominance ═══════ */}
-      <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(167,139,250,0.05)', border: '1px solid rgba(167,139,250,0.22)' }}>
-        <div className="px-4 py-2.5" style={{ background: 'rgba(167,139,250,0.1)', borderBottom: '1px solid rgba(167,139,250,0.15)' }}>
-          <span style={{ color: '#a78bfa', fontSize: '0.8rem', fontWeight: 700, fontFamily: 'JetBrains Mono, monospace' }}>📊 HENDERSON-HASSELBALCH + DIAGRAMME DE PRÉDOMINANCE</span>
-        </div>
-        <div className="p-4 space-y-4">
-
-          {/* Henderson */}
-          <div className="rounded-xl px-4 py-3" style={{ background: 'rgba(167,139,250,0.07)', border: '1px solid rgba(167,139,250,0.2)' }}>
-            <div className="text-xs font-semibold mb-2" style={{ color: '#a78bfa' }}>Relation de Henderson-Hasselbalch</div>
-            <div className="text-base"><F e="\text{pH} = pK_A + \log\!\left(\dfrac{[\text{A}^-]_{\text{éq}}}{[\text{AH}]_{\text{éq}}}\right)" /></div>
-          </div>
-
-          {/* Diagramme de prédominance — SVG épuré */}
-          <div>
-            <div className="text-xs font-semibold mb-2" style={{ color: '#e2e8f0' }}>Diagramme de prédominance</div>
-            <svg viewBox="0 0 500 70" className="w-full" style={{ maxHeight: 70 }}>
-              <defs>
-                <marker id="aAx4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                  <path d="M0,0 L0,6 L8,3 z" fill="#64748b" />
-                </marker>
-              </defs>
-              {/* Axe pH */}
-              <line x1="20" y1="35" x2="470" y2="35" stroke="#64748b" strokeWidth="1.5" markerEnd="url(#aAx4)" />
-              <text x="472" y="39" fontSize="11" fill="#94a3b8" fontFamily="JetBrains Mono">pH</text>
-
-              {/* Zone AH prédomine (gauche) */}
-              <rect x="22" y="20" width="207" height="24" rx="6" fill="rgba(248,113,113,0.15)" stroke="#f87171" strokeWidth="1" />
-              <text x="126" y="35" fontSize="12" fill="#f87171" textAnchor="middle" fontFamily="JetBrains Mono" fontWeight="700">AH prédomine</text>
-
-              {/* Séparateur pKa */}
-              <line x1="230" y1="12" x2="230" y2="52" stroke="#fbbf24" strokeWidth="2" strokeDasharray="4,2" />
-              <text x="230" y="9" fontSize="9.5" fill="#fbbf24" textAnchor="middle" fontFamily="JetBrains Mono" fontWeight="700">pH = pKa</text>
-              <text x="230" y="62" fontSize="8.5" fill="#fbbf24" textAnchor="middle" fontFamily="Inter">[AH] = [A⁻]</text>
-
-              {/* Zone A⁻ prédomine (droite) */}
-              <rect x="232" y="20" width="235" height="24" rx="6" fill="rgba(56,189,248,0.15)" stroke="#38bdf8" strokeWidth="1" />
-              <text x="349" y="35" fontSize="12" fill="#38bdf8" textAnchor="middle" fontFamily="JetBrains Mono" fontWeight="700">A⁻ prédomine</text>
-            </svg>
-          </div>
-
-          {/* Règle */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div className="rounded-lg px-3 py-2" style={{ background: 'rgba(248,113,113,0.07)', border: '1px solid rgba(248,113,113,0.2)' }}>
-              <div className="text-xs"><F e="\text{pH} < pK_A \Rightarrow [\text{AH}] > [\text{A}^-]" /></div>
-            </div>
-            <div className="rounded-lg px-3 py-2" style={{ background: 'rgba(56,189,248,0.07)', border: '1px solid rgba(56,189,248,0.2)' }}>
-              <div className="text-xs"><F e="\text{pH} > pK_A \Rightarrow [\text{A}^-] > [\text{AH}]" /></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+        <text x="380" y="348" fill={C.mut} fontSize="10.5" textAnchor="middle">
+          Henderson-Hasselbalch : pH = pKA + log([A⁻]/[AH])  ·  Plus pKA est FAIBLE, plus l'acide est FORT
+        </text>
+      </svg>
     </div>
   );
 }

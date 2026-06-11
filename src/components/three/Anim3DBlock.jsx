@@ -6,6 +6,7 @@ import AnimProjectile from './AnimProjectile';
 import AnimKepler from './AnimKepler';
 import AnimThermal from './AnimThermal';
 import AnimWave from './AnimWave';
+import AnimPhotoelectric from './AnimPhotoelectric';
 
 // Registry : chapitre → animation 3D
 const ANIM3D = {
@@ -20,6 +21,7 @@ const ANIM3D = {
   16: { C: AnimThermal, title: 'Agitation thermique — chaud vs froid', caption: 'Compartiment chaud (rouge) : agitation forte. Froid (bleu) : agitation faible.' },
   17: { C: AnimWave, title: 'Interférences — superposition de deux ondes', caption: 'Deux sources synchrones : zones d\'amplitude max (constructives) et nulles (destructives).' },
   18: { C: AnimWave, title: 'Surface d\'onde — propagation et superposition', caption: 'Visualise la propagation circulaire depuis chaque source.' },
+  19: { C: AnimPhotoelectric, title: 'Effet photoélectrique — arrachement d\'électrons', caption: 'Photons hν (jaunes) frappent le métal : si hν ≥ We, un électron (teal) est arraché avec Ec = hν − We.' },
 };
 
 export function hasAnim3D(chapterId) {

@@ -2,24 +2,19 @@ import React from 'react';
 import Math from './Math';
 import SchemaBlock from './SchemaBlock';
 import SchemaCh1 from './schemas/SchemaCh1';
-import SchemaCh2 from './schemas/SchemaCh2';
 import SchemaCh3 from './schemas/SchemaCh3';
 import SchemaCh4 from './schemas/SchemaCh4';
 import SchemaCh5 from './schemas/SchemaCh5';
 import SchemaCh6 from './schemas/SchemaCh6';
 import SchemaCh7 from './schemas/SchemaCh7';
 import SchemaCh8 from './schemas/SchemaCh8';
-import SchemaCh9 from './schemas/SchemaCh9';
 import SchemaCh10 from './schemas/SchemaCh10';
 import SchemaCh11 from './schemas/SchemaCh11';
 import SchemaCh12 from './schemas/SchemaCh12';
 import SchemaCh13 from './schemas/SchemaCh13';
-import SchemaCh14 from './schemas/SchemaCh14';
 import SchemaCh16 from './schemas/SchemaCh16';
 import SchemaCh17 from './schemas/SchemaCh17';
-import SchemaCh18 from './schemas/SchemaCh18';
 import SchemaCh19 from './schemas/SchemaCh19';
-import SchemaCh20 from './schemas/SchemaCh20';
 import Anim3DBlock, { hasAnim3D } from '../three/Anim3DBlock';
 import BacPile from './schemas/bac/BacPile';
 import BacElectrolyse from './schemas/bac/BacElectrolyse';
@@ -39,26 +34,22 @@ const BAC_SCHEMAS = {
 };
 
 // Map des schémas enrichis par chapitre
+// Pour les ch. 2, 9, 14, 18, 20 le schéma type Bac (plus complet) remplace le schéma bilan (fusion des doublons)
 const RICH_SCHEMAS = {
   1: SchemaCh1,
-  2: SchemaCh2,
   3: SchemaCh3,
   4: SchemaCh4,
   5: SchemaCh5,
   6: SchemaCh6,
   7: SchemaCh7,
   8: SchemaCh8,
-  9: SchemaCh9,
   10: SchemaCh10,
   11: SchemaCh11,
   12: SchemaCh12,
   13: SchemaCh13,
-  14: SchemaCh14,
   16: SchemaCh16,
   17: SchemaCh17,
-  18: SchemaCh18,
   19: SchemaCh19,
-  20: SchemaCh20,
 };
 
 // Renders text with inline LaTeX: wrap expressions between $ signs
