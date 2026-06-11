@@ -13,6 +13,7 @@ const SECTIONS = [
   { id: 'bac', icon: '🎯', title: 'Bac', desc: 'Entraînement type Bac : exercices chronométrés style annales', color: '#fbbf24' },
   { id: 'sujets', icon: '📄', title: 'Sujets', desc: 'Sujets complets de Bac avec corrigés intégraux', color: '#9ee8de' },
   { id: 'planning', icon: '🗓️', title: 'Planning', desc: 'Plan de révision stratégique janvier → juin avec suivi de progression', color: '#a78bfa' },
+  { id: 'agent', icon: '🤖', title: 'Prof IA', desc: 'Ton prof particulier IA : questions, quiz, démos — aussi sur WhatsApp & Telegram', color: '#38bdf8' },
 ];
 
 export default function WelcomeScreen({ onSelect, onResume }) {

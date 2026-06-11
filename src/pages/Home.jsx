@@ -7,6 +7,7 @@ import BacEntrainement from '../components/physchim/BacEntrainement';
 import QuizSection from '../components/quiz/QuizSection';
 import Flashcards from '../components/quiz/Flashcards';
 import WelcomeScreen from '../components/home/WelcomeScreen';
+import AgentChat from '../components/assistant/AgentChat';
 import RevisionPlan from '../components/planning/RevisionPlan';
 
 const TABS = [
@@ -16,7 +17,8 @@ const TABS = [
   { id: 'flashcards', label: '🃏 Cartes', desc: 'Flashcards formules' },
   { id: 'bac', label: '🎯 Bac', desc: 'Entraînement Bac' },
   { id: 'sujets', label: '📄 Sujets', desc: 'Annales complètes' },
-  { id: 'planning', label: '🗓️ Planning', desc: 'Plan de révision' }];
+  { id: 'planning', label: '🗓️ Planning', desc: 'Plan de révision' },
+  { id: 'agent', label: '🤖 Prof IA', desc: 'Assistant de révision' }];
 
 const totalFormulas = chapters.reduce((s, c) => s + c.formulas.length, 0);
 
@@ -123,6 +125,9 @@ export default function Home() {
 
       {/* Quiz tab (full width) */}
       {activeTab === 'quiz' && <QuizSection />}
+
+      {/* Agent IA tab (full width) */}
+      {activeTab === 'agent' && <AgentChat />}
 
       {/* Planning tab (full width) */}
       {activeTab === 'planning' && <RevisionPlan />}
