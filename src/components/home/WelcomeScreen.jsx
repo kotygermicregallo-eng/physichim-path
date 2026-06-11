@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { chapters } from '../physchim/chaptersData';
+import Atom3D from '../three/Atom3D';
 
 const totalFormulas = chapters.reduce((s, c) => s + c.formulas.length, 0);
 
@@ -33,7 +34,9 @@ export default function WelcomeScreen({ onSelect, onResume }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-10">
-          <div className="inline-block text-5xl md:text-6xl mb-4 animate-float">⚛</div>
+          <div className="max-w-xs mx-auto mb-2">
+            <Atom3D height={190} />
+          </div>
           <h1 className="text-3xl md:text-5xl font-bold gradient-text mb-3" style={{ fontFamily: 'Orbitron, sans-serif', letterSpacing: '0.05em' }}>
             PHYSCHIM·X
           </h1>

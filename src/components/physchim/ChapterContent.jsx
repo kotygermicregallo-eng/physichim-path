@@ -20,6 +20,23 @@ import SchemaCh17 from './schemas/SchemaCh17';
 import SchemaCh18 from './schemas/SchemaCh18';
 import SchemaCh19 from './schemas/SchemaCh19';
 import SchemaCh20 from './schemas/SchemaCh20';
+import Anim3DBlock, { hasAnim3D } from '../three/Anim3DBlock';
+import BacPile from './schemas/bac/BacPile';
+import BacElectrolyse from './schemas/bac/BacElectrolyse';
+import BacFluides from './schemas/bac/BacFluides';
+import BacOndes from './schemas/bac/BacOndes';
+import BacLunette from './schemas/bac/BacLunette';
+import BacRC from './schemas/bac/BacRC';
+
+// Schémas précis "type sujet Bac" par chapitre
+const BAC_SCHEMAS = {
+  2: { C: BacPile, title: 'Pile électrochimique — schéma type sujet Bac' },
+  9: { C: BacElectrolyse, title: 'Électrolyse — schéma type sujet Bac' },
+  14: { C: BacFluides, title: 'Venturi & Torricelli — schémas type sujet Bac' },
+  17: { C: BacOndes, title: 'Diffraction & interférences — montages laser type Bac' },
+  18: { C: BacLunette, title: 'Lunette astronomique afocale — schéma type sujet Bac' },
+  20: { C: BacRC, title: 'Circuit RC — schéma type sujet Bac' },
+};
 
 // Map des schémas enrichis par chapitre
 const RICH_SCHEMAS = {
@@ -141,6 +158,17 @@ export default function ChapterContent({ chapter }) {
         <h3 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: chapter.color }}>
           <span>📊</span> Schémas / Représentations
         </h3>
+        {/* Animation 3D interactive (si disponible) */}
+        {hasAnim3D(chapter.id) && <Anim3DBlock chapterId={chapter.id} />}
+        {/* Schéma type sujet Bac (si disponible) */}
+        {BAC_SCHEMAS[chapter.id] && (
+          <div className="mb-4">
+            <div className="text-xs font-semibold mb-2 px-1" style={{ color: '#fbbf24', fontFamily: 'JetBrains Mono, monospace' }}>
+              🎯 {BAC_SCHEMAS[chapter.id].title}
+            </div>
+            {React.createElement(BAC_SCHEMAS[chapter.id].C)}
+          </div>
+        )}
         {/* Schéma enrichi bilan (si disponible) */}
         {RICH_SCHEMAS[chapter.id] && (
           <div className="mb-4">
