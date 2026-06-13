@@ -27,7 +27,15 @@ export default function BottomNav() {
         return (
           <button
             key={tab.id}
-            onClick={() => navigate(tab.path)}
+            onClick={() => {
+              if (active) {
+                // Re-clicking active tab resets to root of that tab
+                navigate(tab.path, { replace: true });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              } else {
+                navigate(tab.path);
+              }
+            }}
             className="flex flex-col items-center justify-center py-2.5 px-2 min-w-0 flex-1 transition-all select-none"
             style={{ color: active ? '#4fd1c5' : '#475569', WebkitUserSelect: 'none', userSelect: 'none' }}>
             <span className="text-xl leading-none mb-0.5">{tab.icon}</span>
