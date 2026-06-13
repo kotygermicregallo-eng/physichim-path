@@ -307,3 +307,17 @@
 ::-webkit-scrollbar-thumb:hover { background: rgba(79,209,197,0.5); }
 
 html { scroll-behavior: smooth; }
+
+/* ─── Mobile safe areas & overscroll ───────────────────── */
+body {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+  padding-top: env(safe-area-inset-top);
+}
+
+/* Disable text selection on interactive UI elements */
+button, a, nav, .section-tab, .chapter-nav-item {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
