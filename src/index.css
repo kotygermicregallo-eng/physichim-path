@@ -4,6 +4,33 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 235 55% 9%;
+    --card: 0 0% 100%;
+    --card-foreground: 235 55% 9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 235 55% 9%;
+    --primary: 174 59% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 90%;
+    --secondary-foreground: 235 30% 20%;
+    --muted: 220 14% 93%;
+    --muted-foreground: 215 16% 40%;
+    --accent: 344 77% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 85%;
+    --input: 220 14% 93%;
+    --ring: 174 59% 40%;
+    --glass-bg: rgba(255,255,255,0.72);
+    --glass-border: rgba(79,209,197,0.22);
+    --glass-hover: rgba(79,209,197,0.1);
+  }
+}
+
 @layer base {
   :root {
     /* ── Futuristic neon palette ─────────────────────── */

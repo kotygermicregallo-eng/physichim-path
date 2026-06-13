@@ -53,6 +53,10 @@ export default function Home({ tab: propTab }) {
   const location = useLocation();
   const { chapterId } = useParams();
 
+  // When BottomNav re-taps the active route it passes { reset: timestamp } in state.
+  // Using it as a key on the content re-mounts and resets all child state.
+  const resetKey = location.state?.reset ?? 0;
+
   const activeTab = propTab || null;
 
   const [activeChapter, setActiveChapter] = useState(() => {
@@ -186,20 +190,20 @@ export default function Home({ tab: propTab }) {
 
           {activeTab === 'sujets' && (
             <div className="max-w-4xl mx-auto px-4 py-8" style={{ paddingBottom: 'calc(80px + env(safe-area-inset-bottom))' }}>
-              <CompleteSubjects key={refreshKey} />
+              <CompleteSubjects key={`${refreshKey}-${resetKey}`} />
             </div>
           )}
-          {activeTab === 'quiz' && <QuizSection key={refreshKey} />}
-          {activeTab === 'agent' && <AgentChat />}
+          {activeTab === 'quiz' && <QuizSection key={`${refreshKey}-${resetKey}`} />}
+          {activeTab === 'agent' && <AgentChat key={resetKey} />}
           {activeTab === 'planning' && (
             <PullToRefresh onRefresh={handleRefresh}>
-              <RevisionPlan key={refreshKey} />
+              <RevisionPlan key={`${refreshKey}-${resetKey}`} />
             </PullToRefresh>
           )}
-          {activeTab === 'flashcards' && <Flashcards key={refreshKey} />}
+          {activeTab === 'flashcards' && <Flashcards key={`${refreshKey}-${resetKey}`} />}
           {activeTab === 'bac' && (
             <div className="max-w-4xl mx-auto px-4 py-8" style={{ paddingBottom: 'calc(80px + env(safe-area-inset-bottom))' }}>
-              <BacEntrainement key={refreshKey} />
+              <BacEntrainement key={`${refreshKey}-${resetKey}`} />
             </div>
           )}
 

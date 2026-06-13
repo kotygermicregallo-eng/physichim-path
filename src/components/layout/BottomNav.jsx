@@ -29,8 +29,9 @@ export default function BottomNav() {
             key={tab.id}
             onClick={() => {
               if (active) {
-                // Re-clicking active tab resets to root of that tab
-                navigate(tab.path, { replace: true });
+                // Re-tap on active tab: replace current history entry to reset
+                // the tab's stack back to its root, then scroll to top
+                navigate(tab.path, { replace: true, state: { reset: Date.now() } });
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               } else {
                 navigate(tab.path);
